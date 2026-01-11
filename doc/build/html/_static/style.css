@@ -1,0 +1,33 @@
+.wy-nav-content {
+    max-width: 1400px !important;
+}
+/* override table no-wrap */
+.wy-table-responsive table td, .wy-table-responsive table th {
+    white-space: normal;
+}
+
+.good pre {
+    border-left: 5px solid rgba(74, 182, 93, 1);
+}
+.bad pre {
+border-left: 5px solid rgb(244, 76, 78);
+}
+.maybe pre {
+border-left: 5px solid rgb(244, 227, 76);
+}
+
+.red {
+    color:red;
+}
+
+.green {
+    color:green;
+}
+
+.blue {
+    color:blue;
+}
+
+.orange {
+    color:orange;
+}

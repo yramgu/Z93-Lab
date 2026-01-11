@@ -1,0 +1,397 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1. General Information &mdash; LibreSDR Lab 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2. Terms of Use" href="terms_of_use.html" />
+    <link rel="prev" title="LibreSDR Lab" href="index.html" /> 
+<link href="_static/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            LibreSDR Lab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. General Information</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#hardware">1.1. Hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#drivers-and-libraries">1.2. Drivers and Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#firmwares">1.3. Firmwares</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#default-firmware">1.3.1. Default firmware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#alternative-firmwares">1.3.2. Alternative firmwares</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#analog-devices-links">1.4. Analog devices links</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#extended-capabilities">1.5. “Extended capabilities”</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configuration">1.5.1. Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#available-modes">1.5.2. Available Modes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="terms_of_use.html">2. Terms of Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="useful_shortcuts.html">3. Useful Shortcuts for Sphinx writing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">LibreSDR Lab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">1. </span>General Information</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/master.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="general-information">
+<h1><span class="section-number">1. </span>General Information<a class="headerlink" href="#general-information" title="Link to this heading"></a></h1>
+<p>This website aims mainly at providing RF test data for the LibreSDR/ZynqSDR platform. I struggled to find anything
+showing the performance of this device in a controlled environment, therefore decided to do it myself.</p>
+<p>There no single official owner/manufacturer of this platform, information is scarce and mainly provided
+by the community.</p>
+<p>This main page will also provide general information few links that I think are useful to know about</p>
+<section id="hardware">
+<h2><span class="section-number">1.1. </span>Hardware<a class="headerlink" href="#hardware" title="Link to this heading"></a></h2>
+<p>The LibreSDR (also known as ZynqSDR) is a platform based on the ADALM-PLUTO from Analog Devices.
+It is encased in an aluminium shell which looks and feels quite decent</p>
+<figure class="align-center" id="id5">
+<a class="reference internal image-reference" href="_images/zynqsdr.png"><img alt="_images/zynqsdr.png" src="_images/zynqsdr.png" style="width: 652.0px; height: 246.5px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">LibreSDR / ZynqSDR</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>It can be bought in a variety of places such as Ebay, Aliexpress, Banggood… Depending on the source the marking
+on the aluminium case might change but the board inside is the same.
+As far as I know the current/latest PCB revision is <strong>“rev5”</strong>. Schematics can be found here:
+<a class="reference external" href="https://github.com/F5OEO/tezuka_fw/discussions/72">https://github.com/F5OEO/tezuka_fw/discussions/72</a>.
+My own device is from Hamgeek and the case marking matches the one shown by <a class="reference external" href="https://github.com/F5OEO/tezuka_fw/discussions/72#discussioncomment-13402802">MartinSKNDE</a></p>
+<figure class="align-center" id="id6">
+<a class="reference internal image-reference" href="_images/zynqsdr_pcb.png"><img alt="_images/zynqsdr_pcb.png" src="_images/zynqsdr_pcb.png" style="width: 776.0px; height: 554.5px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">LibreSDR PCB</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>These are the specs, according to <a class="reference external" href="https://www.hgeek.com/products/hamgeek-adi-pluto-70mhz-6ghz-sdr-software-defined-radio-ad936x-for-libiio-iioscope-sdrsharp-matlab">Hamgeek</a></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>FPGA</p></td>
+<td><p>XC7020-2CLG400I  with 2-core Cortex A9</p></td>
+</tr>
+<tr class="row-odd"><td><p>RAM</p></td>
+<td><p>1GB 32bit wide DDR3 1066MHz</p></td>
+</tr>
+<tr class="row-even"><td><p>Flash</p></td>
+<td><p>32MB QSPI, also support micro SD card</p></td>
+</tr>
+<tr class="row-odd"><td><p>RFIC</p></td>
+<td><p>AD9363 (Can be “hacked” to AD9361 or AD9364) with 2 Transmit + 2 Receive channels</p></td>
+</tr>
+<tr class="row-even"><td><p>ADC/DAC resolution</p></td>
+<td><p>12 bits</p></td>
+</tr>
+<tr class="row-odd"><td><p>Max Sampling rate</p></td>
+<td><p>61.44 Msps</p></td>
+</tr>
+<tr class="row-even"><td><p>Max bandwidth</p></td>
+<td><p>20 MHz (AD9363 mode) or 56 MHz (AD9364/61 mode)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Frequency range</p></td>
+<td><p>325~3800 MHz (AD9363 mode) or 70~6000MHz (AD9364/61 mode)</p></td>
+</tr>
+<tr class="row-even"><td><p>Clock</p></td>
+<td><p>VCTCXO 40MHZ 0.5ppm, with external clock input</p></td>
+</tr>
+<tr class="row-odd"><td><p>Connections</p></td>
+<td><p>USB 2.0 OTG + USB debug (Serial) + Gigabit ethernet. USB connectors are Type C</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="drivers-and-libraries">
+<h2><span class="section-number">1.2. </span>Drivers and Libraries<a class="headerlink" href="#drivers-and-libraries" title="Link to this heading"></a></h2>
+<p><strong>Windows</strong> drivers and Libraries I needed to use the device:</p>
+<ul class="simple">
+<li><p><span class="guilabel">USB driver</span>: <a class="reference external" href="https://github.com/analogdevicesinc/plutosdr-m2k-drivers-win/releases">https://github.com/analogdevicesinc/plutosdr-m2k-drivers-win/releases</a></p></li>
+<li><p><span class="guilabel">Libiio</span>: <a class="reference external" href="https://github.com/analogdevicesinc/libiio/releases">https://github.com/analogdevicesinc/libiio/releases</a></p></li>
+<li><p><span class="guilabel">pyadi-iio</span> (Python module for Libiio, necessary if you want to control your device with Python scripts): <a class="reference external" href="https://github.com/analogdevicesinc/pyadi-iio?tab=readme-ov-file">https://github.com/analogdevicesinc/pyadi-iio?tab=readme-ov-file</a></p></li>
+</ul>
+</section>
+<section id="firmwares">
+<h2><span class="section-number">1.3. </span>Firmwares<a class="headerlink" href="#firmwares" title="Link to this heading"></a></h2>
+<section id="default-firmware">
+<h3><span class="section-number">1.3.1. </span>Default firmware<a class="headerlink" href="#default-firmware" title="Link to this heading"></a></h3>
+<p>By default my device shipped with an unknown firmware based on the PlutoSDR firmware v0.37, dubbed <strong>“v0.37-dirty”</strong>.</p>
+<p>In the device I received the stock firmware:</p>
+<ul>
+<li><p>Is in “AD9363” mode, ie <strong>limited to the standard frequency range of 325-3800MHz / 20MHz bandwidth</strong></p></li>
+<li><p>Is configured in <strong>1TX-1RX</strong> only (so TX2 and RX2 port unusable)</p></li>
+<li><p>Has ethernet enabled by default (some forums seem to say this is not the case but it was on mine):</p>
+<blockquote>
+<div><figure class="align-center" id="id7">
+<a class="reference internal image-reference" href="_images/linux_ethernet_config.png"><img alt="_images/linux_ethernet_config.png" src="_images/linux_ethernet_config.png" style="width: 542.4px; height: 503.20000000000005px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Ethernet configuration</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>At the time of writing I have not tested ethernet yet, only USB</p>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="alternative-firmwares">
+<h3><span class="section-number">1.3.2. </span>Alternative firmwares<a class="headerlink" href="#alternative-firmwares" title="Link to this heading"></a></h3>
+<p>Most users seem to switch to alternative firmwares. Among the most popular ones:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><span class="guilabel">Tezuka</span> from F5OEO: <a class="reference external" href="https://github.com/F5OEO/tezuka_fw">https://github.com/F5OEO/tezuka_fw</a></dt><dd><p>This firmware is built in many different versions (for different platforms) and adds many new functionalities, as well as support for other open-source projects such as Maia SDR</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><span class="guilabel">libresdr</span> from hz12opensource: <a class="reference external" href="https://github.com/hz12opensource/libresdr">https://github.com/hz12opensource/libresdr</a></dt><dd><p>This firmware focuses mainly on overclocking and increasing continuous sampling rate</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>These two repositories contain convenient SD card images:</p>
+<ol class="arabic">
+<li><p>Format an SD card in FAT32</p></li>
+<li><p>Simply extract the content of the release ZIP file onto the SD card</p>
+<blockquote>
+<div><figure class="align-center" id="id8">
+<a class="reference internal image-reference" href="_images/sd_card.png"><img alt="_images/sd_card.png" src="_images/sd_card.png" style="width: 1099.2px; height: 468.0px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">SD card preparation</span><a class="headerlink" href="#id8" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</li>
+<li><p>Insert it in the LibreSDR and plug it in: the SDR will boot from the SD card instead of the internal flash.</p>
+<blockquote>
+<div><div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>screenshot</p>
+</div>
+</div></blockquote>
+</li>
+</ol>
+<p>This method has the advantage that the internal flash remains untouched, eliminating the risk of bricking the device.</p>
+</section>
+</section>
+<section id="analog-devices-links">
+<h2><span class="section-number">1.4. </span>Analog devices links<a class="headerlink" href="#analog-devices-links" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><span class="guilabel">AD9363</span>: <a class="reference external" href="https://www.analog.com/en/products/ad9363.html">https://www.analog.com/en/products/ad9363.html</a></p></li>
+<li><p><span class="guilabel">ADALM PLUTO</span>: <a class="reference external" href="https://www.analog.com/en/resources/evaluation-hardware-and-software/evaluation-boards-kits/ADALM-PLUTO.html">https://www.analog.com/en/resources/evaluation-hardware-and-software/evaluation-boards-kits/ADALM-PLUTO.html</a></p></li>
+<li><p><span class="guilabel">Customization</span>: <a class="reference external" href="https://wiki.analog.com/university/tools/pluto/users/customizing">https://wiki.analog.com/university/tools/pluto/users/customizing</a></p></li>
+</ul>
+</section>
+<section id="extended-capabilities">
+<h2><span class="section-number">1.5. </span>“Extended capabilities”<a class="headerlink" href="#extended-capabilities" title="Link to this heading"></a></h2>
+<p>An AD9363-based device can be set as an AD9364/61 for extended capabilities.
+The <span class="guilabel">Customization</span> page explains the different possible configurations and commands to use.
+The process is also summarised here.</p>
+<section id="configuration">
+<h3><span class="section-number">1.5.1. </span>Configuration<a class="headerlink" href="#configuration" title="Link to this heading"></a></h3>
+<ul>
+<li><p>Plug the device to your computer using the USB port. Windows should enumerate a COM port</p>
+<blockquote>
+<div><div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">Todo</p>
+<p>add picture</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>Connect to that serial port using a tool like TeraTerm or similar with the settings <span class="guilabel">9600,N,8,1</span></p></li>
+<li><p>Connect to the device with <span class="guilabel">username: root</span> and <span class="guilabel">password: analog</span></p>
+<blockquote>
+<div><div class="admonition-todo admonition" id="id3">
+<p class="admonition-title">Todo</p>
+<p>confirm + add picture</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>Type the following commands:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fw_setenv</span> <span class="n">attr_name</span> <span class="n">compatible</span>
+<span class="n">fw_setenv</span> <span class="n">attr_val</span> <span class="o">&lt;</span><span class="n">rfic</span><span class="o">&gt;</span>
+<span class="n">fw_setenv</span> <span class="n">compatible</span> <span class="o">&lt;</span><span class="n">rfic</span><span class="o">&gt;</span>
+<span class="n">fw_setenv</span> <span class="n">mode</span> <span class="o">&lt;</span><span class="n">mode</span><span class="o">&gt;</span>
+<span class="n">reboot</span>
+</pre></div>
+</div>
+<p>The options for <code class="docutils literal notranslate"><span class="pre">&lt;rfic&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;mode&gt;</span></code> are given in the Modes section below</p>
+<p>You can get the current state of the device by typing:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fw_printenv</span> <span class="n">attr_name</span>
+<span class="n">fw_printenv</span> <span class="n">attr_val</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>For example if you get:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fw_printenv</span> <span class="n">attr_name</span>
+<span class="o">--&gt;</span> <span class="n">Error</span><span class="p">:</span> <span class="s2">&quot;attr_name&quot;</span> <span class="ow">not</span> <span class="n">defined</span>
+<span class="n">fw_printenv</span> <span class="n">attr_val</span>
+<span class="o">--&gt;</span> <span class="n">Error</span><span class="p">:</span> <span class="s2">&quot;attr_val&quot;</span> <span class="ow">not</span> <span class="n">defined</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>It means those attributes are not defined, the device is therefore in AD9363 mode. This should be the default state.</p>
+</div></blockquote>
+</li>
+</ul>
+<p>Example:</p>
+<div class="admonition-todo admonition" id="id4">
+<p class="admonition-title">Todo</p>
+<p>add picture</p>
+</div>
+</section>
+<section id="available-modes">
+<h3><span class="section-number">1.5.2. </span>Available Modes<a class="headerlink" href="#available-modes" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>&lt;rfic&gt;</p></th>
+<th class="head"><p>&lt;mode&gt;</p></th>
+<th class="head"><p>LO tuning range</p></th>
+<th class="head"><p>Max bandwidth</p></th>
+<th class="head"><p>Max sampling rate</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td rowspan="2"><p>AD9363</p></td>
+<td><p>1r1t (1x RX + 1x TX)</p></td>
+<td><p>325 - 3800 MHz</p></td>
+<td><p>20 MHz</p></td>
+<td><p>61.44 Msps</p></td>
+</tr>
+<tr class="row-odd"><td><p>2r2t (2x RX + 2x TX)</p></td>
+<td><p>325 - 3800 MHz</p></td>
+<td><p>20 MHz</p></td>
+<td><p>30.72 Msps</p></td>
+</tr>
+<tr class="row-even"><td><p>AD9364</p></td>
+<td><p>1r1t (1x RX + 1x TX)</p></td>
+<td><p>70 - 6000 MHz</p></td>
+<td><p>56 MHz</p></td>
+<td><p>61.44 Msps</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="2"><p>AD9361</p></td>
+<td><p>1r1t (1x RX + 1x TX)</p></td>
+<td><p>70 - 6000 MHz</p></td>
+<td><p>56 MHz</p></td>
+<td><p>61.44 Msps</p></td>
+</tr>
+<tr class="row-even"><td><p>2r2t (2x RX + 2x TX)</p></td>
+<td><p>70 - 6000 MHz</p></td>
+<td><p>56 MHz</p></td>
+<td><p>30.72 Msps</p></td>
+</tr>
+</tbody>
+</table>
+<p>Example, to put the device in AD9361 / 2r2t mode, type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fw_setenv</span> <span class="n">attr_name</span> <span class="n">compatible</span>
+<span class="n">fw_setenv</span> <span class="n">attr_val</span> <span class="n">ad9361</span>
+<span class="n">fw_setenv</span> <span class="n">compatible</span> <span class="n">ad9361</span>
+<span class="n">fw_setenv</span> <span class="n">mode</span> <span class="mi">2</span><span class="n">r2t</span>
+<span class="n">reboot</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="LibreSDR Lab" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="terms_of_use.html" class="btn btn-neutral float-right" title="2. Terms of Use" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, LibreSDR Lab.
+      <span class="lastupdated">Last updated on Jan 11, 2026 at 1505.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
