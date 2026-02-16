@@ -1,0 +1,1116 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2. OpenSourceSDRLab LibreSDR &mdash; Z93-Lab 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3. Terms of Use" href="terms_of_use.html" />
+    <link rel="prev" title="1. General Information" href="master.html" /> 
+<link href="_static/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Z93-Lab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="master.html">1. General Information</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. OpenSourceSDRLab LibreSDR</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#hardware">2.1. Hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#firmware">2.2. Firmware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#typical-test-setup">2.3. Typical test setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#port-impedance">2.4. Port impedance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rx-tests">2.5. RX tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rx-frequency-response">2.5.1. Rx Frequency response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rx-gain">2.5.2. Rx Gain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rx-bandwidth-filter-response">2.5.3. Rx Bandwidth filter response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rx-spurious-emissions">2.5.4. Rx Spurious Emissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rx-noise-figure">2.5.5. Rx Noise figure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tx-tests">2.6. TX tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tx-frequency-response">2.6.1. Tx Frequency response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tx-gain">2.6.2. Tx Gain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tx-filter-bandwidth-response">2.6.3. Tx Filter bandwidth response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tx-lo-leakage-and-image">2.6.4. Tx LO leakage and Image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tx-harmonics">2.6.5. Tx Harmonics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tx-baseband-intermodulation">2.6.6. Tx (baseband) intermodulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tx-to-rx-isolation">2.6.7. Tx to Rx isolation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tx-power-investigation">2.6.8. Tx power investigation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#conclusion">2.7. Conclusion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="terms_of_use.html">3. Terms of Use</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Z93-Lab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">2. </span>OpenSourceSDRLab LibreSDR</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/opensdrlab.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="opensourcesdrlab-libresdr">
+<h1><span class="section-number">2. </span>OpenSourceSDRLab LibreSDR<a class="headerlink" href="#opensourcesdrlab-libresdr" title="Link to this heading"></a></h1>
+<p>This page showcases measured performance for a LibreSDR I bought from OpenSourceSDRlab on Aliexpress.</p>
+<p>The original seller link would be: <a class="reference external" href="https://opensourcesdrlab.com/products/libresdr-zynqsdr-ad9363-zynq7020">https://opensourcesdrlab.com/products/libresdr-zynqsdr-ad9363-zynq7020</a></p>
+<p>The package received contains:</p>
+<ul class="simple">
+<li><p>1x SDR device in antistatic Bag</p></li>
+<li><p>2x USB-C cables</p></li>
+<li><p>1x ethernet cable</p></li>
+<li><p>1x Allen key</p></li>
+<li><p>1x USB-A to USB-C adapter</p></li>
+<li><p>4x antennas</p></li>
+<li><p>1x blank 32GB micro-SD card</p></li>
+</ul>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="_images/opensdr_box.jpg"><img alt="_images/opensdr_box.jpg" src="_images/opensdr_box.jpg" style="width: 1200.0px; height: 420.9px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Box content</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>It can be bought in a variety of places such as Ebay, Aliexpress, Banggood… and of course the official seller’s own website.</p>
+<section id="hardware">
+<h2><span class="section-number">2.1. </span>Hardware<a class="headerlink" href="#hardware" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>FPGA</p></td>
+<td><p>XC7020-2CLG400I  with 2-core Cortex A9</p></td>
+</tr>
+<tr class="row-odd"><td><p>RAM</p></td>
+<td><p>1GB 32bit wide DDR3 1066MHz</p></td>
+</tr>
+<tr class="row-even"><td><p>Flash</p></td>
+<td><p>32MB QSPI, also support micro SD card</p></td>
+</tr>
+<tr class="row-odd"><td><p>RFIC</p></td>
+<td><p>AD9363 (Can be “hacked” to AD9361 or AD9364) with 2 Transmit + 2 Receive channels</p></td>
+</tr>
+<tr class="row-even"><td><p>ADC/DAC resolution</p></td>
+<td><p>12 bits</p></td>
+</tr>
+<tr class="row-odd"><td><p>Max Sampling rate</p></td>
+<td><p>61.44 Msps</p></td>
+</tr>
+<tr class="row-even"><td><p>Max bandwidth</p></td>
+<td><p>20 MHz (AD9363 mode) or 56 MHz (AD9364/61 mode)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Frequency range</p></td>
+<td><p>325~3800 MHz (AD9363 mode) or 70~6000MHz (AD9364/61 mode)</p></td>
+</tr>
+<tr class="row-even"><td><p>Clock</p></td>
+<td><p>VCTCXO 40MHZ 0.5ppm, with external clock input</p></td>
+</tr>
+<tr class="row-odd"><td><p>Connections</p></td>
+<td><p>USB 2.0 OTG + USB debug (Serial) + Gigabit ethernet. USB connectors are Type C</p></td>
+</tr>
+</tbody>
+</table>
+<p>As far as I know the current/latest PCB revision is <strong>“rev5”</strong>. Schematics can be found <a class="reference external" href="https://github.com/F5OEO/tezuka_fw/discussions/72">here</a></p>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="_images/zynqsdr_pcb.png"><img alt="_images/zynqsdr_pcb.png" src="_images/zynqsdr_pcb.png" style="width: 776.0px; height: 554.5px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">LibreSDR typical PCB</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>There are multiple sources/manufacturers, some official and some not. The alleged original designer “jiskra” mentions on <a class="reference external" href="https://github.com/F5OEO/tezuka_fw/issues/45">this thread</a>
+that some knock-offs exist that use 2nd-hand ADI chips, i.e. chips that were pulled from other products, reballed, and reused.</p>
+<p>He mentions that the devices provided by OpenSourceSDRlab should be original ones</p>
+</div>
+<p>Users have reported that some versions seem to have no stiching vias. This is the case of the Hamgeek version for example.
+The vias appear to be there if we look closely, but the surface coating (resist, finish) seems te be very thick and
+covering them to the point where we do not see them anymore.</p>
+<p>There are two main casing variants: one with “vertical” stripes in the aluminium shell and one with “horizontal” stripes. This can be seen
+<a class="reference external" href="https://github.com/F5OEO/tezuka_fw/discussions/72">here</a>. Markings/engraving also exists in different flavours.
+The case marking of my device matches the one shown by <a class="reference external" href="https://github.com/F5OEO/tezuka_fw/discussions/72#discussion-7988959">sq6emm here.</a></p>
+<p>My device has the marking “LibresDR” (lowercase “s”) and stiching vias are clearly visible on the PCB:</p>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="_images/opensdr_pcb.png"><img alt="_images/opensdr_pcb.png" src="_images/opensdr_pcb.png" style="width: 919.0px; height: 535.5px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Casing and PCB of OpenSourceSDRLab device</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Performance data given below is for the <strong>default configuration</strong> of my device (as I received it):</p>
+<ul class="simple">
+<li><p>AD9363 mode (325-3800MHz / max BW 20MHz)</p></li>
+<li><p>1RX + 1TX</p></li>
+</ul>
+<p>All tests:</p>
+<ul class="simple">
+<li><p>Are conducted using the <strong>USB connection</strong>. This would NOT affect high-bandwidth measurement as IQ data was taken as “one-shot”, not continuous streaming.</p></li>
+<li><p>Have setup cable loss deembedded from the measurement: the reference plane is the device’s SMA connector</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>I have also tested the Hamgeek version but my Hamgeek device, acquired through Banggood, seems to have an issue. It works but some key metrics
+appear to be really bad. I will give them the benefit of the doubt and assume I just got a faulty device, and therefore will not report what I measured
+on this website.</p>
+</div>
+</section>
+<section id="firmware">
+<h2><span class="section-number">2.2. </span>Firmware<a class="headerlink" href="#firmware" title="Link to this heading"></a></h2>
+<p>My devices came with a default firmware dubbed <strong>“v0.37-dirty”</strong>.</p>
+<p>The firmware:</p>
+<ul>
+<li><p>Is in “AD9363” mode, ie <strong>limited to the standard frequency range of 325-3800MHz / 20MHz bandwidth</strong></p>
+<blockquote>
+<div><figure class="align-center" id="id4">
+<a class="reference internal image-reference" href="_images/linux_default_cfg.png"><img alt="_images/linux_default_cfg.png" src="_images/linux_default_cfg.png" style="width: 346.40000000000003px; height: 284.8px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Default RF mode</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</li>
+<li><p>Is configured in <strong>1TX-1RX</strong> only (so TX2 and RX2 port unusable)</p></li>
+<li><p>Has ethernet enabled by default (some forums seem to say this is not the case but it was on mine):</p>
+<blockquote>
+<div><figure class="align-center" id="id5">
+<a class="reference internal image-reference" href="_images/linux_ethernet_config.png"><img alt="_images/linux_ethernet_config.png" src="_images/linux_ethernet_config.png" style="width: 542.4px; height: 503.20000000000005px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Ethernet configuration</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>At the time of writing I have not tested ethernet yet, only USB</p>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="typical-test-setup">
+<h2><span class="section-number">2.3. </span>Typical test setup<a class="headerlink" href="#typical-test-setup" title="Link to this heading"></a></h2>
+<p>The typical test setup is simple: the port under test is connected to the test instrument with an RF cable, and a 6dB attenuator
+is placed at the device’s SMA connector to tame any mismatch introduced by the RF cable.</p>
+<figure class="align-center" id="id6">
+<a class="reference internal image-reference" href="_images/setup_typical.svg"><img alt="_images/setup_typical.svg" src="_images/setup_typical.svg" style="width: 336.0px; height: 206.4px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Typical test setup</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Setup cable loss has been characterised and is removed from the test results.</p>
+</section>
+<section id="port-impedance">
+<span id="opensdr-impedance"></span><h2><span class="section-number">2.4. </span>Port impedance<a class="headerlink" href="#port-impedance" title="Link to this heading"></a></h2>
+<p><strong>Test conditions:</strong></p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td rowspan="5"><p><strong>Configuration</strong></p></td>
+<td><p>RF port</p></td>
+<td colspan="3"><p>TX1 or RX1 port enabled <br />
+TX test: no active transmission <br /></p></td>
+</tr>
+<tr class="row-even"><td><p>Sampling rate</p></td>
+<td colspan="3"><p>1Msps</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tx Gain</p></td>
+<td colspan="3"><p>0dB</p></td>
+</tr>
+<tr class="row-even"><td><p>Rx Gain</p></td>
+<td colspan="3"><p>70dB</p></td>
+</tr>
+<tr class="row-odd"><td><p>LO</p></td>
+<td colspan="3"><p>1GHz</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Parameter sweep</strong></p></td>
+<td colspan="4"><p>None</p></td>
+</tr>
+</tbody>
+</table>
+<p>The TX or RX port is connected to a VNA and S11 is measured</p>
+<figure class="align-center" id="id7">
+<a class="reference internal image-reference" href="_images/setup_impedance.svg"><img alt="_images/setup_impedance.svg" src="_images/setup_impedance.svg" style="width: 328.8px; height: 68.8px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Port impedance setup</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p><strong>Test results:</strong></p>
+<p>From the plots we can see that</p>
+<ul class="simple">
+<li><p>RX S11 looks OK between 800 - 2500 MHz</p></li>
+<li><p>TX S11 looks OK between 250 - 2000 MHz</p></li>
+</ul>
+<iframe
+    src="_static/plotly/opensdr/rx_s11.html"
+    width="100%"
+    height="550px"
+    style="border:none;">
+</iframe><iframe
+    src="_static/plotly/opensdr/tx_s11.html"
+    width="100%"
+    height="550px"
+    style="border:none;">
+</iframe></section>
+<section id="rx-tests">
+<h2><span class="section-number">2.5. </span>RX tests<a class="headerlink" href="#rx-tests" title="Link to this heading"></a></h2>
+<section id="rx-frequency-response">
+<span id="opensdr-rx-freq-resp"></span><h3><span class="section-number">2.5.1. </span>Rx Frequency response<a class="headerlink" href="#rx-frequency-response" title="Link to this heading"></a></h3>
+<p>This test measures the frequency response of the receive chain</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>There are 3 frequency ranges defined in the <a class="reference external" href="https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/ad9361">Analog Devices documentation</a>, each with a different RX gain table:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>RX LO</p></th>
+<th class="head"><p>Min GAIN</p></th>
+<th class="head"><p>Max Gain</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>70 … 1300 MHz</p></td>
+<td><p>-1 dB</p></td>
+<td><p>73dB</p></td>
+</tr>
+<tr class="row-odd"><td><p>1300 … 4000 MHz</p></td>
+<td><p>-3 dB</p></td>
+<td><p>71 dB</p></td>
+</tr>
+<tr class="row-even"><td><p>4000 … 6000 MHz</p></td>
+<td><p>-10 dB</p></td>
+<td><p>62 dB</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Test conditions:</strong></p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td rowspan="6"><p><strong>Configuration</strong></p></td>
+<td><p>RF port</p></td>
+<td colspan="3"><p>RX1</p></td>
+</tr>
+<tr class="row-even"><td><p>Sampling rate</p></td>
+<td colspan="3"><p>1.024 Msps</p></td>
+</tr>
+<tr class="row-odd"><td><p>SG level</p></td>
+<td colspan="3"><p>-15/-20 dBFs &#64; gain = 0dB</p></td>
+</tr>
+<tr class="row-even"><td><p>Tone frequency</p></td>
+<td colspan="3"><p>LO+100kHz</p></td>
+</tr>
+<tr class="row-odd"><td><p>Rx Gain</p></td>
+<td colspan="3"><p>0 dB</p></td>
+</tr>
+<tr class="row-even"><td><p>Rx buffer size</p></td>
+<td colspan="3"><p>2048</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Parameter sweep</strong></p></td>
+<td colspan="4"><p>Rx Gain, LO frequency</p></td>
+</tr>
+</tbody>
+</table>
+<p>Initial condition:</p>
+<ol class="arabic simple">
+<li><p>The signal generator is set to transmit a tone at LO+100kHz</p></li>
+<li><p>The signal generator level is set to get circa -20dBFs at the receiver with a gain of 0dB (ie very strong but not so strong that we saturate the rx)</p></li>
+</ol>
+<p>Sweep:</p>
+<ol class="arabic simple">
+<li><p>At the start of each new frequency range: The dBm scale is calibrated using the 1st frequency of the active frequency range</p></li>
+<li><p>Sweep frequency and at each step the RX level in dBm is measured, using RSSI</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The final result is normalised to the level of the very 1st frequency</p>
+</div>
+<p><strong>Test results:</strong></p>
+<p>Only two gains were measured: min and max to check if there was any dependency.</p>
+<ul class="simple">
+<li><p>The frequency response looks very similar with both gains</p></li>
+<li><p>There is significant rolloff after ~2500 MHz, consistant with the S11 response</p></li>
+</ul>
+<iframe
+    src="_static/plotly/opensdr/rx_frequency_response.html"
+    width="100%"
+    height="470px"
+    style="border:none;">
+</iframe><p>The response roughly tracks the RX S11 where</p>
+<ul class="simple">
+<li><p>S11 is good until 2500 MHz, and frequency response is somewhat flat.</p></li>
+<li><p>Then S11 degrades and reaches its worst point at around 3500 MHz, which corresponds to the lowest point on the frequency response.</p></li>
+<li><p>Past 3500 MHz S11 improves slightly again and the frequency response starts going up slightly again.</p></li>
+</ul>
+</section>
+<section id="rx-gain">
+<span id="opensdr-rx-gain"></span><h3><span class="section-number">2.5.2. </span>Rx Gain<a class="headerlink" href="#rx-gain" title="Link to this heading"></a></h3>
+<p>This test measures the Gain of the receive chain. What we report is the <strong>gain error</strong>: it shows us gain linearity at the same time.</p>
+<p><strong>Test conditions:</strong></p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td rowspan="5"><p><strong>Configuration</strong></p></td>
+<td><p>RF port</p></td>
+<td colspan="3"><p>RX1</p></td>
+</tr>
+<tr class="row-even"><td><p>Sampling rate</p></td>
+<td colspan="3"><p>1.024 Msps</p></td>
+</tr>
+<tr class="row-odd"><td><p>SG level</p></td>
+<td colspan="3"><p>-80dBFs &#64; gain = 0dB</p></td>
+</tr>
+<tr class="row-even"><td><p>Tone frequency</p></td>
+<td colspan="3"><p>LO+100kHz</p></td>
+</tr>
+<tr class="row-odd"><td><p>Rx buffer size</p></td>
+<td colspan="3"><p>2048</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Parameter sweep</strong></p></td>
+<td colspan="4"><p>Rx Gain, LO frequency</p></td>
+</tr>
+</tbody>
+</table>
+<p>Initial condition:</p>
+<ol class="arabic simple">
+<li><p>The signal generator is set to transmit a tone at LO+100kHz</p></li>
+<li><p>The signal generator level is set to get circa -80dBFs at the receiver with a gain of 0dB</p></li>
+</ol>
+<p>Sweep:</p>
+<ol class="arabic simple">
+<li><p>Sweep gain, RX level in dBFs is measured using an FFT at each step</p></li>
+<li><p>The Gain error for each step is found by comparing level measured at Gain G vs level measured at Gain 0dB</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The final result is normalised to the gain of 0dB</p>
+</div>
+<p><strong>Test results:</strong></p>
+<ul class="simple">
+<li><p>The Gain Error remains relatively small across the whole gain range and across frequency.</p></li>
+<li><p>There is a global tendancy for <strong>gain error to increase (somewhat) linearly with requested gain</strong>: this means that the gain is not quite linear.</p></li>
+</ul>
+<iframe
+    src="_static/plotly/opensdr/rx_gain.html"
+    width="100%"
+    height="1380px"
+    style="border:none;">
+</iframe></section>
+<section id="rx-bandwidth-filter-response">
+<span id="opensdr-rx-filter"></span><h3><span class="section-number">2.5.3. </span>Rx Bandwidth filter response<a class="headerlink" href="#rx-bandwidth-filter-response" title="Link to this heading"></a></h3>
+<p>This test measures the frequency response of the baseband filter that sets the bandwidth</p>
+<p><strong>Test conditions:</strong></p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td rowspan="6"><p><strong>Configuration</strong></p></td>
+<td><p>RF port</p></td>
+<td colspan="3"><p>RX1</p></td>
+</tr>
+<tr class="row-even"><td><p>LO</p></td>
+<td colspan="3"><p>1000 MHz</p></td>
+</tr>
+<tr class="row-odd"><td><p>SG level</p></td>
+<td colspan="3"><p>-20dBFs &#64; gain = 0dB</p></td>
+</tr>
+<tr class="row-even"><td><p>Tone frequency</p></td>
+<td colspan="3"><p>LO+100kHz</p></td>
+</tr>
+<tr class="row-odd"><td><p>Rx buffer size</p></td>
+<td colspan="3"><p>2048</p></td>
+</tr>
+<tr class="row-even"><td><p>Sampling rate</p></td>
+<td colspan="3"><p>min(3*BW, 30) MHz</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Parameter sweep</strong></p></td>
+<td colspan="4"><p>Rx Bandwidth</p></td>
+</tr>
+</tbody>
+</table>
+<p>Initial condition:</p>
+<ol class="arabic simple">
+<li><p>The signal generator is set to transmit a tone at LO+100kHz</p></li>
+<li><p>The signal generator level is set to get circa -20dBFs at the receiver with a gain of 0dB</p></li>
+</ol>
+<p>Sweep:</p>
+<ol class="arabic simple">
+<li><p>While the signal generator frequency is kept constant, the RX LO is swept across the entire bandwidth of the filter (and a little more)</p></li>
+<li><p>Measurement is done in dBFs using an FFT at each step</p></li>
+<li><p>The FFT bin where the tone is expected is computed, and tone level measured</p></li>
+</ol>
+<p><strong>This methodology allows us to get a result that is independent of front-end loss</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The final result is normalised to the center frequency of the filter</p>
+</div>
+<p><strong>Test results:</strong></p>
+<ul class="simple">
+<li><p>We see an interesting ripple in the filter response. I have checked manually and it is real, not a measurement issue. On wide bandwidths the passband ripple gets quite large, around 1.5dB</p></li>
+<li><p>Filters at 250 kHz and 300 kHz BW look very similar and are too wide</p></li>
+</ul>
+<iframe
+    src="_static/plotly/opensdr/rx_filter.html"
+    width="100%"
+    height="1400px"
+    style="border:none;">
+</iframe></section>
+<section id="rx-spurious-emissions">
+<span id="opensdr-rx-spurious"></span><h3><span class="section-number">2.5.4. </span>Rx Spurious Emissions<a class="headerlink" href="#rx-spurious-emissions" title="Link to this heading"></a></h3>
+<p>This test measures the level of spurs that are leaking out of the RX port while active</p>
+<p><strong>Test conditions:</strong></p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td rowspan="4"><p><strong>Configuration</strong></p></td>
+<td><p>RF port</p></td>
+<td colspan="3"><p>RX1</p></td>
+</tr>
+<tr class="row-even"><td><p>LO</p></td>
+<td colspan="3"><p>1000 MHz</p></td>
+</tr>
+<tr class="row-odd"><td><p>Rx buffer size</p></td>
+<td colspan="3"><p>2048</p></td>
+</tr>
+<tr class="row-even"><td><p>Bandwidth</p></td>
+<td colspan="3"><p>1 MHz</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Parameter sweep</strong></p></td>
+<td colspan="4"><p>None, this was done as a spot measurement</p></td>
+</tr>
+</tbody>
+</table>
+<p>The RX port is connected to a spectrum analyser and measurement is taken from the spectrum analyser.</p>
+<figure class="align-center" id="id8">
+<a class="reference internal image-reference" href="_images/setup_rx_spurious.svg"><img alt="_images/setup_rx_spurious.svg" src="_images/setup_rx_spurious.svg" style="width: 324.8px; height: 72.8px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">RX Spurious setup</span><a class="headerlink" href="#id8" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p><strong>Test results:</strong></p>
+<p>Wideband scan shows nothing except a spur at 8GHz which is 2x the VCO frequency. A zoom on the VCO frequency reveals
+a tiny spur at approx -90 dBm, so essentially nothing.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="_images/opensdr_rx_spurious.png"><img alt="_images/opensdr_rx_spurious.png" src="_images/opensdr_rx_spurious.png" style="width: 951.5px; height: 333.5px;" />
+</a>
+</figure>
+<p><br /></p>
+</section>
+<section id="rx-noise-figure">
+<span id="opensdr-rx-nf"></span><h3><span class="section-number">2.5.5. </span>Rx Noise figure<a class="headerlink" href="#rx-noise-figure" title="Link to this heading"></a></h3>
+<p>This test measures the noise figure of the entire receive chain</p>
+<p><strong>Test conditions:</strong></p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td rowspan="6"><p><strong>Configuration</strong></p></td>
+<td><p>RF port</p></td>
+<td colspan="3"><p>RX1</p></td>
+</tr>
+<tr class="row-even"><td><p>LO</p></td>
+<td colspan="3"><p>1000 MHz</p></td>
+</tr>
+<tr class="row-odd"><td><p>SG level</p></td>
+<td colspan="3"><p>-80dBFs &#64; gain = 0 dB</p></td>
+</tr>
+<tr class="row-even"><td><p>Tone frequency</p></td>
+<td colspan="3"><p>LO+100kHz</p></td>
+</tr>
+<tr class="row-odd"><td><p>Rx buffer size</p></td>
+<td colspan="3"><p>2048</p></td>
+</tr>
+<tr class="row-even"><td><p>Rx Gain</p></td>
+<td colspan="3"><p>70 dB</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Parameter sweep</strong></p></td>
+<td colspan="4"><p>Rx Bandwidth, Rx LO</p></td>
+</tr>
+</tbody>
+</table>
+<p>By lack of noise source or any specialised equipment, I used the <strong>gain method</strong> to measure NF. It is theoretically possible since the maximum
+RX Gain is very high (~70dB), assuming thermal noise dominates. It is a “quick and dirty” method but should yield
+acceptable results.</p>
+<p>The idea is to measure noise power while RX is terminated with 50R at maximum gain, and apply the formula:</p>
+<div class="math notranslate nohighlight">
+\[NF = P_{noise,dBm} - (-174_{dBm/Hz} + 10*log_{10}(BW_{Hz}) + Gain_{dB})\]</div>
+<p>Initial condition:</p>
+<ol class="arabic simple">
+<li><p>The signal generator is initially set to transmit a tone at frequency RX LO + 100kHz</p></li>
+<li><p>The signal generator level is set to get circa -80dBFs at the receiver with a gain of 0dB</p></li>
+</ol>
+<p>Sweep: For each frequency,</p>
+<ol class="arabic simple">
+<li><p>(Max) Gain and dBm scale are calibrated using the signal generator</p></li>
+<li><p>Once Gain and dBm scale are calibrated, the signal generator is turned off</p></li>
+<li><p>The total noise power in dBm at the receiver is measured using an FFT</p></li>
+<li><p>Finally the NF formula given above is applied</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The test has been run with only the RX active</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This test was not run in shielded environment.</p>
+</div>
+<p><strong>Test results:</strong></p>
+<iframe
+    src="_static/plotly/opensdr/rx_noise_figure_notx.html"
+    width="100%"
+    height="930px"
+    style="border:none;">
+</iframe><p>The results are quire reasonable. For this type of device we should expect between 4-8 dB of Noise Figure,
+which is exactly what we get. Past 2500 MHz the NF degrades which is in line with S11/Frequency response.</p>
+<p><strong>Active TX:</strong></p>
+<p>If we activate the TX (turned on but not transmitting), degradation may appear where the TX chain produces spurs that couple on the RX. Below is an example with the TX LO set at 1GHz:</p>
+<iframe
+    src="_static/plotly/opensdr/rx_noise_figure_txlo1000.html"
+    width="100%"
+    height="930px"
+    style="border:none;">
+</iframe><p>We notice some “discrete” degradations in NF, especially at 1 MHz and 5 MHz bandwidth. To avoid these:</p>
+<ul class="simple">
+<li><p>Ideally don’t activate the TX at all (as you can only deactivate by rebooting the board)</p></li>
+<li><p>Or set the TX LO as far away as possible from the RX LO</p></li>
+</ul>
+<p>If you are actively using the TX at the same time then be aware it might degrade the NF</p>
+</section>
+</section>
+<section id="tx-tests">
+<h2><span class="section-number">2.6. </span>TX tests<a class="headerlink" href="#tx-tests" title="Link to this heading"></a></h2>
+<section id="tx-frequency-response">
+<span id="opensdr-tx-freq-resp"></span><h3><span class="section-number">2.6.1. </span>Tx Frequency response<a class="headerlink" href="#tx-frequency-response" title="Link to this heading"></a></h3>
+<p>This test measures the frequency response of the transmit chain</p>
+<p><strong>Test conditions:</strong></p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td rowspan="4"><p><strong>Configuration</strong></p></td>
+<td><p>RF port</p></td>
+<td colspan="3"><p>TX1</p></td>
+</tr>
+<tr class="row-even"><td><p>Sampling rate</p></td>
+<td colspan="3"><p>1.024 Msps</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tone frequency</p></td>
+<td colspan="3"><p>LO+100kHz</p></td>
+</tr>
+<tr class="row-even"><td><p>Tx Gain</p></td>
+<td colspan="3"><p>0 dB (max gain)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Parameter sweep</strong></p></td>
+<td colspan="4"><p>LO frequency</p></td>
+</tr>
+</tbody>
+</table>
+<p>Initial condition:</p>
+<ol class="arabic simple">
+<li><p>The device is set to transmit a tone at a frequency offset of +100kHz</p></li>
+<li><p>The device is set to transmit at maximum level and gain</p></li>
+</ol>
+<p>Sweep:</p>
+<ol class="arabic simple">
+<li><p>Frequency is swept and TX level in dBm is measured using a power meter at each step</p></li>
+</ol>
+<p><strong>Test results:</strong></p>
+<p><span class="red">The output power level is not great: the max power is around -2dBm and between the minimum frequency 350 MHz and the maximum frequency 3800 MHz there is circa 9dB of variation, down to -11dbm at the lowest point. From the AD9363 documentation I would have expected more than 0dBm</span></p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>I have tried investigating this poor output power performance following feedback from users found on various websites. I have summarized my findings in <a class="reference internal" href="#opensdr-txp-investigation"><span class="std std-ref">Tx power investigation</span></a>.</p>
+</div>
+<iframe
+    src="_static/plotly/opensdr/tx_frequency_response.html"
+    width="100%"
+    height="480px"
+    style="border:none;">
+</iframe><p>The response roughly tracks the TX S11 where</p>
+<ul class="simple">
+<li><p>S11 is good below 2000 MHz</p></li>
+<li><p>Then S11 degrades and reaches its worst point at around 2200 MHz, which corresponds to a trough on the frequency response.</p></li>
+<li><p>Then S11 improves again around 2700MHz and the frequency response also improves, and after that further degrades</p></li>
+</ul>
+</section>
+<section id="tx-gain">
+<span id="opensdr-tx-gain"></span><h3><span class="section-number">2.6.2. </span>Tx Gain<a class="headerlink" href="#tx-gain" title="Link to this heading"></a></h3>
+<p>This test measures the Gain linearity of the transmit chain</p>
+<p><strong>Test conditions:</strong></p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td rowspan="3"><p><strong>Configuration</strong></p></td>
+<td><p>RF port</p></td>
+<td colspan="3"><p>TX1</p></td>
+</tr>
+<tr class="row-even"><td><p>Sampling rate</p></td>
+<td colspan="3"><p>1.024 Msps</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tone frequency</p></td>
+<td colspan="3"><p>LO+100kHz</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Parameter sweep</strong></p></td>
+<td colspan="4"><p>LO frequency, Gain</p></td>
+</tr>
+</tbody>
+</table>
+<p>Initial condition:</p>
+<ol class="arabic simple">
+<li><p>The device is set to transmit a tone at a frequency offset of +100kHz</p></li>
+<li><p>The device is set to transmit at maximum level</p></li>
+<li><p>A reference measurement is taken at maximum gain</p></li>
+</ol>
+<p>Sweep:</p>
+<ol class="arabic simple">
+<li><p>Frequency and Gain are swept, and tx power measured at each step</p></li>
+<li><p>Gain is computed as difference between current measurement and reference measurement</p></li>
+</ol>
+<p><strong>Test results:</strong></p>
+<p>The plots show that the gain is <strong>very linear</strong> but only from from -70dB to -20dB.
+<span class="orange">Above -20dB gain we start showing a little bit of compression, and below -70dB we can’t backoff enough</span>.</p>
+<iframe
+    src="_static/plotly/opensdr/tx_gain.html"
+    width="100%"
+    height="1400px"
+    style="border:none;">
+</iframe></section>
+<section id="tx-filter-bandwidth-response">
+<span id="opensdr-tx-filter"></span><h3><span class="section-number">2.6.3. </span>Tx Filter bandwidth response<a class="headerlink" href="#tx-filter-bandwidth-response" title="Link to this heading"></a></h3>
+<p>Not measured, see <a class="reference internal" href="#opensdr-rx-filter"><span class="std std-ref">Rx Bandwidth filter response</span></a>, I expect the response to be identical</p>
+</section>
+<section id="tx-lo-leakage-and-image">
+<span id="opensdr-tx-loim"></span><h3><span class="section-number">2.6.4. </span>Tx LO leakage and Image<a class="headerlink" href="#tx-lo-leakage-and-image" title="Link to this heading"></a></h3>
+<p>This test measures the LO and Image while transmitting a test tone</p>
+<p><strong>Test conditions:</strong></p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td rowspan="4"><p><strong>Configuration</strong></p></td>
+<td><p>RF port</p></td>
+<td colspan="3"><p>TX1</p></td>
+</tr>
+<tr class="row-even"><td><p>Sampling rate</p></td>
+<td colspan="3"><p>20 Msps</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tone frequency</p></td>
+<td colspan="3"><p>LO + 1 MHz</p></td>
+</tr>
+<tr class="row-even"><td><p>Tone level</p></td>
+<td colspan="3"><p>-3 dBFs</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Parameter sweep</strong></p></td>
+<td colspan="4"><p>LO frequency, Gain, Bw</p></td>
+</tr>
+</tbody>
+</table>
+<p>Initial condition:</p>
+<ol class="arabic simple">
+<li><p>The device is set to transmit a tone at a frequency offset of +1 MHz</p></li>
+<li><p>The device is set to transmit at maximum level</p></li>
+<li><p>The sdr sampling rate is set at 20 MHz</p></li>
+</ol>
+<p>Sweep:</p>
+<ol class="arabic simple">
+<li><p>Bw, Frequency and Gain are swept</p></li>
+<li><p>At each step LO and Image are measured using the analyser</p></li>
+</ol>
+<p><strong>Test results:</strong></p>
+<ul class="simple">
+<li><p>LO: Values match datasheet for 0dB attenuation but are worse than datasheet at 40dB attenuation by a few dB. Interestingly there seem to be a band specifically around -40dB gain where LO leakage is degraded.</p></li>
+<li><p>Image: Nothing out of the ordinary, there is a noticeable degradation of image level at higher frequencies</p></li>
+</ul>
+<iframe
+    src="_static/plotly/opensdr/tx_loim.html"
+    width="100%"
+    height="1520px"
+    style="border:none;">
+</iframe></section>
+<section id="tx-harmonics">
+<span id="opensdr-tx-harmonics"></span><h3><span class="section-number">2.6.5. </span>Tx Harmonics<a class="headerlink" href="#tx-harmonics" title="Link to this heading"></a></h3>
+<p>This test measures the transmit harmonics</p>
+<p><strong>Test conditions:</strong></p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td rowspan="5"><p><strong>Configuration</strong></p></td>
+<td><p>RF port</p></td>
+<td colspan="3"><p>TX1</p></td>
+</tr>
+<tr class="row-even"><td><p>Sampling rate</p></td>
+<td colspan="3"><p>1.024 Msps</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tone frequency</p></td>
+<td colspan="3"><p>LO+100kHz</p></td>
+</tr>
+<tr class="row-even"><td><p>Tone level</p></td>
+<td colspan="3"><p>-3 dBFs</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tx Gain</p></td>
+<td colspan="3"><p>0 dB (max gain)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Parameter sweep</strong></p></td>
+<td colspan="4"><p>LO Frequency</p></td>
+</tr>
+</tbody>
+</table>
+<p>Initial condition:</p>
+<ol class="arabic simple">
+<li><p>The device is set to transmit a tone at a frequency offset of +100kHz</p></li>
+<li><p>The device is set to transmit at maximum level and gain</p></li>
+</ol>
+<p>Sweep:</p>
+<ol class="arabic simple">
+<li><p>Frequency is swept, and harmonics are measured at each step. Fundamental is also measured</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>my analyser could not measure higher than 6GHz</p>
+</div>
+<p><strong>Test results:</strong></p>
+<p>Harmonics are quite low, the signal appears clean:</p>
+<iframe
+    src="_static/plotly/opensdr/tx_harmonics.html"
+    width="100%"
+    height="930px"
+    style="border:none;">
+</iframe><p>However, <strong>this is inconsistent with a manual measurement I made</strong>, depicted below.</p>
+<p><strong>Manual inspection</strong>:</p>
+<p>I was looking at VCO spurs and made a wideband acquisition using
+a spectrum analyser, here shown for LO = 500 MHz:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ignore absolute levels, the span is too wide so the readings are inaccurate. The shape matters most.</p>
+</div>
+<figure class="align-center" id="id9">
+<a class="reference internal image-reference" href="_images/opensdr_tx_spurs_500M.png"><img alt="_images/opensdr_tx_spurs_500M.png" src="_images/opensdr_tx_spurs_500M.png" style="width: 1043.7px; height: 458.49999999999994px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">TX spurs at LO = 500 MHz</span><a class="headerlink" href="#id9" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>The picture on the left is with transmitter ON: we see a mix of transmit and VCO harmonics.
+The picture on the right is with transmitter active but OFF: we see only the VCO spurs.
+It shows that the <strong>VCO runs at 4x the LO frequency</strong>, which is quite typical. For an LO of 500 MHz, the VCO would run at 2GHz and its harmonics at
+4, 6, 8 GHz and so on: this is exactly what we see on the TX OFF picture.</p>
+<p><span class="red">Problem: on the wideband display, odd harmonics of the test tone (H3, H5, etc) appear to be very high: H3 alone is at -10dBc, not at all what I measured above! Additionally their dBc level does not change regardless of the tone level, which is NOT expected behaviour.</span></p>
+<p>Zooming in manually around each harmonic explains what is happening:</p>
+<figure class="align-center" id="id10">
+<a class="reference internal image-reference" href="_images/opensdr_txharmonic_check.svg"><img alt="_images/opensdr_txharmonic_check.svg" src="_images/opensdr_txharmonic_check.svg" style="width: 1125.9px; height: 621.0px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">TX spurs at LO = 500 MHz</span><a class="headerlink" href="#id10" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Since the wanted tone is at <span class="math notranslate nohighlight">\(\text{LO + 100 kHz}\)</span>, H2 will be at <span class="math notranslate nohighlight">\(\text{2*LO + 200 kHz}\)</span>, H3 at <span class="math notranslate nohighlight">\(\text{3*LO + 300 kHz}\)</span> and so on.
+This is what was measured previously.</p>
+<p><span class="underline">Observation 1:</span></p>
+<p>Picture 4 (2 GHz) shows a strong spur at the center frequency: it’s the VCO fundamental spur, which can easily be mistaken for H4 on a wideband scan.
+This picture confirms H4 is really low, but the VCO leaks out like crazy. I’ve never seen VCO spurs leaking that much, that to me would
+point to a PCB layout (ie design, not production) issue.</p>
+<p><span class="underline">Observation 2:</span></p>
+<p>Pictures 3 and 5 show why H3 and H5 appear very high on the wideband scan. There are indeed very high spurs but they are NOT H3
+and H5! On picture 3 the spur <span class="math notranslate nohighlight">\(IM_a\)</span> appears at <span class="math notranslate nohighlight">\(\text{LO - 100 kHz}\)</span> and on picture 5 the spur <span class="math notranslate nohighlight">\(IM_b\)</span> appears at <span class="math notranslate nohighlight">\(\text{LO + 100 kHz}\)</span>:
+clearly <strong>not harmonics</strong>, but <strong>mixing products</strong> of the main tone with something else.</p>
+<p>In this case the math is easy to work out: the main tone at 500.1 MHz is mixing with the VCO spur at 2 GHz
+and so we get two components:</p>
+<ul class="simple">
+<li><p>One at <span class="math notranslate nohighlight">\(\text{(2000 + 500.1) MHz = 2500.1 MHz}\)</span>: the spur <span class="math notranslate nohighlight">\(IM_b\)</span> we see on picture 5.</p></li>
+<li><p>One at <span class="math notranslate nohighlight">\(\text{(2000 - 500.1) MHz = 1499.9 MHz}\)</span>: the spur <span class="math notranslate nohighlight">\(IM_a\)</span> we see on picture 3</p></li>
+</ul>
+<p>This explains why changing the amplitude of the main tone had no effect on the relative amplitude of the “apparent” harmonics: they were not harmonics.</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>This is real. While the spectrum of the <strong>tone itself is quite clean</strong>, the fact that we have <strong>very high VCO leakage</strong>
+and <strong>mixing between VCO and tone</strong> produces a <strong>VERY dirty spectrum</strong>. <span class="math notranslate nohighlight">\(IM_a\)</span> will effectively contain 10% of the main tone’s power!</p>
+<p>If you want to use this device for transmitting over the air you will need <strong>heavy filtering</strong> to stay compliant with your local regulations</p>
+<p><strong>Back of the envelope calculations:</strong></p>
+<ul class="simple">
+<li><p>Assume you add a PA to transmit at +20dBm</p></li>
+<li><p>The IMa spur would be at +10dBm (assuming PA is perfectly linear and does not compress)</p></li>
+<li><p>Let’s say spurs &gt; 1GHz must be below -30dBm &#64; 1MHz MBW (ETSI/RED requirement) -&gt; you want at least 40dB of rejection</p></li>
+<li><p>Assuming a low-pass filter with a cutoff slightly above our wanted frequency, we’re going to want 40dB of rejection over ~1 octave to secure enough margin on IMa</p></li>
+<li><p>The filter order to reach 40dB/octave would be ~7! (7*6dB/octave = 42dB)</p></li>
+</ul>
+<p>This is simply not practical, and severely limits the output power one can hope to use.</p>
+</div>
+</section>
+<section id="tx-baseband-intermodulation">
+<span id="opensdr-tx-bbim"></span><h3><span class="section-number">2.6.6. </span>Tx (baseband) intermodulation<a class="headerlink" href="#tx-baseband-intermodulation" title="Link to this heading"></a></h3>
+<p>Tx intermodulation was measured manually.
+The test is meant to show intermodulation products that appear at baseband level due to DAC and other baseband-related non-linearities.</p>
+<p>If we transmit a tone at a certain offset <span class="math notranslate nohighlight">\(+ \Delta f\)</span> from the LO, we will of course expect an image at <span class="math notranslate nohighlight">\(- \Delta f\)</span>. However, non-linearities in the
+baseband chain will also cause other spurs to appear. Specifically, in an IQ-based architecture, we will see odd-numbered spurs appearing on
+alternating side of the LO: if the wanted tone is at <span class="math notranslate nohighlight">\(LO + \Delta f\)</span>, we will see a 3rd order IM product at <span class="math notranslate nohighlight">\(LO - 3\Delta f\)</span>, 5th order at
+<span class="math notranslate nohighlight">\(LO + 5\Delta f\)</span>, 7th order at <span class="math notranslate nohighlight">\(LO - 7\Delta f\)</span>, and so on. Even-order spurs are normally significantly suppressed.</p>
+<p>As their order increases, the amplitude of the spurs also decrease rapidly. Usually, only the 3rd and 5th order are prominent/can cause issues in a system</p>
+<p><strong>Test conditions:</strong></p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td rowspan="6"><p><strong>Configuration</strong></p></td>
+<td><p>RF port</p></td>
+<td colspan="3"><p>TX1</p></td>
+</tr>
+<tr class="row-even"><td><p>Sampling rate</p></td>
+<td colspan="3"><p>10 Msps</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tone frequency</p></td>
+<td colspan="3"><p>LO+500kHz</p></td>
+</tr>
+<tr class="row-even"><td><p>Tone level</p></td>
+<td colspan="3"><p>-3 dBFs</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tx Gain</p></td>
+<td colspan="3"><p>0 dB (max gain)</p></td>
+</tr>
+<tr class="row-even"><td><p>Tx LO</p></td>
+<td colspan="3"><p>1000 MHz</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Parameter sweep</strong></p></td>
+<td colspan="4"><p>None</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Test results:</strong></p>
+<p>The spurs are illustrated in the manual measurement below. The span was limited to encompass up to the 5th order spur for better visibility.
+The highest spur in this example is the 3rd order product, approx. 55dB lower than the wanted tone (good rejection).</p>
+<p>We also see two unknown spurs near -100 kHz and +300 kHz, I’m not quite sure what they are since they don’t fall on integers
+of 100 kHz. Maybe a clock or some fractional signal?</p>
+<figure class="align-center" id="id11">
+<a class="reference internal image-reference" href="_images/opensdr_tx_bbim.svg"><img alt="_images/opensdr_tx_bbim.svg" src="_images/opensdr_tx_bbim.svg" style="width: 871.0px; height: 324.0px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Baseband intermodulation</span><a class="headerlink" href="#id11" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Unfortunately,
+since these intermodulation spurs occur at baseband it is not possible to filter them out if they pose a problem.
+The only way would be to decrease the tone level at the digital stage,
+before the tone is synthesized by the DAC.</p>
+</section>
+<section id="tx-to-rx-isolation">
+<span id="opensdr-trx-coupling"></span><h3><span class="section-number">2.6.7. </span>Tx to Rx isolation<a class="headerlink" href="#tx-to-rx-isolation" title="Link to this heading"></a></h3>
+<p>This test looks at coupling to the RX port while the TX is transmitting. For this we use a slightly different setup: the TX transmits into a 50R load
+while we observe the RX port with a spectrum analyser.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This test only looks at TX/RX RF coupling between the SMA and the chip boundary: it looks mostly at <strong>isolation on the PCB</strong></p>
+</div>
+<figure class="align-center" id="id12">
+<a class="reference internal image-reference" href="_images/setup_trx_coupling.svg"><img alt="_images/setup_trx_coupling.svg" src="_images/setup_trx_coupling.svg" style="width: 305.6px; height: 137.6px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">TX/RX coupling setup</span><a class="headerlink" href="#id12" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p><strong>Test conditions:</strong></p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td rowspan="7"><p><strong>Configuration</strong></p></td>
+<td><p>RF port</p></td>
+<td colspan="3"><p>TX1 / RX1</p></td>
+</tr>
+<tr class="row-even"><td><p>Sampling rate</p></td>
+<td colspan="3"><p>2 Msps</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tone frequency</p></td>
+<td colspan="3"><p>LO+500kHz</p></td>
+</tr>
+<tr class="row-even"><td><p>Tone level</p></td>
+<td colspan="3"><p>-3 dBFs</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tx Gain</p></td>
+<td colspan="3"><p>0 dB (max gain)</p></td>
+</tr>
+<tr class="row-even"><td><p>Rx Gain</p></td>
+<td colspan="3"><p>70 dB (max gain)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tx/Rx LO</p></td>
+<td colspan="3"><p>1000 MHz</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Parameter sweep</strong></p></td>
+<td colspan="4"><p>None</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Test results:</strong></p>
+<p>A wideband scan only shows a fairly strong VCO spur. Zooming around the LO frequency, we do see an LO spur but it’s small at approx.
+-80 dBm. Zooming on the VCO frequency reveals a much stronger spur at approx. -60 dBm, but it’s very far from the LO frequency so
+would not be an issue in a system.</p>
+<p>Focusing on the region around the LO frequency, we have a TX tone at -3 dBm and a spur on the RX side at -80 dBm or an <strong>isolation
+of 77 dB</strong>. It is quite clear from this result that most unwanted coupling
+will occur inside the AD9363, not outside on the PCB.</p>
+<figure class="align-center" id="id13">
+<a class="reference internal image-reference" href="_images/opensdr_trx_coupling.png"><img alt="_images/opensdr_trx_coupling.png" src="_images/opensdr_trx_coupling.png" style="width: 1179.6px; height: 277.8px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">TRX isolation</span><a class="headerlink" href="#id13" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="tx-power-investigation">
+<span id="opensdr-txp-investigation"></span><h3><span class="section-number">2.6.8. </span>Tx power investigation<a class="headerlink" href="#tx-power-investigation" title="Link to this heading"></a></h3>
+<p>As seen in <a class="reference internal" href="#opensdr-tx-freq-resp"><span class="std std-ref">Tx Frequency response</span></a>, the (absolute) output power and the frequency response are not ideal.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>I have attempted to investigate it using my (dodgy) Hamgeek device but was ultimately not successful. I only report my findings below
+for information</strong></p>
+<p>I’m currently reluctant to modify my OpenSourceSDRLab device as it behaves reasonably well all things considered.
+If I decide to modify it later, I will apply the following changes in order:</p>
+<ul class="simple">
+<li><p>#4: My PCB has ferrites on all supplies, no 0R mod and this mod is definitely needed for supply stability</p></li>
+<li><p>#5: Biggest improvement, the TX bias supply was starved</p></li>
+</ul>
+<p>While this will increase power, it was quite clear from my experiments that the RF trace was a big limiting factor.
+This cannot really be fixed unless you add your own piece of coax between the SMA and balun and disconnect the trace</p>
+</div>
+<p>I have tried the following:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p>Item</p></th>
+<th class="head" colspan="2"><p>Description</p></th>
+<th class="head"><p>Modification and effect</p></th>
+<th class="head"><p>Trace on plot below</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p><span class="blue">ESD diodes</span></p></td>
+<td colspan="2"><p>Users mention that ESD diode at the output could be the wrong type, with high parasitic capacitance loading the output. However the resulting power loss is &gt; 20dB, not something I see on my device</p></td>
+<td><p>Removed diode D6: <strong>absolutely no change</strong></p></td>
+<td><p>Blue</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p><span class="blue">Baluns</span></p></td>
+<td colspan="2"><p>Users mention the baluns are poor quality as they are not genuine minicircuits TCM1-63AX+: while this might affect performance at high frequency, it should not affect the output power at low frequency.</p></td>
+<td><p>Changed it for a “cheap” TCM1-63AX+ bought on Aliexpress (not an official source): <strong>The frequency response changed shape, but no overall improvement</strong></p></td>
+<td><p>Red</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p><span class="blue">RF trace</span></p></td>
+<td colspan="2"><p>A user mentionned that the RF trace between the balun and SMA connector is poor, and replacing it with a piece of coax improved it.</p></td>
+<td><p>Connected a pigtail at the output of the balun and it did <strong>significantly improve power at high frequency, flattens response. But power is still low overall</strong></p></td>
+<td><p>Green</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p><span class="blue">Ferrites</span></p></td>
+<td colspan="2"><p>Users have noticed that on some of their boards the ferrites on various supply rails have been replaced by 0R links. Indeed, these ferrites seem to have fairly high DCR and are an issue on high current rails.</p></td>
+<td><p>Focusing on my TX chain, I replaced the ferrites on the 2V5 (FB4/FB16) and 1V3 rails (FB10/FB11), which power the AD9363: <strong>The rails are more stable but no change to output power</strong></p></td>
+<td><p>Red</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p><span class="blue">RF chokes</span></p></td>
+<td colspan="2"><p>The inductors L2/L3 are meant the be used as RF chokes for the TX output bias circuit. They have very high DCR: Once TX was enabled (but not transmitting) the voltage on the TX outputs was measured at 0.9V instead of 1.3V! Given that the quiescent current is around 75mA this is a DCR of 5 Ohms!</p></td>
+<td><p>Replaced by BLM18HE102SN1D (I have lots lying around): <strong>Increased the output power at all frequencies by 2-3dB, but overall power still low.</strong></p></td>
+<td><p>Purple</p></td>
+</tr>
+</tbody>
+</table>
+<figure class="align-center" id="id14">
+<a class="reference internal image-reference" href="assets/figures/hamgeek_txp_investigations_pics.svg"><img alt="assets/figures/hamgeek_txp_investigations_pics.svg" src="assets/figures/hamgeek_txp_investigations_pics.svg" style="width: 1000.0px; height: 218.4px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Modifications</span><a class="headerlink" href="#id14" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>There was unfortunately no magic bullet. The biggest improvements comes from #3 the pigtail (i.e layout limitation) and #5 RF chokes (cheap BOM issue).
+Combining both these changes would have provided maximum improvement but would NOT have solved the main issue. The rest had negligible impact</p>
+<p>I’ve plotted the original frequency response and items 2, 3, 5 above together for comparison. Note that some of the changes are cumulative:</p>
+<iframe
+    src="_static/plotly/hamgeek/tx_fr_investigation.html"
+    width="100%"
+    height="500px"
+    style="border:none;">
+</iframe></section>
+</section>
+<section id="conclusion">
+<h2><span class="section-number">2.7. </span>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading"></a></h2>
+<p>The device works but there are two major limitations:</p>
+<ol class="arabic simple">
+<li><p>The <strong>frequency response</strong> in both RX and TX is not good.</p></li>
+<li><p><strong>TX spurious emissions are really bad</strong> owing to huge VCO leakage mixing with transmitted signal.</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="master.html" class="btn btn-neutral float-left" title="1. General Information" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="terms_of_use.html" class="btn btn-neutral float-right" title="3. Terms of Use" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Z93-Lab.
+      <span class="lastupdated">Last updated on Feb 16, 2026 at 2139.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

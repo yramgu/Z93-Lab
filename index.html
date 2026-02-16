@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LibreSDR Lab &mdash; LibreSDR Lab 1.0 documentation</title>
+  <title>Z93-Lab &mdash; Z93-Lab 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -17,6 +17,7 @@
       <script src="_static/documentation_options.js?v=f2a433a1"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -34,7 +35,7 @@
           
           
           <a href="#" class="icon icon-home">
-            LibreSDR Lab
+            Z93-Lab
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -47,7 +48,8 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="master.html">1. General Information</a></li>
-<li class="toctree-l1"><a class="reference internal" href="terms_of_use.html">2. Terms of Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opensdrlab.html">2. OpenSourceSDRLab LibreSDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="terms_of_use.html">3. Terms of Use</a></li>
 </ul>
 
         </div>
@@ -56,7 +58,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">LibreSDR Lab</a>
+          <a href="#">Z93-Lab</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -64,7 +66,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">LibreSDR Lab</li>
+      <li class="breadcrumb-item active">Z93-Lab</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -74,8 +76,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="libresdr-lab">
-<h1>LibreSDR Lab<a class="headerlink" href="#libresdr-lab" title="Link to this heading"></a></h1>
+  <section id="z93-lab">
+<h1>Z93-Lab<a class="headerlink" href="#z93-lab" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
@@ -95,16 +97,43 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="terms_of_use.html">2. Terms of Use</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="terms_of_use.html#scope">2.1. Scope</a></li>
-<li class="toctree-l2"><a class="reference internal" href="terms_of_use.html#license">2.2. License</a></li>
-<li class="toctree-l2"><a class="reference internal" href="terms_of_use.html#attribution-requirement">2.3. Attribution Requirement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="terms_of_use.html#figures-and-plots">2.4. Figures and Plots</a></li>
-<li class="toctree-l2"><a class="reference internal" href="terms_of_use.html#data-and-measurement-results">2.5. Data and Measurement Results</a></li>
-<li class="toctree-l2"><a class="reference internal" href="terms_of_use.html#code-and-scripts">2.6. Code and Scripts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="terms_of_use.html#no-endorsement">2.7. No Endorsement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="terms_of_use.html#trademarks">2.8. Trademarks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="terms_of_use.html#changes">2.9. Changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opensdrlab.html">2. OpenSourceSDRLab LibreSDR</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="opensdrlab.html#hardware">2.1. Hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opensdrlab.html#firmware">2.2. Firmware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opensdrlab.html#typical-test-setup">2.3. Typical test setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opensdrlab.html#port-impedance">2.4. Port impedance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opensdrlab.html#rx-tests">2.5. RX tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensdrlab.html#rx-frequency-response">2.5.1. Rx Frequency response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensdrlab.html#rx-gain">2.5.2. Rx Gain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensdrlab.html#rx-bandwidth-filter-response">2.5.3. Rx Bandwidth filter response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensdrlab.html#rx-spurious-emissions">2.5.4. Rx Spurious Emissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensdrlab.html#rx-noise-figure">2.5.5. Rx Noise figure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensdrlab.html#tx-tests">2.6. TX tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opensdrlab.html#tx-frequency-response">2.6.1. Tx Frequency response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensdrlab.html#tx-gain">2.6.2. Tx Gain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensdrlab.html#tx-filter-bandwidth-response">2.6.3. Tx Filter bandwidth response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensdrlab.html#tx-lo-leakage-and-image">2.6.4. Tx LO leakage and Image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensdrlab.html#tx-harmonics">2.6.5. Tx Harmonics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensdrlab.html#tx-baseband-intermodulation">2.6.6. Tx (baseband) intermodulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensdrlab.html#tx-to-rx-isolation">2.6.7. Tx to Rx isolation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opensdrlab.html#tx-power-investigation">2.6.8. Tx power investigation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opensdrlab.html#conclusion">2.7. Conclusion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="terms_of_use.html">3. Terms of Use</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="terms_of_use.html#scope">3.1. Scope</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terms_of_use.html#license">3.2. License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terms_of_use.html#attribution-requirement">3.3. Attribution Requirement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terms_of_use.html#figures-and-plots">3.4. Figures and Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terms_of_use.html#data-and-measurement-results">3.5. Data and Measurement Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terms_of_use.html#code-and-scripts">3.6. Code and Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terms_of_use.html#no-endorsement">3.7. No Endorsement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terms_of_use.html#trademarks">3.8. Trademarks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terms_of_use.html#changes">3.9. Changes</a></li>
 </ul>
 </li>
 </ul>
@@ -121,8 +150,8 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2026, LibreSDR Lab.
-      <span class="lastupdated">Last updated on Jan 11, 2026 at 1614.
+    <p>&#169; Copyright 2026, Z93-Lab.
+      <span class="lastupdated">Last updated on Feb 16, 2026 at 2139.
       </span></p>
   </div>
 
