@@ -36,7 +36,7 @@ Any reuse of content from this Site must include proper attribution.
 
 At a minimum, attribution must include:
 
-- The name of the site: libreSDR Lab (or your final site name)
+- The name of the site: Z93-Lab
 
 - A link to the original page or content
 

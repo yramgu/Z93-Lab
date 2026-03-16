@@ -146,7 +146,7 @@ is placed at the device's SMA connector to tame any mismatch introduced by the R
 
 Setup cable loss has been characterised and is removed from the test results.
 
-.. _opensdr_impedance:
+.. _libresdr_impedance:
 
 Port impedance
 -----------------
@@ -187,7 +187,7 @@ From the plots we can see that
 .. raw:: html
 
    <iframe
-       src="_static/plotly/opensdr/rx_s11.html"
+       src="_static/plotly/libresdr/rx_s11.html"
        width="100%"
        height="550px"
        style="border:none;">
@@ -196,7 +196,7 @@ From the plots we can see that
 .. raw:: html
 
    <iframe
-       src="_static/plotly/opensdr/tx_s11.html"
+       src="_static/plotly/libresdr/tx_s11.html"
        width="100%"
        height="550px"
        style="border:none;">
@@ -205,7 +205,7 @@ From the plots we can see that
 RX tests 
 -------------
 
-.. _opensdr_rx_freq_resp:
+.. _libresdr_rx_freq_resp:
 
 Rx Frequency response
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -267,7 +267,7 @@ Only two gains were measured: min and max to check if there was any dependency.
 .. raw:: html
 
    <iframe
-       src="_static/plotly/opensdr/rx_frequency_response.html"
+       src="_static/plotly/libresdr/rx_frequency_response.html"
        width="100%"
        height="470px"
        style="border:none;">
@@ -279,7 +279,7 @@ The response roughly tracks the RX S11 where
 - Then S11 degrades and reaches its worst point at around 3500 MHz, which corresponds to the lowest point on the frequency response.
 - Past 3500 MHz S11 improves slightly again and the frequency response starts going up slightly again.
 
-.. _opensdr_rx_gain:
+.. _libresdr_rx_gain:
 
 Rx Gain
 ~~~~~~~~~~~~
@@ -322,13 +322,13 @@ Sweep:
 .. raw:: html
 
    <iframe
-       src="_static/plotly/opensdr/rx_gain.html"
+       src="_static/plotly/libresdr/rx_gain.html"
        width="100%"
        height="1380px"
        style="border:none;">
    </iframe>
 
-.. _opensdr_rx_filter:
+.. _libresdr_rx_filter:
 
 Rx Bandwidth filter response
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -376,53 +376,13 @@ Sweep:
 .. raw:: html
 
    <iframe
-       src="_static/plotly/opensdr/rx_filter.html"
+       src="_static/plotly/libresdr/rx_filter.html"
        width="100%"
        height="1400px"
        style="border:none;">
    </iframe>
 
-.. _opensdr_rx_spurious:
-
-Rx Spurious Emissions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-This test measures the level of spurs that are leaking out of the RX port while active
-
-**Test conditions:**
-      
-+--------------------+------------------------+-----------------+---------------+--------------------+
-| **Configuration**  | RF port                | RX1                                                  |
-|                    +------------------------+-----------------+---------------+--------------------+       
-|                    | LO                     | 1000 MHz                                             |  
-|                    +------------------------+-----------------+---------------+--------------------+     
-|                    | Rx buffer size         | 2048                                                 | 
-|                    +------------------------+-----------------+---------------+--------------------+     
-|                    | Bandwidth              | 1 MHz                                                | 
-+--------------------+------------------------+-----------------+---------------+--------------------+
-| **Parameter sweep**| None, this was done as a spot measurement                                     |       
-+--------------------+------------------------+-----------------+---------------+--------------------+
-
-The RX port is connected to a spectrum analyser and measurement is taken from the spectrum analyser.
-
-.. figure:: assets/figures/setup_rx_spurious.svg
-    :align: center
-    :scale: 80 %
-
-    RX Spurious setup
-
-**Test results:**
-
-Wideband scan shows nothing except a spur at 8GHz which is 2x the VCO frequency. A zoom on the VCO frequency reveals
-a tiny spur at approx -90 dBm, so essentially nothing.
-
-.. figure:: assets/figures/opensdr_rx_spurious.png
-    :align: center
-    :scale: 50 %
-
-|br|
-
-.. _opensdr_rx_nf:
+.. _libresdr_rx_nf:
 
 Rx Noise figure
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -480,7 +440,7 @@ Sweep: For each frequency,
 .. raw:: html
 
    <iframe
-       src="_static/plotly/opensdr/rx_noise_figure_notx.html"
+       src="_static/plotly/libresdr/rx_noise_figure_notx.html"
        width="100%"
        height="930px"
        style="border:none;">
@@ -496,7 +456,7 @@ If we activate the TX (turned on but not transmitting), degradation may appear w
 .. raw:: html
 
    <iframe
-       src="_static/plotly/opensdr/rx_noise_figure_txlo1000.html"
+       src="_static/plotly/libresdr/rx_noise_figure_txlo1000.html"
        width="100%"
        height="930px"
        style="border:none;">
@@ -509,11 +469,233 @@ We notice some "discrete" degradations in NF, especially at 1 MHz and 5 MHz band
 
 If you are actively using the TX at the same time then be aware it might degrade the NF
 
+.. _libresdr_rx_spur_em:
+
+Rx Spurious emissions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Spurious emissions measure the noise at the RX **input**, in other words what **leaks out** of the receive port and seen by the outside world.
+For this we use a slightly different setup: the TX transmits into a 50R load
+while we observe the RX port with a spectrum analyser using a wideband scan.
+
+.. figure:: assets/figures/setup_trx_coupling.svg
+    :align: center
+    :scale: 80 %
+
+    RX spurious emissions setup
+
+Three configurations are tested:
+
+#. RX only: The TX synthesizer is OFF
+#. RX + TX Idle: the TX synthesizer is ON but not transmitting
+#. RX + TX Active: the TX synthesizer is ON and transmitting: This 3rd case is effectively the **TX to RX isolation** at PCB level
+
+**Test conditions:**
+
++--------------------+------------------------+-----------------+---------------+--------------------+
+| **Configuration**  | RF port                | TX1 / RX1                                            |
+|                    +------------------------+-----------------+---------------+--------------------+       
+|                    | Sampling rate          | 5 Msps                                               |  
+|                    +------------------------+-----------------+---------------+--------------------+   
+|                    | TX Tone frequency      | LO + 1 MHz                                           |
+|                    +------------------------+-----------------+---------------+--------------------+   
+|                    | TX Tone level          | 0 dBFs                                               |
+|                    +------------------------+-----------------+---------------+--------------------+  
+|                    | Tx Gain                | 0 dB (max gain)                                      | 
+|                    +------------------------+-----------------+---------------+--------------------+  
+|                    | Tx LO                  | 600 MHz                                              | 
+|                    +------------------------+-----------------+---------------+--------------------+  
+|                    | Rx LO                  | 500 MHz                                              | 
++--------------------+------------------------+-----------------+---------------+--------------------+
+| **Parameter sweep**| Rx Gain                                                                       |       
++--------------------+------------------------+-----------------+---------------+--------------------+
+  
+Initial condition: 
+
+#. RX lo is fixed at 500 MHz
+#. If enabled the TX Gain is set to max, tone offset +1 MHz and LO = 600 MHz
+
+Sweep:
+
+#. Min and Max Rx Gains are tested
+#. For each gain a wideband scan is done at the analyser side.
+
+**Test results:**
+
+:guilabel:`Config 1: RX only`
+
+.. raw:: html
+
+   <iframe
+       src="_static/plotly/libresdr/rx_spur_emis_rx_only.html"
+       width="100%"
+       height="480px"
+       style="border:none;">
+   </iframe>
+
+Both Gains give us the same plot. We see a lot of spurs but beware of the scale: they are very low at -80dBm or lower.
+Zooming in around 600 - 1000 MHz reveals a comb of 50 MHz, which looks suspiciously like a clock.
+
+Sure enough, looking at the schematics there is a 50 MHz TCXO feeding the FPGA processor and ethernet transceiver:
+
+.. figure:: assets/figures/libresdr_50M_clk.png
+    :align: center
+    :scale: 70 %
+
+    50 MHz clock on LibreSDR schematics
+
+
+:guilabel:`Config 2: TX Synthesizer ON`
+
+.. raw:: html
+
+   <iframe
+       src="_static/plotly/libresdr/rx_spur_emis_tx_lo_600M-OFF_MaxGain.html"
+       width="100%"
+       height="480px"
+       style="border:none;">
+   </iframe>
+
+The TX synthesizer is ON but not transmitting. Now we also see the VCO fundamental at :math:`4 \times 600 MHz = 2.4 GHz` and its H2.
+Again very similar plots between the two gains although VCO H2 is lower at high gain.
+
+.. note:: The plots above are measured at maximum TX Gain, lowering the TX Gain reduces the VCO spurs seen at the RX port so these plots represent the worst case
+
+:guilabel:`Config 3: TX ACTIVE`
+
+.. raw:: html
+
+   <iframe
+       src="_static/plotly/libresdr/rx_spur_emis_tx_lo_600M-ON.html"
+       width="100%"
+       height="480px"
+       style="border:none;">
+   </iframe>
+
+.. note::
+
+    This last case looks at TX/RX RF coupling between the SMA and the chip boundary: it gives us the **TX/RX isolation on the PCB**
+
+The transmitter is turned ON: we see small replicas of the transmit tone at 1.8 GHz, 3 GHz, 4.2 GHz, 5.4 GHz... They remain much lower than the VCO spurs.
+The transmit fundamental sits at around -90 dBm which negligible.
+
+The VCO frequency shows a much stronger spur at approx. -65 dBm, but it's very far from the RX frequency so 
+would not be an issue in a system as it could easily be filtered out. That is, unless you chose a TX frequency such that the VCO would fall near the RX...in which
+case you would have a serious problem.
+
+Focusing on the region around the LO frequency, we have a TX tone at roughly +4 dBm (measured separately) and a spur on the RX side at -90 dBm or an **isolation
+of 94 dB**. While this figure will likely change with frequency, we would still be in the range of 80dB+ of isolation. It is quite clear from this result that the PCB
+will not be a limiting factor here.
+
+.. _libresdr_rx_spur_rec:
+
+Rx Spurious reception
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Spurious reception measures the noise at the RX **output**, in other words what **leaks in** the receive port and seen at the end of the receive chain.
+For this both TX and RX ports are terminated by 50R, and we perform FFTs on the RX while sweeping the RX LO. 
+
+.. figure:: assets/figures/setup_50r_termination.svg
+    :align: center
+    :scale: 80 %
+
+    RX spurious reception setup
+
+Three configurations are tested:
+
+#. RX only: The TX synthesizer is OFF
+#. RX + TX Idle: the TX synthesizer is ON but not transmitting
+#. RX + TX Active: the TX synthesizer is ON and transmitting
+
+**Test conditions:**
+
++--------------------+------------------------+-----------------+---------------+--------------------+
+| **Configuration**  | RF port                | TX1 / RX1                                            |
+|                    +------------------------+-----------------+---------------+--------------------+       
+|                    | Sampling rate          | 16.384 Msps                                          |  
+|                    +------------------------+-----------------+---------------+--------------------+   
+|                    | TX Tone frequency      | LO + 1 MHz                                           |
+|                    +------------------------+-----------------+---------------+--------------------+   
+|                    | TX Tone level          | 0 dBFs                                               |
+|                    +------------------------+-----------------+---------------+--------------------+  
+|                    | Tx Gain                | 0 dB (max gain)                                      | 
+|                    +------------------------+-----------------+---------------+--------------------+  
+|                    | Tx LO                  | 600 MHz                                              | 
+|                    +------------------------+-----------------+---------------+--------------------+  
+|                    | Rx FFT size            | 16384                                                | 
++--------------------+------------------------+-----------------+---------------+--------------------+
+| **Parameter sweep**| Rx LO, Rx Gain                                                                |       
++--------------------+------------------------+-----------------+---------------+--------------------+
+
+Initial condition: 
+
+#. If enabled the TX Gain is set to max, tone offset +1 MHz and LO = 600 MHz
+
+Sweep:
+
+#. Min and Max Rx Gains are tested
+#. For each gain the RX LO is swept from 350 MHz to 3800 MHz
+#. An FFT is performed every 5 MHz
+#. At each FFT (~16 MHz wide) we take 5 MHz only on the positive side to avoid noise around the LO on the left or filter rolloff on the right
+
+**Test results:**
+
+:guilabel:`Config 1: RX only`
+
+.. raw:: html
+
+   <iframe
+       src="_static/plotly/libresdr/rx_spur_reception_rx_only.html"
+       width="100%"
+       height="480px"
+       style="border:none;">
+   </iframe>
+
+At 0dB Gain, the whole frequency range is completely quiet. At 70dB Gain we see a wide range of spurs which are actually also present
+at 0dB gain but hidden in the noise. The stronger spur at 3.145GHz, for example, can be seen on both.
+
+At high gain the noise floor is lifted (visible "bumps") at around 850 MHz, 1100 MHz, 1400 MHz and 2500 MHz
+
+:guilabel:`Config 2: TX Synthesizer ON`
+
+.. raw:: html
+
+   <iframe
+       src="_static/plotly/libresdr/rx_spur_reception_tx_lo_600M-OFF_MaxGain.html"
+       width="100%"
+       height="480px"
+       style="border:none;">
+   </iframe>
+
+As soon as the transmitter synthesizer is turned on (max tx gain), we see a lot of spurs appearing. These will move around with the TX LO.
+We see a particularly strong VCO fundamental spur at 2.4 GHz (600 MHz x 4). At Maximum RX Gain it even reaches 0dBFs!
+
+.. note::
+    If you really care about RX performance, try to keep the TX fully turned OFF. One way is to put the RFIC in TDD mode, RX only.
+
+:guilabel:`Config 3: TX ACTIVE`
+
+.. raw:: html
+
+   <iframe
+       src="_static/plotly/libresdr/rx_spur_reception_tx_lo_600M-ON.html"
+       width="100%"
+       height="480px"
+       style="border:none;">
+   </iframe>
+
+
+We see a few stronger replicas from the transmit tone but overall very similar to the previous case. Some spurs
+appear that were not visible before (eg Tx tone H3 at 1803 MHz)
+The AD9363 mostly sees its internal noise and does not seem overly affected by its output stage (that is there is no 
+much difference between TX ACTIVE and IDLE as most contributions are made a soon as the TX synthesizer is enabled).
 
 TX tests
 -------------
 
-.. _opensdr_tx_freq_resp:
+.. important:: Unles otherwise specified, all TX tests are run with a tone at 0dBFs
+
+.. _libresdr_tx_freq_resp:
 
 Tx Frequency response
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -529,6 +711,8 @@ This test measures the frequency response of the transmit chain
 |                    +------------------------+-----------------+---------------+--------------------+   
 |                    | Tone frequency         | LO+100kHz                                            |
 |                    +------------------------+-----------------+---------------+--------------------+  
+|                    | Tone level             | 0 dBFs                                               | 
++                    +------------------------+-----------------+---------------+--------------------+
 |                    | Tx Gain                | 0 dB (max gain)                                      | 
 +--------------------+------------------------+-----------------+---------------+--------------------+
 | **Parameter sweep**| LO frequency                                                                  |       
@@ -545,16 +729,14 @@ Sweep:
 
 **Test results:**
 
-:red:`The output power level is not great: the max power is around -2dBm and between the minimum frequency 350 MHz and the maximum frequency 3800 MHz there is circa 9dB of variation, down to -11dbm at the lowest point. From the AD9363 documentation I would have expected more than 0dBm`
-
-.. important::
-
-    I have tried investigating this poor output power performance following feedback from users found on various websites. I have summarized my findings in :ref:`opensdr_txp_investigation`.
+The output power varies from +4 dBm to -5 dBm, averaging around 0 dBm. It's less than what we could expect compared to an ADALM-PLUTO,
+but it's still quite decent. There is however, quite a bit of roll-off: there is 9dB of variation across the whole range, which is not 
+very good.
 
 .. raw:: html
 
    <iframe
-       src="_static/plotly/opensdr/tx_frequency_response.html"
+       src="_static/plotly/libresdr/tx_frequency_response.html"
        width="100%"
        height="480px"
        style="border:none;">
@@ -567,7 +749,7 @@ The response roughly tracks the TX S11 where
 - Then S11 degrades and reaches its worst point at around 2200 MHz, which corresponds to a trough on the frequency response.
 - Then S11 improves again around 2700MHz and the frequency response also improves, and after that further degrades
 
-.. _opensdr_tx_gain:
+.. _libresdr_tx_gain:
 
 Tx Gain
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -582,7 +764,9 @@ This test measures the Gain linearity of the transmit chain
 |                    | Sampling rate          | 1.024 Msps                                           |  
 |                    +------------------------+-----------------+---------------+--------------------+   
 |                    | Tone frequency         | LO+100kHz                                            |
-+--------------------+------------------------+-----------------+---------------+--------------------+
++                    +------------------------+-----------------+---------------+--------------------+
+|                    | Tone level             | 0 dBFs                                               | 
++                    +------------------------+-----------------+---------------+--------------------+
 | **Parameter sweep**| LO frequency, Gain                                                            |       
 +--------------------+------------------------+-----------------+---------------+--------------------+
 
@@ -601,25 +785,25 @@ Sweep:
 **Test results:**
 
 The plots show that the gain is **very linear** but only from from -70dB to -20dB. 
-:orange:`Above -20dB gain we start showing a little bit of compression, and below -70dB we can't backoff enough`. 
+Above -20dB gain we start showing a little bit of compression, and below -70dB we can't backoff enough, especially at higher frequencies. 
 
 .. raw:: html
 
    <iframe
-       src="_static/plotly/opensdr/tx_gain.html"
+       src="_static/plotly/libresdr/tx_gain.html"
        width="100%"
        height="1400px"
        style="border:none;">
    </iframe>
 
-.. _opensdr_tx_filter:
+.. _libresdr_tx_filter:
 
 Tx Filter bandwidth response
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Not measured, see :ref:`opensdr_rx_filter`, I expect the response to be identical
+Not measured, see :ref:`libresdr_rx_filter`, I expect the response to be identical
 
-.. _opensdr_tx_loim:
+.. _libresdr_tx_loim:
 
 Tx LO leakage and Image
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -635,7 +819,7 @@ This test measures the LO and Image while transmitting a test tone
 |                    +------------------------+-----------------+---------------+--------------------+   
 |                    | Tone frequency         | LO + 1 MHz                                           |
 |                    +------------------------+-----------------+---------------+--------------------+  
-|                    | Tone level             | -3 dBFs                                              | 
+|                    | Tone level             | 0 dBFs                                               | 
 +--------------------+------------------------+-----------------+---------------+--------------------+
 | **Parameter sweep**| LO frequency, Gain, Bw                                                        |       
 +--------------------+------------------------+-----------------+---------------+--------------------+
@@ -653,21 +837,21 @@ Sweep:
 
 **Test results:**
 
-- LO: Values match datasheet for 0dB attenuation but are worse than datasheet at 40dB attenuation by a few dB. Interestingly there seem to be a band specifically around -40dB gain where LO leakage is degraded.
+- LO: Values match datasheet for both 0dB attenuation (-50dBc) and 40dB attenuation (-32dBc). 
 
-- Image: Nothing out of the ordinary, there is a noticeable degradation of image level at higher frequencies
+- Image: There is a pattern of degradation at very low and very high frequencies, as well as a degration around 30dB of gain.
 
 .. raw:: html
 
    <iframe
-       src="_static/plotly/opensdr/tx_loim.html"
+       src="_static/plotly/libresdr/tx_loim.html"
        width="100%"
        height="1520px"
        style="border:none;">
    </iframe>
 
 
-.. _opensdr_tx_harmonics:
+.. _libresdr_tx_harmonics:
 
 Tx Harmonics
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -683,7 +867,7 @@ This test measures the transmit harmonics only, relative to the fundamental
 |                    +------------------------+-----------------+---------------+--------------------+   
 |                    | Tone frequency         | LO+100kHz                                            |
 |                    +------------------------+-----------------+---------------+--------------------+  
-|                    | Tone level             | -3 dBFs                                              |
+|                    | Tone level             | 0 dBFs                                               |
 |                    +------------------------+-----------------+---------------+--------------------+ 
 |                    | Tx Gain                | 0 dB (max gain)                                      | 
 +--------------------+------------------------+-----------------+---------------+--------------------+
@@ -703,18 +887,18 @@ Sweep:
 
 **Test results:**
 
-Harmonics are very low, the signal appears clean:
+Harmonics are reasonably low, the signal appears clean:
 
 .. raw:: html
 
    <iframe
-       src="_static/plotly/opensdr/tx_harmonics.html"
+       src="_static/plotly/libresdr/tx_harmonics.html"
        width="100%"
        height="930px"
        style="border:none;">
    </iframe>
 
-.. _opensdr_tx_spurious:
+.. _libresdr_tx_spurious:
 
 Tx Spurious emissions
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -746,67 +930,61 @@ Initial condition:
 
 Sweep:
 
-#. No parameter is swept, we perform a wideband scan on the analyser side.
+#. No parameter is swept, we perform a wideband scan on the analyser side
+#. Three configuration: Transmitter **Active**, **Idle Max Gain**, **Idle Min Gain**.
 
 **Test results:**
 
-Two configurations are tested:
-
-- TX synthesizer ON, output not active
-- TX output active
-
-**TX synthesizer ON, output OFF:**
+:guilabel:`TX synthesizer ON, output OFF - Maximum Gain:`
 
 .. raw:: html
 
    <iframe
-       src="_static/plotly/opensdr/tx_spur_emis_off.html"
+       src="_static/plotly/libresdr/tx_spur_emis_tx_off_MaxGain.html"
        width="100%"
        height="470px"
        style="border:none;">
    </iframe>
 
-We see mainly:
+The transmitter is ON but not actively transmitting. At Maximum gain we see mainly:
 
-- LO leakage at 500 1MHz at -55 dBm
+- LO leakage at 500 MHz at -55 dBm
 - VCO leakage at 2 GHz: the VCO runs at 4x LO which is quite typical. :red:`The VCO is leaking at -40 dBm, which is incredibly high`
 - VCO H2 at 4 GHz
 - VCO H3 at 6 GHz
 - And few other smaller spurs
 
-**TX synthesizer ON, output OFF:**
+:guilabel:`TX synthesizer ON, output OFF - Minimum Gain:`
 
 .. raw:: html
 
    <iframe
-       src="_static/plotly/opensdr/tx_spur_emis_on.html"
+       src="_static/plotly/libresdr/tx_spur_emis_tx_off_MinGain.html"
        width="100%"
        height="470px"
        style="border:none;">
    </iframe>
 
+The transmitter is ON but not actively transmitting. At Minimum gain we see that all spurs are much lower. While the VCO
+spurs still stand out as the strongest, they are between 30-40dB lower compared to the maximum gain configuration.
 
-However, **this is inconsistent with a manual measurement I made**, depicted below. 
+.. note:: This shows that if you must leave the TX ON but are not actively transmitting, set the gain to the minimum to minimize spurs
 
-**Manual inspection**:
+:guilabel:`TX ACTIVE:`
 
-I was looking at VCO spurs and made a wideband acquisition using 
-a spectrum analyser, here shown for LO = 500 MHz:
+.. raw:: html
 
-.. note:: Ignore absolute levels, the span is too wide so the readings are inaccurate. The shape matters most. 
+   <iframe
+       src="_static/plotly/libresdr/tx_spur_emis_on.html"
+       width="100%"
+       height="470px"
+       style="border:none;">
+   </iframe>
 
-.. figure:: assets/figures/opensdr_tx_spurs_500M.png
-    :align: center
-    :scale: 70 %
+Here we see what appears to be harmonics of the test tone and VCO spurs (and many other smaller spurs). However looking at the :ref:`libresdr_tx_harmonics` chapter, something does not match:
+The odd harmonics are very high, :red:`H3 for example sits at -10dBc`, not at all what was previously measured.
 
-    TX spurs at LO = 500 MHz 
-
-The picture on the left is with transmitter ON: we see a mix of transmit and VCO harmonics. 
-The picture on the right is with transmitter active but OFF: we see only the VCO spurs.
-It shows that the **VCO runs at 4x the LO frequency**, which is quite typical. For an LO of 500 MHz, the VCO would run at 2GHz and its harmonics at 
-4, 6, 8 GHz and so on: this is exactly what we see on the TX OFF picture.
-
-:red:`Problem: on the wideband display, odd harmonics of the test tone (H3, H5, etc) appear to be very high: H3 alone is at -10dBc, not at all what I measured above! Additionally their dBc level does not change regardless of the tone level, which is NOT expected behaviour.`
+Additionally changing the amplitude of the main tone does not reduce the "harmonics", which makes no sense.
 
 Zooming in manually around each harmonic explains what is happening:
 
@@ -842,7 +1020,7 @@ This explains why changing the amplitude of the main tone had no effect on the r
 
 .. danger::
 
-    This is real. While the spectrum of the **tone itself is quite clean**, the fact that we have **very high VCO leakage**
+    This is real, not a measurement artifact. While the spectrum of the **tone itself is quite clean**, the fact that we have **very high VCO leakage**
     and **mixing between VCO and tone** produces a **VERY dirty spectrum**. :math:`IM_a` will effectively contain 10% of the main tone's power!
 
     If you want to use this device for transmitting over the air you will need **heavy filtering** to stay compliant with your local regulations
@@ -857,9 +1035,7 @@ This explains why changing the amplitude of the main tone had no effect on the r
 
     This is simply not practical, and severely limits the output power one can hope to use.
 
-
-
-.. _opensdr_tx_bbim:
+.. _libresdr_tx_bbim:
 
 Tx (baseband) intermodulation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -911,119 +1087,17 @@ since these intermodulation spurs occur at baseband it is not possible to filter
 The only way would be to decrease the tone level at the digital stage,
 before the tone is synthesized by the DAC. 
 
-.. _opensdr_trx_coupling:
+.. _libresdr_trx_coupling:
 
 Tx to Rx isolation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This test looks at coupling to the RX port while the TX is transmitting. For this we use a slightly different setup: the TX transmits into a 50R load
-while we observe the RX port with a spectrum analyser.
-
-.. note:: This test only looks at TX/RX RF coupling between the SMA and the chip boundary: it looks mostly at **isolation on the PCB**
-
-.. figure:: assets/figures/setup_trx_coupling.svg
-    :align: center
-    :scale: 80 %
-
-    TX/RX coupling setup
-
-**Test conditions:**
-
-+--------------------+------------------------+-----------------+---------------+--------------------+
-| **Configuration**  | RF port                | TX1 / RX1                                            |
-|                    +------------------------+-----------------+---------------+--------------------+       
-|                    | Sampling rate          | 2 Msps                                               |  
-|                    +------------------------+-----------------+---------------+--------------------+   
-|                    | Tone frequency         | LO+500kHz                                            |
-|                    +------------------------+-----------------+---------------+--------------------+   
-|                    | Tone level             | -3 dBFs                                              |
-|                    +------------------------+-----------------+---------------+--------------------+  
-|                    | Tx Gain                | 0 dB (max gain)                                      | 
-|                    +------------------------+-----------------+---------------+--------------------+  
-|                    | Rx Gain                | 70 dB (max gain)                                     | 
-|                    +------------------------+-----------------+---------------+--------------------+  
-|                    | Tx/Rx LO               | 1000 MHz                                             | 
-+--------------------+------------------------+-----------------+---------------+--------------------+
-| **Parameter sweep**| None                                                                          |       
-+--------------------+------------------------+-----------------+---------------+--------------------+
-
-**Test results:**
-
-A wideband scan only shows a fairly strong VCO spur. Zooming around the LO frequency, we do see an LO spur but it's small at approx.
--80 dBm. Zooming on the VCO frequency reveals a much stronger spur at approx. -60 dBm, but it's very far from the LO frequency so 
-would not be an issue in a system.
-
-Focusing on the region around the LO frequency, we have a TX tone at -3 dBm and a spur on the RX side at -80 dBm or an **isolation
-of 77 dB**. It is quite clear from this result that most unwanted coupling 
-will occur inside the AD9363, not outside on the PCB.
-
-.. figure:: assets/figures/opensdr_trx_coupling.png
-    :align: center
-    :scale: 60 %
-
-    TRX isolation
-
-.. _opensdr_txp_investigation:
-
-Tx power investigation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-As seen in :ref:`opensdr_tx_freq_resp`, the (absolute) output power and the frequency response are not ideal.
-
-.. important::
-
-    **I have attempted to investigate it using my (dodgy) Hamgeek device but was ultimately not successful. I only report my findings below
-    for information**
-    
-    I'm currently reluctant to modify my OpenSourceSDRLab device as it behaves reasonably well all things considered.
-    If I decide to modify it later, I will apply the following changes in order:
-    
-    - #4: My PCB has ferrites on all supplies, no 0R mod and this mod is definitely needed for supply stability
-    - #5: Biggest improvement, the TX bias supply was starved
-
-    While this will increase power, it was quite clear from my experiments that the RF trace was a big limiting factor.
-    This cannot really be fixed unless you add your own piece of coax between the SMA and balun and disconnect the trace
-
-I have tried the following:
-
-+---------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------+
-|         | Item                 | Description                                                                                                                                                                                                                                                                                                    | Modification and effect                                                                                                                                                                                 | Trace on plot below      |
-+=========+======================+========================================================================================================================================================================================================================+=======================================================================================+=========================================================================================================================================================================================================+==========================+
-| 1       | :blue:`ESD diodes`   | Users mention that ESD diode at the output could be the wrong type, with high parasitic capacitance loading the output. However the resulting power loss is > 20dB, not something I see on my device                                                                                                           |  Removed diode D6: **absolutely no change**                                                                                                                                                             | Blue                     |
-+---------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------+
-| 2       | :blue:`Baluns`       | Users mention the baluns are poor quality as they are not genuine minicircuits TCM1-63AX+: while this might affect performance at high frequency, it should not affect the output power at low frequency.                                                                                                      |  Changed it for a "cheap" TCM1-63AX+ bought on Aliexpress (not an official source): **The frequency response changed shape, but no overall improvement**                                                | Red                      |
-+---------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------+
-| 3       | :blue:`RF trace`     | A user mentionned that the RF trace between the balun and SMA connector is poor, and replacing it with a piece of coax improved it.                                                                                                                                                                            |  Connected a pigtail at the output of the balun and it did **significantly improve power at high frequency, flattens response. But power is still low overall**                                         | Green                    |
-+---------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------+
-| 4       | :blue:`Ferrites`     | Users have noticed that on some of their boards the ferrites on various supply rails have been replaced by 0R links. Indeed, these ferrites seem to have fairly high DCR and are an issue on high current rails.                                                                                               |  Focusing on my TX chain, I replaced the ferrites on the 2V5 (FB4/FB16) and 1V3 rails (FB10/FB11), which power the AD9363: **The rails are more stable but no change to output power**                  | Red                      |
-+---------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------+
-| 5       | :blue:`RF chokes`    | The inductors L2/L3 are meant the be used as RF chokes for the TX output bias circuit. They have very high DCR: Once TX was enabled (but not transmitting) the voltage on the TX outputs was measured at 0.9V instead of 1.3V! Given that the quiescent current is around 75mA this is a DCR of 5 Ohms!        |  Replaced by BLM18HE102SN1D (I have lots lying around): **Increased the output power at all frequencies by 2-3dB, but overall power still low.**                                                        | Purple                   |
-+---------+----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------+
-
-.. figure:: assets/figures/hamgeek_txp_investigations_pics.svg 
-    :align: center
-    :scale: 75 %
-
-    Modifications
-
-There was unfortunately no magic bullet. The biggest improvements comes from #3 the pigtail (i.e layout limitation) and #5 RF chokes (cheap BOM issue).
-Combining both these changes would have provided maximum improvement but would NOT have solved the main issue. The rest had negligible impact
-
-I've plotted the original frequency response and items 2, 3, 5 above together for comparison. Note that some of the changes are cumulative:
-
-.. raw:: html
-
-   <iframe
-       src="_static/plotly/hamgeek/tx_fr_investigation.html"
-       width="100%"
-       height="500px"
-       style="border:none;">
-   </iframe>
+See :ref:`libresdr_rx_spur_em`, 3rd case.
 
 Conclusion
 -------------
 
-The device works and has decent performance, there are however two limitations I would highlight:
+The device works and has quite respectable performance, given the pricepoint the designer has done an amazing job. There are however two limitations I would highlight:
 
 #. Minor: The **frequency response** in both RX and TX could be improved.
 
