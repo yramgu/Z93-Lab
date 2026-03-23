@@ -1,34 +1,25 @@
-LibreSDR
+Plutosky
 ========================================
 
-This page showcases measured performance for a LibreSDR I bought from OpenSourceSDRlab on Aliexpress.
+This page showcases measured performance for a LibreSDR acquired from OpenSourceSDRlab.
 
-The original seller link would be: https://opensourcesdrlab.com/products/libresdr-zynqsdr-ad9363-zynq7020
+The original seller link would be: https://opensourcesdrlab.com/products/opensourcesdrlab-7020-sdr-ad9361-ad9363-development-board-with-pa-for-pluto-matlab-software-defined-radio?VariantsId=10361
+
+My variant is **AD9363 + PA**
 
 The package received contains:
 
-- 1x SDR device in antistatic Bag 
+- 1x SDR device in bubble wrap
 
-- 2x USB-C cables
+- 1x telescopic antenna in bubble wrap
 
-- 1x ethernet cable
+- 1x pre-flashed 128MB micro-SD card
 
-- 1x Allen key
-
-- 1x USB-A to USB-C adapter
-
-- 4x antennas 
-
-- 1x blank 32GB micro-SD card
-
-.. figure:: assets/figures/opensdr_box.jpg
+.. figure:: assets/figures/plutosky_box.png
     :align: center
-    :scale: 30 %
+    :scale: 70 %
 
     Box content
-
-It can be bought in a variety of places such as Ebay, Aliexpress, Banggood... and of course the official seller's own website.
-
 
 Hardware
 ------------
@@ -40,53 +31,64 @@ Hardware
 +----------------------------+-------------------------------------------------------------------------------------------------+
 | RAM                        | 1GB 32bit wide DDR3 1066MHz                                                                     |
 +----------------------------+-------------------------------------------------------------------------------------------------+
-| Flash                      | 32MB QSPI, also support micro SD card                                                           |
+| Flash                      | 16MB QSPI, also support micro SD card                                                           |
 +----------------------------+-------------------------------------------------------------------------------------------------+
-| RFIC                       | AD9363 (Can be "hacked" to AD9361 or AD9364) with 2 Transmit + 2 Receive channels               |
+| RFIC                       | AD9363 or AD9361 depending on the flavour                                                       |
 +----------------------------+-------------------------------------------------------------------------------------------------+
 | ADC/DAC resolution         | 12 bits                                                                                         |
 +----------------------------+-------------------------------------------------------------------------------------------------+
 | Max Sampling rate          | 61.44 Msps                                                                                      |
 +----------------------------+-------------------------------------------------------------------------------------------------+
-| Max bandwidth              | 20 MHz (AD9363 mode) or 56 MHz (AD9364/61 mode)                                                 |
+| Max bandwidth              | 20 MHz (AD9363) or 56 MHz (AD9361)                                                              |
 +----------------------------+-------------------------------------------------------------------------------------------------+
-| Frequency range            | 325~3800 MHz (AD9363 mode) or 70~6000MHz (AD9364/61 mode)                                       |
+| Frequency range            | 325~3800 MHz (AD9363) or 70~6000MHz (AD9361)                                                    |
 +----------------------------+-------------------------------------------------------------------------------------------------+
-| Clock                      | VCTCXO 40MHZ 0.5ppm, with external clock input                                                  |
+| Clock                      | TCXO 40MHZ 0.5ppm + external clock input                                                        |
 +----------------------------+-------------------------------------------------------------------------------------------------+
 | Connections                | USB 2.0 OTG + USB debug (Serial) + Gigabit ethernet. USB connectors are Type C                  |
 +----------------------------+-------------------------------------------------------------------------------------------------+
+| Misc                       | GPIO header                                                                                     |
++----------------------------+-------------------------------------------------------------------------------------------------+
 
-As far as I know the current/latest PCB revision is **"rev5"**. Schematics can be found `here <https://github.com/F5OEO/tezuka_fw/discussions/72>`__
+Schematics and firmware can be found in OpenSourceSDRLab `github <https://github.com/OpenSourceSDRLab/PlutoSky_7020_AD936X_SDR>`__,
+although the schematics in the repo does not have the PA so it might not be the latest revision.
+Another schematics with the PA can be found here, but it's missing a page with power supplies... I guess by merging the two one can get the 
+full schematics.
 
-.. figure:: assets/figures/zynqsdr_pcb.png
+.. todo:: find the 2nd link
+
+.. figure:: assets/figures/plutosky_pcb.png
     :align: center
     :scale: 50 %
 
-    LibreSDR typical PCB
+    Plutosky typical PCB
 
-.. caution::
-    
-    There are multiple sources/manufacturers, some official and some not. The alleged original designer "jiskra" mentions on `this thread <https://github.com/F5OEO/tezuka_fw/issues/45>`__
-    that some knock-offs exist that use 2nd-hand ADI chips, i.e. chips that were pulled from other products, reballed, and reused.
-
-    He mentions that the devices provided by OpenSourceSDRlab should be original ones
-
-Users have reported that some versions seem to have no stiching vias. This is the case of the Hamgeek version for example.
-The vias appear to be there if we look closely, but the surface coating (resist, finish) seems te be very thick and 
-covering them to the point where we do not see them anymore.
-
-There are two main casing variants: one with "vertical" stripes in the aluminium shell and one with "horizontal" stripes. This can be seen 
-`here <https://github.com/F5OEO/tezuka_fw/discussions/72>`__. Markings/engraving also exists in different flavours.
-The case marking of my device matches the one shown by `sq6emm here. <https://github.com/F5OEO/tezuka_fw/discussions/72#discussion-7988959>`__
-
-My device has the marking "LibresDR" (lowercase "s") and stiching vias are clearly visible on the PCB:
-
-.. figure:: assets/figures/opensdr_pcb.png
+.. figure:: assets/figures/plutosky_rffe.png
     :align: center
     :scale: 50 %
 
-    Casing and PCB of OpenSourceSDRLab device
+    Plutosky RF section close-up
+
+Interestingly, the FPGA in my product has had its markings lasered-off. This normally does not instill confidence... but the device works:
+
+.. figure:: assets/figures/plutosky_fpga.png
+    :align: center
+    :scale: 50 %
+
+    Plutosky FPGA
+
+Mechanically the device comes in a nice metal enclosure, with a fan. The fan is a bit annoying compared to a fully passive (and silent) LibreSDR, but it is needed:
+upon opening the device it appears that the PCB is thermally isolated from the metal enclosure. It is mounted on plastic pillars and has no 
+contact with the enclosure, hence the need for a fan.
+
+Since they went through the trouble of making a metal casing, I feel there was a missed opportunity to make the PCB a tiny bit larger
+and find a way to couple it thermally to the casing.
+
+.. figure:: assets/figures/plutosky_mech.png
+    :align: center
+    :scale: 60 %
+
+    Plutosky casing
 
 Performance data given below is for the **default configuration** of my device (as I received it):
 
@@ -98,39 +100,28 @@ All tests:
 - Are conducted using the **USB connection**. This would NOT affect high-bandwidth measurement as IQ data was taken as "one-shot", not continuous streaming.
 - Have setup cable loss deembedded from the measurement: the reference plane is the device's SMA connector
 
-.. note::
-
-    I have also tested the Hamgeek version but my Hamgeek device, acquired through Banggood, seems to have an issue. It works but some key metrics 
-    appear to be really bad. I will give them the benefit of the doubt and assume I just got a faulty device, and therefore will not report what I measured
-    on this website.
-
 Firmware
 -------------
 
-My devices came with a default firmware dubbed **"v0.37-dirty"**.
+My devices came with a default firmware dubbed **"v0.38-1-g6f8e-dirty"**.
+
+.. figure:: assets/figures/plutosky_login.PNG
+        :align: center
+        :scale: 80 %
+
+        Plutosky default firmware
+
+.. warning::
+    Unlike the LibreSDR, it appears there is no firmware in the Flash. You must use the provided SD card to use the device
 
 The firmware:
 
 - Is in "AD9363" mode, ie **limited to the standard frequency range of 325-3800MHz / 20MHz bandwidth**
-
-    .. figure:: assets/figures/linux_default_cfg.png
-        :align: center
-        :scale: 80 %
-
-        Default RF mode
-
 - Is configured in **1TX-1RX** only (so TX2 and RX2 port unusable)
-- Has ethernet enabled by default (some forums seem to say this is not the case but it was on mine):
 
-    .. figure:: assets/figures/linux_ethernet_config.png
-        :align: center
-        :scale: 80 %
+.. note::
 
-        Ethernet configuration
-
-    .. note::
-
-        At the time of writing I have not tested ethernet yet, only USB
+    At the time of writing I have not tested ethernet yet, only USB
 
 Typical test setup
 --------------------
@@ -146,7 +137,7 @@ is placed at the device's SMA connector to tame any mismatch introduced by the R
 
 Setup cable loss has been characterised and is removed from the test results.
 
-.. _libresdr_impedance:
+.. _plutoskyimpedance:
 
 Port impedance
 -----------------
@@ -180,14 +171,14 @@ The TX or RX port is connected to a VNA and S11 is measured
 
 From the plots we can see that 
 
-- RX S11 looks OK between 800 - 2500 MHz 
+- RX S11 looks ~OK from ~1100 MHz, but is generally not great
 
-- TX S11 looks OK between 250 - 2000 MHz 
+- TX S11 looks looks good everywhere, owing to the monolithic PA
 
 .. raw:: html
 
    <iframe
-       src="_static/plotly/libresdr/rx_s11.html"
+       src="_static/plotly/plutosky/rx_plutosky_s11.html"
        width="100%"
        height="550px"
        style="border:none;">
@@ -196,7 +187,7 @@ From the plots we can see that
 .. raw:: html
 
    <iframe
-       src="_static/plotly/libresdr/tx_s11.html"
+       src="_static/plotly/plutosky/tx_plutosky_s11.html"
        width="100%"
        height="550px"
        style="border:none;">
@@ -205,7 +196,7 @@ From the plots we can see that
 RX tests 
 -------------
 
-.. _libresdr_rx_freq_resp:
+.. _plutosky_rx_freq_resp:
 
 Rx Frequency response
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -267,7 +258,7 @@ Only two gains were measured: min and max to check if there was any dependency.
 .. raw:: html
 
    <iframe
-       src="_static/plotly/libresdr/rx_frequency_response.html"
+       src="_static/plotly/plutosky/rx_frequency_response.html"
        width="100%"
        height="470px"
        style="border:none;">
@@ -275,11 +266,10 @@ Only two gains were measured: min and max to check if there was any dependency.
     
 The response roughly tracks the RX S11 where 
 
-- S11 is good until 2500 MHz, and frequency response is somewhat flat.
-- Then S11 degrades and reaches its worst point at around 3500 MHz, which corresponds to the lowest point on the frequency response.
-- Past 3500 MHz S11 improves slightly again and the frequency response starts going up slightly again.
+- S11 improves until 2500 MHz, and frequency response is somewhat flat.
+- Then S11 degrades and reaches its worst point at around 3300-3800 MHz, which corresponds to the lowest region on the frequency response.
 
-.. _libresdr_rx_gain:
+.. _plutosky_rx_gain:
 
 Rx Gain
 ~~~~~~~~~~~~
@@ -316,19 +306,20 @@ Sweep:
 
 **Test results:**
 
-- The Gain Error remains relatively small across the whole gain range and across frequency.
-- There is a global tendancy for **gain error to increase (somewhat) linearly with requested gain**: this means that the gain is not quite linear.
+- The Gain Error remains small across the whole gain range and across frequency.
+- It seems to be slightly more consistent than LibreSDR, especially at lower frequencies
+- Tt exhibits similar "chaotic" traits as LibreSDR: it jumps around quite a lot over the full gain range
 
 .. raw:: html
 
    <iframe
-       src="_static/plotly/libresdr/rx_gain.html"
+       src="_static/plotly/plutosky/rx_gain.html"
        width="100%"
        height="1380px"
        style="border:none;">
    </iframe>
 
-.. _libresdr_rx_filter:
+.. _plutosky_rx_filter:
 
 Rx Bandwidth filter response
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -360,7 +351,7 @@ Initial condition:
 
 Sweep:
 
-#. While the signal generator frequency is kept constant, the RX LO is swept across the entire bandwidth of the filter (and a little more)
+#. While the signal generator frequency is kept constant, the **RX LO is swept** across the entire bandwidth of the filter (and a little more)
 #. Measurement is done in dBFs using an FFT at each step
 #. The FFT bin where the tone is expected is computed, and tone level measured 
 
@@ -370,19 +361,20 @@ Sweep:
 
 **Test results:**
 
-- We see an interesting ripple in the filter response. I have checked manually and it is real, not a measurement issue. On wide bandwidths the passband ripple gets quite large, around 1.5dB
+- We get the exact same result as LibreSDR (expected as this is purely a characteristic of the RFIC)
+- We see a ripple in the filter response. Manual check shows it is real, not a measurement artifact. On wide bandwidths the passband ripple gets quite large, around 1.5dB
 - Filters at 250 kHz and 300 kHz BW look very similar and are too wide
 
 .. raw:: html
 
    <iframe
-       src="_static/plotly/libresdr/rx_filter.html"
+       src="_static/plotly/plutosky/rx_filter_response.html"
        width="100%"
        height="1400px"
        style="border:none;">
    </iframe>
 
-.. _libresdr_rx_nf:
+.. _plutosky_rx_nf:
 
 Rx Noise figure
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -440,36 +432,23 @@ Sweep: For each frequency,
 .. raw:: html
 
    <iframe
-       src="_static/plotly/libresdr/rx_noise_figure_notx.html"
+       src="_static/plotly/plutosky/rx_noise_figure.html"
        width="100%"
        height="930px"
        style="border:none;">
    </iframe>
 
-The results are quite reasonable. For this type of device we should expect between 4-8 dB of Noise Figure,
-which is exactly what we get. Past 2500 MHz the NF degrades which is in line with S11/Frequency response.
+The results are quite reasonable, and better than LibreSDR. 
+LibreSDR exhibits heavy degradation above ~2600 MHz whereas Plutosky maintains much more constant NF across the range.
+For this type of device we should expect between 4-8 dB of Noise Figure,
+which is exactly what we get. 
 
-**Active TX:**
+We do see discrete degradations which could be due to external interference. I ran the test multiple times and they stay present 
+so they could also be real internal noise.
 
-If we activate the TX (turned on but not transmitting), degradation may appear where the TX chain produces spurs that couple on the RX. Below is an example with the TX LO set at 1GHz:
+.. todo:: redo measurement in shielded environment to check if degradations are internal or external 
 
-.. raw:: html
-
-   <iframe
-       src="_static/plotly/libresdr/rx_noise_figure_txlo1000.html"
-       width="100%"
-       height="930px"
-       style="border:none;">
-   </iframe>
-
-We notice some "discrete" degradations in NF, especially at 1 MHz and 5 MHz bandwidth. To avoid these:
-
-- Ideally don't activate the TX at all (as you can only deactivate by rebooting the board)
-- Or set the TX LO as far away as possible from the RX LO
-
-If you are actively using the TX at the same time then be aware it might degrade the NF
-
-.. _libresdr_rx_spur_em:
+.. _plutosky_rx_spur_em:
 
 Rx Spurious emissions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -484,10 +463,11 @@ while we observe the RX port with a spectrum analyser using a wideband scan.
 
     RX spurious emissions setup
 
-Three configurations are tested:
+Four configurations are tested:
 
 #. RX only: The TX synthesizer is OFF
-#. RX + TX Idle: the TX synthesizer is ON but not transmitting
+#. RX + TX Idle at Max TX Gain: the TX synthesizer is ON but not transmitting
+#. RX + TX Idle at Min TX Gain: the TX synthesizer is ON but not transmitting
 #. RX + TX Active: the TX synthesizer is ON and transmitting: This 3rd case is effectively the **TX to RX isolation** at PCB level
 
 **Test conditions:**
@@ -499,9 +479,9 @@ Three configurations are tested:
 |                    +------------------------+-----------------+---------------+--------------------+   
 |                    | TX Tone frequency      | LO + 1 MHz                                           |
 |                    +------------------------+-----------------+---------------+--------------------+   
-|                    | TX Tone level          | 0 dBFs                                               |
+|                    | TX Tone level          | -6 dBFs                                              |
 |                    +------------------------+-----------------+---------------+--------------------+  
-|                    | Tx Gain                | 0 dB (max gain)                                      | 
+|                    | Tx Gain                | 0 dB (max gain) or -80dB (min Gain)                  | 
 |                    +------------------------+-----------------+---------------+--------------------+  
 |                    | Tx LO                  | 600 MHz                                              | 
 |                    +------------------------+-----------------+---------------+--------------------+  
@@ -528,23 +508,15 @@ RX only
 .. raw:: html
 
    <iframe
-       src="_static/plotly/libresdr/rx_spur_emis_rx_only.html"
+       src="_static/plotly/plutosky/rx_spur_emis_rx_only.html"
        width="100%"
        height="480px"
        style="border:none;">
    </iframe>
 
 Both Gains give us the same plot. We see a lot of spurs but beware of the scale: they are very low at -80dBm or lower.
-Zooming in around 600 - 1000 MHz reveals a comb of 50 MHz, which looks suspiciously like a clock.
-
-Sure enough, looking at the schematics there is a 50 MHz TCXO feeding the FPGA processor and ethernet transceiver:
-
-.. figure:: assets/figures/libresdr_50M_clk.png
-    :align: center
-    :scale: 70 %
-
-    50 MHz clock on LibreSDR schematics
-
+Zooming in around 600 - 1000 MHz reveals a comb of 50 MHz, which was identified on LibreSDR as an on-board 50 MHz TCXO 
+feeding the FPGA and the Ethernet transceiver. Taht comb extends all the way up to ~2700 MHz.
 
 TX Synth ON - Max TX Gain
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -552,16 +524,31 @@ TX Synth ON - Max TX Gain
 .. raw:: html
 
    <iframe
-       src="_static/plotly/libresdr/rx_spur_emis_tx_lo_600M-OFF_MaxGain.html"
+       src="_static/plotly/plutosky/rx_spur_emis_tx_lo_600M-OFF_MaxGain.html"
        width="100%"
        height="480px"
        style="border:none;">
    </iframe>
 
-The TX synthesizer is ON but not transmitting. Now we also see the VCO fundamental at :math:`4 \times 600 MHz = 2.4 GHz` and its H2.
-Again very similar plots between the two gains although VCO H2 is lower at high gain.
+The TX synthesizer is ON, set at Max TX Gain but not transmitting. At 0dB Rx Gain we now see the TX VCO fundamental at :math:`4 \times 600 MHz = 2.4 GHz` and its H2.
+However at 70dB RX Gain the TX VCO fundamental is suppressed while its H2 is not.
 
-.. note:: The plots above are measured at maximum TX Gain, lowering the TX Gain reduces the VCO spurs seen at the RX port so these plots represent the worst case
+TX Synth ON - Min TX Gain
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. raw:: html
+
+   <iframe
+       src="_static/plotly/plutosky/rx_spur_emis_tx_lo_600M-OFF_MinGain.html"
+       width="100%"
+       height="480px"
+       style="border:none;">
+   </iframe>
+
+The TX synthesizer is ON, set at Min TX Gain but not transmitting. 
+At both RX Gains the TX VCO fundamental and it H2 are now much lower
+
+.. hint:: If you must keep the TX synthesiser ON but are not actively transmitting, set the TX Gain to minimum to reduce spurs
 
 TX Active 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -569,7 +556,7 @@ TX Active
 .. raw:: html
 
    <iframe
-       src="_static/plotly/libresdr/rx_spur_emis_tx_lo_600M-ON.html"
+       src="_static/plotly/plutosky/rx_spur_emis_tx_lo_600M-ON.html"
        width="100%"
        height="480px"
        style="border:none;">
@@ -579,18 +566,15 @@ TX Active
 
     This last case looks at TX/RX RF coupling between the SMA and the chip boundary: it gives us the **TX/RX isolation on the PCB**
 
-The transmitter is turned ON: we see small replicas of the transmit tone at 1.8 GHz, 3 GHz, 4.2 GHz, 5.4 GHz... They remain much lower than the VCO spurs.
-The transmit fundamental sits at around -90 dBm which negligible.
+The transmitter is turned ON: we now see a LOT more spurs at multiples of the TX LO and TX VCO. This is much worse than LibreSDR, because
+we now have an external PA that amplifies and/or produces a lot of very strong spurs.
 
-The VCO frequency shows a much stronger spur at approx. -65 dBm, but it's very far from the RX frequency so 
-would not be an issue in a system as it could easily be filtered out. That is, unless you chose a TX frequency such that the VCO would fall near the RX...in which
-case you would have a serious problem.
+The VCO fundamental at 0dB Gain is at approx. -65 dBm, similar to LibreSDR.
 
-Focusing on the region around the LO frequency, we have a TX tone at roughly +4 dBm (measured separately) and a spur on the RX side at -90 dBm or an **isolation
-of 94 dB**. While this figure will likely change with frequency, we would still be in the range of 80dB+ of isolation. It is quite clear from this result that the PCB
-will not be a limiting factor here.
+Focusing on the region around the LO frequency, we have a TX tone at roughly +14 dBm (measured separately) and a spur on the RX side at -50 dBm or an **isolation
+of 64 dB**. While the figure is very good, it's much worse than LibreSDR that has 30dB more rejection.
 
-.. _libresdr_rx_spur_rec:
+.. _plutosky_rx_spur_rec:
 
 Rx Spurious reception
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -604,10 +588,11 @@ For this both TX and RX ports are terminated by 50R, and we perform FFTs on the 
 
     RX spurious reception setup
 
-Three configurations are tested:
+Four configurations are tested:
 
 #. RX only: The TX synthesizer is OFF
-#. RX + TX Idle: the TX synthesizer is ON but not transmitting
+#. RX + TX Idle at Max TX Gain: the TX synthesizer is ON but not transmitting
+#. RX + TX Idle at Min TX Gain: the TX synthesizer is ON but not transmitting
 #. RX + TX Active: the TX synthesizer is ON and transmitting
 
 **Test conditions:**
@@ -619,7 +604,7 @@ Three configurations are tested:
 |                    +------------------------+-----------------+---------------+--------------------+   
 |                    | TX Tone frequency      | LO + 1 MHz                                           |
 |                    +------------------------+-----------------+---------------+--------------------+   
-|                    | TX Tone level          | 0 dBFs                                               |
+|                    | TX Tone level          | -6 dBFs                                              |
 |                    +------------------------+-----------------+---------------+--------------------+  
 |                    | Tx Gain                | 0 dB (max gain)                                      | 
 |                    +------------------------+-----------------+---------------+--------------------+  
@@ -649,16 +634,15 @@ RX only
 .. raw:: html
 
    <iframe
-       src="_static/plotly/libresdr/rx_spur_reception_rx_only.html"
+       src="_static/plotly/plutosky/rx_spur_reception_rx_only.html"
        width="100%"
        height="480px"
        style="border:none;">
    </iframe>
 
-At 0dB Gain, the whole frequency range is completely quiet. At 70dB Gain we see a wide range of spurs which are actually also present
-at 0dB gain but hidden in the noise. The stronger spur at 3.145GHz, for example, can be seen on both.
-
-At high gain the noise floor is lifted (visible "bumps") at around 850 MHz, 1100 MHz, 1400 MHz and 2500 MHz
+At 0dB Gain, the whole frequency range is completely quiet. At 70dB Gain we see a wide range of spurs, some of them very strong.
+I have not had the time to investigate where they come from, but reaching the range of -30/-40 dBFs means they are quite strong.
+Since only the RX is ON and all ports are terminated by 50R they are very likely to originate from the device itself (eg RAM clocks...) 
 
 TX Synth ON - Max TX Gain
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -666,7 +650,7 @@ TX Synth ON - Max TX Gain
 .. raw:: html
 
    <iframe
-       src="_static/plotly/libresdr/rx_spur_reception_tx_lo_600M-OFF_MaxGain.html"
+       src="_static/plotly/plutosky/rx_spur_reception_tx_lo_600M-OFF_MaxGain.html"
        width="100%"
        height="480px"
        style="border:none;">
@@ -678,30 +662,54 @@ We see a particularly strong VCO fundamental spur at 2.4 GHz (600 MHz x 4). At M
 .. hint::
     If you really care about RX performance, try to keep the TX fully turned OFF. One way is to put the RFIC in TDD mode, RX only.
 
-TX Active 
+TX Synth ON - Min TX Gain
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. raw:: html
 
    <iframe
-       src="_static/plotly/libresdr/rx_spur_reception_tx_lo_600M-ON.html"
+       src="_static/plotly/plutosky/rx_spur_reception_tx_lo_600M-OFF_MinGain.html"
        width="100%"
        height="480px"
        style="border:none;">
    </iframe>
 
 
-We see a few stronger replicas from the transmit tone but overall very similar to the previous case. Some spurs
-appear that were not visible before (eg Tx tone H3 at 1803 MHz)
-The AD9363 mostly sees its internal noise and does not seem overly affected by its output stage (that is there is no 
-much difference between TX ACTIVE and IDLE as most contributions are made a soon as the TX synthesizer is enabled).
+By setting the Tx Gain to minimum we the level of spurs seen by the receive decreases significantly. This can be an alternative to shutting 
+down the TX altogether.
+
+TX Active 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. raw:: html
+
+   <iframe
+       src="_static/plotly/plutosky/rx_spur_reception_tx_lo_600M-ON.html"
+       width="100%"
+       height="480px"
+       style="border:none;">
+   </iframe>
+
+As expected if we turn on the TX, the spurs dramatically increase in level. 
+
+At 0dB RX Gain we the TX tone at 601 MHz at -52 dBFs and a whole
+range of other spurs (harmonics of TX LO/tone/VCO, clocks...)
+
+At 70dB RX Gain the RX is quite simply saturated. Multiple spurs reach the level of 0dBFs. Zooming on 1800 MHz for example reveals a huge
+amount of distortion. **Due to the external PA it is not possible to receive at max gain at the same time as we transmit at max power on this platform**
 
 TX tests
 -------------
 
-.. important:: Unless otherwise specified, all TX tests are run with a tone at 0dBFs
+.. danger::
 
-.. _libresdr_tx_freq_resp:
+    Unlike LibreSDR I could not run the TX tests at 0dBFs level: This would drive the external PA into compression, making measurement results invalid. 
+    This is shown in chapter :ref:`plutosky_max_power`
+
+
+    Unless otherwise specified, all TX tests are therfore run with a tone at -6dBFs
+
+.. _plutosky_tx_freq_resp:
 
 Tx Frequency response
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -717,7 +725,7 @@ This test measures the frequency response of the transmit chain
 |                    +------------------------+-----------------+---------------+--------------------+   
 |                    | Tone frequency         | LO+100kHz                                            |
 |                    +------------------------+-----------------+---------------+--------------------+  
-|                    | Tone level             | 0 dBFs                                               | 
+|                    | Tone level             | -6 dBFs                                              | 
 +                    +------------------------+-----------------+---------------+--------------------+
 |                    | Tx Gain                | 0 dB (max gain)                                      | 
 +--------------------+------------------------+-----------------+---------------+--------------------+
@@ -735,27 +743,20 @@ Sweep:
 
 **Test results:**
 
-The output power varies from +4 dBm to -5 dBm, averaging around 0 dBm. It's less than what we could expect compared to an ADALM-PLUTO,
-but it's still quite decent. There is however, quite a bit of roll-off: there is 9dB of variation across the whole range, which is not 
-very good.
+The output power varies from +14 dBm to +7 dBm, thanks to the external PA. There is still 7dB of variation across the whole range.
+So despite being much shorter than the LibreSDR TX path, it is still quite lossy.
 
 .. raw:: html
 
    <iframe
-       src="_static/plotly/libresdr/tx_frequency_response.html"
+       src="_static/plotly/plutosky/tx_frequency_response.html"
        width="100%"
        height="480px"
        style="border:none;">
    </iframe>
 
 
-The response roughly tracks the TX S11 where 
-
-- S11 is good below 2000 MHz
-- Then S11 degrades and reaches its worst point at around 2200 MHz, which corresponds to a trough on the frequency response.
-- Then S11 improves again around 2700MHz and the frequency response also improves, and after that further degrades
-
-.. _libresdr_tx_gain:
+.. _plutosky_tx_gain:
 
 Tx Gain
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -771,7 +772,7 @@ This test measures the Gain linearity of the transmit chain
 |                    +------------------------+-----------------+---------------+--------------------+   
 |                    | Tone frequency         | LO+100kHz                                            |
 +                    +------------------------+-----------------+---------------+--------------------+
-|                    | Tone level             | 0 dBFs                                               | 
+|                    | Tone level             | -6 dBFs                                              | 
 +                    +------------------------+-----------------+---------------+--------------------+
 | **Parameter sweep**| LO frequency, Gain                                                            |       
 +--------------------+------------------------+-----------------+---------------+--------------------+
@@ -790,26 +791,27 @@ Sweep:
 
 **Test results:**
 
-The plots show that the gain is **very linear** but only from from -70dB to -20dB. 
+Similar to LibreSDR: the plots show that the gain is very linear from from -70dB to -20dB. 
 Above -20dB gain we start showing a little bit of compression, and below -70dB we can't backoff enough, especially at higher frequencies. 
+But overall, good.
 
 .. raw:: html
 
    <iframe
-       src="_static/plotly/libresdr/tx_gain.html"
+       src="_static/plotly/plutosky/tx_gain.html"
        width="100%"
        height="1400px"
        style="border:none;">
    </iframe>
 
-.. _libresdr_tx_filter:
+.. _plutosky_tx_filter:
 
 Tx Filter bandwidth response
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Not measured, see :ref:`libresdr_rx_filter`, I expect the response to be identical
+Not measured, see :ref:`plutosky_rx_filter`, the response is expected to be identical
 
-.. _libresdr_tx_loim:
+.. _plutosky_tx_loim:
 
 Tx LO leakage and Image
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -825,7 +827,7 @@ This test measures the LO and Image while transmitting a test tone
 |                    +------------------------+-----------------+---------------+--------------------+   
 |                    | Tone frequency         | LO + 1 MHz                                           |
 |                    +------------------------+-----------------+---------------+--------------------+  
-|                    | Tone level             | 0 dBFs                                               | 
+|                    | Tone level             | -6 dBFs                                              | 
 +--------------------+------------------------+-----------------+---------------+--------------------+
 | **Parameter sweep**| LO frequency, Gain, Bw                                                        |       
 +--------------------+------------------------+-----------------+---------------+--------------------+
@@ -845,19 +847,19 @@ Sweep:
 
 - LO: Values match datasheet for both 0dB attenuation (-50dBc) and 40dB attenuation (-32dBc). 
 
-- Image: There is a pattern of degradation at very low and very high frequencies, as well as a degration around -30dB of gain.
+- Image: There is a pattern of degradation at very low and very high frequencies, as well as a degration around -50dB of gain.
 
 .. raw:: html
 
    <iframe
-       src="_static/plotly/libresdr/tx_loim.html"
+       src="_static/plotly/plutosky/tx_lo_image.html"
        width="100%"
        height="1520px"
        style="border:none;">
    </iframe>
 
 
-.. _libresdr_tx_harmonics:
+.. _plutosky_tx_harmonics:
 
 Tx Harmonics
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -873,7 +875,7 @@ This test measures the transmit harmonics only, relative to the fundamental
 |                    +------------------------+-----------------+---------------+--------------------+   
 |                    | Tone frequency         | LO+100kHz                                            |
 |                    +------------------------+-----------------+---------------+--------------------+  
-|                    | Tone level             | 0 dBFs                                               |
+|                    | Tone level             | -6 dBFs                                              |
 |                    +------------------------+-----------------+---------------+--------------------+ 
 |                    | Tx Gain                | 0 dB (max gain)                                      | 
 +--------------------+------------------------+-----------------+---------------+--------------------+
@@ -893,18 +895,20 @@ Sweep:
 
 **Test results:**
 
-Harmonics are reasonably low, the signal appears clean:
+Due to the external PA, the harmonics are generally worse than LibreSDR. For example there is a huge difference at 500MHz where we have H2 at -33dBc and H3 at -43dBc
+vs -66dBc and -51dBc for the LibreSDR. 
+
 
 .. raw:: html
 
    <iframe
-       src="_static/plotly/libresdr/tx_harmonics.html"
+       src="_static/plotly/plutosky/tx_harmonics.html"
        width="100%"
        height="930px"
        style="border:none;">
    </iframe>
 
-.. _libresdr_tx_spurious:
+.. _plutosky_tx_spurious:
 
 Tx Spurious emissions
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -922,7 +926,7 @@ This test performs a wideband scan of the transmit port in an effort to measure 
 |                    +------------------------+-----------------+---------------+--------------------+ 
 |                    | LO frequency           | 500 MHz                                              |
 |                    +------------------------+-----------------+---------------+--------------------+  
-|                    | Tone level             | 0 dBFs                                               |
+|                    | Tone level             | -6 dBFs                                              |
 |                    +------------------------+-----------------+---------------+--------------------+ 
 |                    | Tx Gain                | 0 dB (max gain)                                      | 
 +--------------------+------------------------+-----------------+---------------+--------------------+
@@ -947,7 +951,7 @@ TX synth ON, output OFF - Max Gain
 .. raw:: html
 
    <iframe
-       src="_static/plotly/libresdr/tx_spur_emis_tx_off_MaxGain.html"
+       src="_static/plotly/plutosky/tx_spur_emis_tx_off_MaxGain.html"
        width="100%"
        height="470px"
        style="border:none;">
@@ -955,11 +959,12 @@ TX synth ON, output OFF - Max Gain
 
 The transmitter is ON but not actively transmitting. At Maximum gain we see mainly:
 
-- LO leakage at 500 MHz at -55 dBm
-- VCO leakage at 2 GHz: the VCO runs at 4x LO which is quite typical. :red:`The VCO is leaking at -40 dBm, which is incredibly high`
+- LO leakage at 500 MHz at -56 dBm (with quite a lot of phase noise)
+- VCO leakage at 2 GHz: the VCO runs at 4x LO which is quite typical. :red:`The VCO is leaking at -30 dBm, which is incredibly high`. 10dB higher than LibreSDR due to the PA.
 - VCO H2 at 4 GHz
 - VCO H3 at 6 GHz
-- And few other smaller spurs
+- Multiple harmonic of the TX LO
+- And various other smaller spurs
 
 TX synth ON, output OFF - Min Gain
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -967,16 +972,17 @@ TX synth ON, output OFF - Min Gain
 .. raw:: html
 
    <iframe
-       src="_static/plotly/libresdr/tx_spur_emis_tx_off_MinGain.html"
+       src="_static/plotly/plutosky/tx_spur_emis_tx_off_MinGain.html"
        width="100%"
        height="470px"
        style="border:none;">
    </iframe>
 
-The transmitter is ON but not actively transmitting. At Minimum gain we see that all spurs are much lower. While the VCO
-spurs still stand out as the strongest, they are between 30-40dB lower compared to the maximum gain configuration.
+The transmitter is ON but not actively transmitting. At Minimum gain we see that all spurs are much lower. 
+Most LO-related spurs disappear and we see mainly harmonics of the 50MHz TCXO also seen in :ref:`plutosky_rx_spur_em`.
+While the VCO spurs still stand out as the strongest, they are between 30-40dB lower compared to the maximum gain configuration.
 
-.. hint:: This shows that if you must leave the TX ON but are not actively transmitting, set the gain to the minimum to minimize spurs
+.. note:: This shows that if you must leave the TX ON but are not actively transmitting, set the gain to the minimum to minimize spurs
 
 TX ACTIVE
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -984,67 +990,16 @@ TX ACTIVE
 .. raw:: html
 
    <iframe
-       src="_static/plotly/libresdr/tx_spur_emis_on.html"
+       src="_static/plotly/plutosky/tx_spur_emis_tx_on.html"
        width="100%"
        height="470px"
        style="border:none;">
    </iframe>
 
-Here we see what appears to be harmonics of the test tone and VCO spurs (and many other smaller spurs). However looking at the :ref:`libresdr_tx_harmonics` chapter, something does not match:
-The odd harmonics are very high, :red:`H3 for example sits at -10dBc`, not at all what was previously measured.
+We see exactly the same issue measured and explained in LibreSDR :ref:`libresdr_tx_spurious` as harmonics appear a lot higher than what
+was measured in :ref:`plutosky_tx_harmonics`. 
 
-Additionally changing the amplitude of the main tone does not reduce the "harmonics", which makes no sense.
-
-Zooming in manually around each harmonic explains what is happening:
-
-.. figure:: assets/figures/opensdr_txharmonic_check.svg
-    :align: center
-    :scale: 90 %
-
-    TX spurs at LO = 500 MHz
-
-Since the wanted tone is at :math:`\text{LO + 100 kHz}`, H2 will be at :math:`\text{2*LO + 200 kHz}`, H3 at :math:`\text{3*LO + 300 kHz}` and so on.
-This is what was measured previously.
-
-:underline:`Observation 1:`
-
-Picture 4 (2 GHz) shows a strong spur at the center frequency: it's the VCO fundamental spur, which can easily be mistaken for H4 on a wideband scan.
-This picture confirms H4 is really low, but the VCO leaks out like crazy. I've never seen VCO spurs leaking that much, that to me would
-point to a PCB layout (ie design, not production) issue.
-
-:underline:`Observation 2:` 
-
-Pictures 3 and 5 show why H3 and H5 appear very high on the wideband scan. There are indeed very high spurs but they are NOT H3
-and H5! On picture 3 the spur :math:`IM_a` appears at :math:`\text{LO - 100 kHz}` and on picture 5 the spur :math:`IM_b` appears at :math:`\text{LO + 100 kHz}`:
-clearly **not harmonics**, but **mixing products** of the main tone with something else.
-
-In this case the math is easy to work out: the main tone at 500.1 MHz is mixing with the VCO spur at 2 GHz
-and so we get two components:
-
-- One at :math:`\text{(2000 + 500.1) MHz = 2500.1 MHz}`: the spur :math:`IM_b` we see on picture 5.
-
-- One at :math:`\text{(2000 - 500.1) MHz = 1499.9 MHz}`: the spur :math:`IM_a` we see on picture 3
-
-This explains why changing the amplitude of the main tone had no effect on the relative amplitude of the "apparent" harmonics: they were not harmonics.
-
-.. danger::
-
-    This is real, not a measurement artifact. While the spectrum of the **tone itself is quite clean**, the fact that we have **very high VCO leakage**
-    and **mixing between VCO and tone** produces a **VERY dirty spectrum**. :math:`IM_a` will effectively contain 10% of the main tone's power!
-
-    If you want to use this device for transmitting over the air you will need **heavy filtering** to stay compliant with your local regulations
-
-    **Back of the envelope calculations:**
-
-    - Assume you add a PA to transmit at +20dBm
-    - The IMa spur would be at +10dBm (assuming PA is perfectly linear and does not compress)
-    - Let's say spurs > 1GHz must be below -30dBm @ 1MHz MBW (ETSI/RED requirement) -> you want at least 40dB of rejection
-    - Assuming a low-pass filter with a cutoff slightly above our wanted frequency, we're going to want 40dB of rejection over ~1 octave to secure enough margin on IMa
-    - The filter order to reach 40dB/octave would be ~7! (7*6dB/octave = 42dB) 
-
-    This is simply not practical, and severely limits the output power one can hope to use.
-
-.. _libresdr_tx_bbim:
+.. _plutosky_tx_bbim:
 
 Tx (baseband) intermodulation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1068,7 +1023,7 @@ As their order increases, the amplitude of the spurs also decrease rapidly. Usua
 |                    +------------------------+-----------------+---------------+--------------------+   
 |                    | Tone frequency         | LO+500kHz                                            |
 |                    +------------------------+-----------------+---------------+--------------------+   
-|                    | Tone level             | -3 dBFs                                              |
+|                    | Tone level             | -6 dBFs                                              |
 |                    +------------------------+-----------------+---------------+--------------------+  
 |                    | Tx Gain                | 0 dB (max gain)                                      | 
 |                    +------------------------+-----------------+---------------+--------------------+  
@@ -1079,13 +1034,15 @@ As their order increases, the amplitude of the spurs also decrease rapidly. Usua
 
 **Test results:**
 
+.. todo::
+    Section to be updated
+
 The spurs are illustrated in the manual measurement below. The span was limited to encompass up to the 5th order spur for better visibility. 
-The highest spur in this example is the 3rd order product, approx. 55dB lower than the wanted tone (good rejection).
+The highest spur in this example is the 3rd order product, approx. 44dB lower than the wanted tone (medium rejection).
 
-We also see two unknown spurs near -100 kHz and +300 kHz, I'm not quite sure what they are since they don't fall on integers
-of 100 kHz. Maybe a clock or some fractional signal?
+We also see two unknown spurs near -100 kHz and +300 kHz, as seen on LibreSDR (not investigated yet)
 
-.. figure:: assets/figures/opensdr_tx_bbim.svg
+.. figure:: assets/figures/plutosky_tx_bbim.svg
     :align: center
     :scale: 100 %
 
@@ -1096,21 +1053,90 @@ since these intermodulation spurs occur at baseband it is not possible to filter
 The only way would be to decrease the tone level at the digital stage,
 before the tone is synthesized by the DAC. 
 
-.. _libresdr_trx_coupling:
+.. _plutosky_trx_coupling:
 
 Tx to Rx isolation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-See :ref:`libresdr_rx_spur_em`, 3rd case.
+See :ref:`plutosky_rx_spur_em`, 4th case.
+
+.. _plutosky_max_power:
+
+Maximum output power
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+I initially tried plotting the :ref:`plutosky_tx_freq_resp` with a tone level of 0 dBFS:
+
+.. raw:: html
+
+   <iframe
+       src="_static/plotly/plutosky/tx_frequency_response_max_power.html"
+       width="100%"
+       height="470px"
+       style="border:none;">
+   </iframe>
+
+The red trace shows the power level advertised by the manufacturer `here <https://opensourcesdrlab.com/products/opensourcesdrlab-7020-sdr-ad9361-ad9363-development-board-with-pa-for-pluto-matlab-software-defined-radio?VariantsId=10361>`__:
+
+.. figure:: assets/figures/plutosky_manufacturer_tx_data.png
+    :align: center
+    :scale: 70 %
+
+    Plutosky Manufacturer TX data
+
+**As we can see the output lower is much lower than advertised.**
+
+Then, looking at gain, **it becomes very clear that the PA
+is driven into compression**:
+
+.. raw:: html
+
+   <iframe
+       src="_static/plotly/plutosky/tx_gain_max_power.html"
+       width="100%"
+       height="1400px"
+       style="border:none;">
+   </iframe>
+
+Harmonics inevitably show significant degradation across the board:
+
+.. raw:: html
+
+   <iframe
+       src="_static/plotly/plutosky/tx_harmonics_max_power.html"
+       width="100%"
+       height="930px"
+       style="border:none;">
+   </iframe>
+
+The PA used is the Minicircuits PGA-102+. Looking at its `datasheet <https://www.minicircuits.com/pdfs/PGA-102+.pdf>`__,
+the output P1dB is +17.5 dBm Typ. and +16 dBm min., so technically anything north of +16 dBm would likely be compressing:
+
+.. figure:: assets/figures/pga-102.png
+    :align: center
+    :scale: 70 %
+
+    PGA-102+ Datasheet extract
+
+
+Which also begs to question: how is OpenSourceSDRLab getting nearly +20 dBm at 1.6 GHz? If it's even possible to reach that point
+the output would be so distorted it would be unusable.
+
+To be in a "safe" region I would recommend to drive the TX in such a way to limit the output power to +14 dBm.
+Or simpler apply at least 6 dB of backoff to the baseband signal as was done throughout this report. 
+You still end up with plenty of signal, but in a much cleaner operating point.
 
 Conclusion
 -------------
 
-The device works and has quite respectable performance, given the pricepoint the designer has done an amazing job. There are however two limitations I would highlight:
+The device works as I expected. The TX and RX frequency responses are better than LibreSDR, and the extra power 
+brought by the external PA is a nice touch. 
 
-#. Minor: The **frequency response** in both RX and TX could be improved.
+However, that extra power does not come for free: harmonic and spurious content is significantly worse than LibreSDR.
+Additionally, the TX output cannot be driven at full power as the PA will be driven into compression. 
+A minimum of 6 dB backoff is recommended to be safe.
 
-#. Major: **TX spurious emissions are really bad** owing to huge VCO leakage mixing with transmitted signal.
+The device also suffers from the same VCO leakage issue as LibreSDR. 
 
 .. |br| raw:: html
 

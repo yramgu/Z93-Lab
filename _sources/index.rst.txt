@@ -13,6 +13,8 @@ Z93-Lab
 
    master
    libresdr
+   plutosky
+   comparison
    terms_of_use
    
 

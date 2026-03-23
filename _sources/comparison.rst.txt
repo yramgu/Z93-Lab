@@ -1,0 +1,57 @@
+Comparison
+=========================
+
+This page provides a quick surface-level comparison between platforms
+
+TX impedance
+--------------
+
+.. raw:: html
+
+   <iframe
+       src="_static/plotly/comparison/comparison_tx_impedance.html"
+       width="100%"
+       height="520px"
+       style="border:none;">
+   </iframe>
+
+RX impedance
+--------------
+
+.. raw:: html
+
+   <iframe
+       src="_static/plotly/comparison/comparison_rx_impedance.html"
+       width="100%"
+       height="520px"
+       style="border:none;">
+   </iframe>
+
+TX Frequency Response
+-----------------------
+
+.. note:: To get a fair comparison the response is **normalised**
+
+.. raw:: html
+
+   <iframe
+       src="_static/plotly/comparison/comparison_tx_frequency_response.html"
+       width="100%"
+       height="470px"
+       style="border:none;">
+   </iframe>
+
+RX Frequency Response
+-----------------------
+
+.. note:: To get a fair comparison the response is **normalised**
+
+.. raw:: html
+
+   <iframe
+       src="_static/plotly/comparison/comparison_rx_frequency_response.html"
+       width="100%"
+       height="470px"
+       style="border:none;">
+   </iframe>
+
