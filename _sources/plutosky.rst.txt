@@ -1034,9 +1034,6 @@ As their order increases, the amplitude of the spurs also decrease rapidly. Usua
 
 **Test results:**
 
-.. todo::
-    Section to be updated
-
 The spurs are illustrated in the manual measurement below. The span was limited to encompass up to the 5th order spur for better visibility. 
 The highest spur in this example is the 3rd order product, approx. 44dB lower than the wanted tone (medium rejection).
 
