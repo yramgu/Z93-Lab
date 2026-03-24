@@ -52,10 +52,8 @@ Hardware
 
 Schematics and firmware can be found in OpenSourceSDRLab `github <https://github.com/OpenSourceSDRLab/PlutoSky_7020_AD936X_SDR>`__,
 although the schematics in the repo does not have the PA so it might not be the latest revision.
-Another schematics with the PA can be found here, but it's missing a page with power supplies... I guess by merging the two one can get the 
+Another schematics with the PA can be found `here <https://github.com/user-attachments/files/26212811/7020_936x_SDR_Schematic.pdf>`__, but it's missing a page with power supplies... I guess by merging the two one can get the 
 full schematics.
-
-.. todo:: find the 2nd link
 
 .. figure:: assets/figures/plutosky_pcb.png
     :align: center
@@ -468,7 +466,7 @@ Four configurations are tested:
 #. RX only: The TX synthesizer is OFF
 #. RX + TX Idle at Max TX Gain: the TX synthesizer is ON but not transmitting
 #. RX + TX Idle at Min TX Gain: the TX synthesizer is ON but not transmitting
-#. RX + TX Active: the TX synthesizer is ON and transmitting: This 3rd case is effectively the **TX to RX isolation** at PCB level
+#. RX + TX Active: the TX synthesizer is ON and transmitting: This 4th case is effectively the **TX to RX isolation** at PCB level
 
 **Test conditions:**
 
@@ -516,7 +514,7 @@ RX only
 
 Both Gains give us the same plot. We see a lot of spurs but beware of the scale: they are very low at -80dBm or lower.
 Zooming in around 600 - 1000 MHz reveals a comb of 50 MHz, which was identified on LibreSDR as an on-board 50 MHz TCXO 
-feeding the FPGA and the Ethernet transceiver. Taht comb extends all the way up to ~2700 MHz.
+feeding the FPGA and the Ethernet transceiver. That comb extends all the way up to ~2700 MHz.
 
 TX Synth ON - Max TX Gain
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -982,7 +980,7 @@ The transmitter is ON but not actively transmitting. At Minimum gain we see that
 Most LO-related spurs disappear and we see mainly harmonics of the 50MHz TCXO also seen in :ref:`plutosky_rx_spur_em`.
 While the VCO spurs still stand out as the strongest, they are between 30-40dB lower compared to the maximum gain configuration.
 
-.. note:: This shows that if you must leave the TX ON but are not actively transmitting, set the gain to the minimum to minimize spurs
+.. hint:: This shows that if you must leave the TX ON but are not actively transmitting, set the gain to the minimum to minimize spurs
 
 TX ACTIVE
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
