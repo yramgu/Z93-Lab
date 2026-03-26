@@ -75,7 +75,7 @@ Interestingly, the FPGA in my product has had its markings lasered-off. This nor
 
     Plutosky FPGA
 
-Mechanically the device comes in a nice metal enclosure, with a fan. The fan is a bit annoying compared to a fully passive (and silent) LibreSDR, but it is needed:
+Mechanically the device comes in a metal enclosure, with a fan. The fan is loud, which is annoying compared to a fully passive (and silent) LibreSDR, but it is needed:
 upon opening the device it appears that the PCB is thermally isolated from the metal enclosure. It is mounted on plastic pillars and has no 
 contact with the enclosure, hence the need for a fan.
 
@@ -109,8 +109,16 @@ My devices came with a default firmware dubbed **"v0.38-1-g6f8e-dirty"**.
 
         Plutosky default firmware
 
-.. warning::
-    Unlike the LibreSDR, it appears there is no firmware in the Flash. You must use the provided SD card to use the device
+Unlike LibreSDR the device cannot boot seamlessly from Flash or SD card when inserted; it has to be manually configured 
+with a dip-switch:
+
+.. figure:: assets/figures/plutosky_boot.PNG
+        :align: center
+        :scale: 60 %
+
+        Plutosky boot switch
+
+By default my device is configured to boot from SD card. The Flash contains the same image as the SD card provided by the seller.
 
 The firmware:
 
