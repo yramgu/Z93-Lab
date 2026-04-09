@@ -642,10 +642,10 @@ while we observe the RX port with a spectrum analyser using a wideband scan.</p>
 <td colspan="3"><p>0 dB (max gain) or -80dB (min Gain)</p></td>
 </tr>
 <tr class="row-even"><td><p>Tx LO</p></td>
-<td colspan="3"><p>600 MHz</p></td>
+<td colspan="3"><p>613 MHz</p></td>
 </tr>
 <tr class="row-odd"><td><p>Rx LO</p></td>
-<td colspan="3"><p>500 MHz</p></td>
+<td colspan="3"><p>513 MHz</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>Parameter sweep</strong></p></td>
 <td colspan="4"><p>Rx Gain</p></td>
@@ -654,8 +654,8 @@ while we observe the RX port with a spectrum analyser using a wideband scan.</p>
 </table>
 <p>Initial condition:</p>
 <ol class="arabic simple">
-<li><p>RX lo is fixed at 500 MHz</p></li>
-<li><p>If enabled the TX Gain is set to max, tone offset +1 MHz and LO = 600 MHz</p></li>
+<li><p>RX lo is fixed at 513 MHz</p></li>
+<li><p>If enabled the TX Gain is set to max, tone offset +1 MHz and LO = 613 MHz</p></li>
 </ol>
 <p>Sweep:</p>
 <ol class="arabic simple">
@@ -670,24 +670,23 @@ while we observe the RX port with a spectrum analyser using a wideband scan.</p>
     width="100%"
     height="480px"
     style="border:none;">
-</iframe><p>Both Gains give us the same plot. We see a lot of spurs but beware of the scale: they are very low at -80dBm or lower.
-Zooming in around 600 - 1000 MHz reveals a comb of 50 MHz, which was identified on LibreSDR as an on-board 50 MHz TCXO
-feeding the FPGA and the Ethernet transceiver. That comb extends all the way up to ~2700 MHz.</p>
+</iframe><p>Both Gains give us similar plot. Given the scale we can consider that we see nothing. There are two distinct spurs
+at 2666 MHz and 3840 MHz. 2666 MHz could be RAM related as it falls in the DDR3 clock domain but it could also be external.</p>
 </section>
 <section id="tx-synth-on-max-tx-gain">
 <h4><span class="section-number">3.5.5.2. </span>TX Synth ON - Max TX Gain<a class="headerlink" href="#tx-synth-on-max-tx-gain" title="Link to this heading"></a></h4>
 <iframe
-    src="_static/plotly/plutosky/rx_spur_emis_tx_lo_600M-OFF_MaxGain.html"
+    src="_static/plotly/plutosky/rx_spur_emis_tx_lo_613M-OFF_MaxGain.html"
     width="100%"
     height="480px"
     style="border:none;">
-</iframe><p>The TX synthesizer is ON, set at Max TX Gain but not transmitting. At 0dB Rx Gain we now see the TX VCO fundamental at <span class="math notranslate nohighlight">\(4 \times 600 MHz = 2.4 GHz\)</span> and its H2.
+</iframe><p>The TX synthesizer is ON, set at Max TX Gain but not transmitting. At 0dB Rx Gain we now see the TX VCO fundamental at <span class="math notranslate nohighlight">\(4 \times 613 MHz = 2452 MHz\)</span> and its H2.
 However at 70dB RX Gain the TX VCO fundamental is suppressed while its H2 is not.</p>
 </section>
 <section id="tx-synth-on-min-tx-gain">
 <h4><span class="section-number">3.5.5.3. </span>TX Synth ON - Min TX Gain<a class="headerlink" href="#tx-synth-on-min-tx-gain" title="Link to this heading"></a></h4>
 <iframe
-    src="_static/plotly/plutosky/rx_spur_emis_tx_lo_600M-OFF_MinGain.html"
+    src="_static/plotly/plutosky/rx_spur_emis_tx_lo_613M-OFF_MinGain.html"
     width="100%"
     height="480px"
     style="border:none;">
@@ -701,7 +700,7 @@ At both RX Gains the TX VCO fundamental and it H2 are now much lower</p>
 <section id="tx-active">
 <h4><span class="section-number">3.5.5.4. </span>TX Active<a class="headerlink" href="#tx-active" title="Link to this heading"></a></h4>
 <iframe
-    src="_static/plotly/plutosky/rx_spur_emis_tx_lo_600M-ON.html"
+    src="_static/plotly/plutosky/rx_spur_emis_tx_lo_613M-ON.html"
     width="100%"
     height="480px"
     style="border:none;">
@@ -713,7 +712,7 @@ At both RX Gains the TX VCO fundamental and it H2 are now much lower</p>
 we now have an external PA that amplifies and/or produces a lot of very strong spurs.</p>
 <p>The VCO fundamental at 0dB Gain is at approx. -65 dBm, similar to LibreSDR.</p>
 <p>Focusing on the region around the LO frequency, we have a TX tone at roughly +14 dBm (measured separately) and a spur on the RX side at -50 dBm or an <strong>isolation
-of 64 dB</strong>. While the figure is very good, it’s much worse than LibreSDR that has 30dB more rejection.</p>
+of 64 dB</strong>. While the figure is very good, it’s much worse than LibreSDR that has ~20dB more rejection.</p>
 </section>
 </section>
 <section id="rx-spurious-reception">
@@ -1041,7 +1040,7 @@ vs -66dBc and -51dBc for the LibreSDR.</p>
 <td colspan="3"><p>LO+100kHz</p></td>
 </tr>
 <tr class="row-even"><td><p>LO frequency</p></td>
-<td colspan="3"><p>500 MHz</p></td>
+<td colspan="3"><p>513 MHz</p></td>
 </tr>
 <tr class="row-odd"><td><p>Tone level</p></td>
 <td colspan="3"><p>-6 dBFs</p></td>
@@ -1074,10 +1073,9 @@ vs -66dBc and -51dBc for the LibreSDR.</p>
     style="border:none;">
 </iframe><p>The transmitter is ON but not actively transmitting. At Maximum gain we see mainly:</p>
 <ul class="simple">
-<li><p>LO leakage at 500 MHz at -56 dBm (with quite a lot of phase noise)</p></li>
-<li><p>VCO leakage at 2 GHz: the VCO runs at 4x LO which is quite typical. <span class="red">The VCO is leaking at -30 dBm, which is incredibly high</span>. 10dB higher than LibreSDR due to the PA.</p></li>
+<li><p>LO leakage at 513 MHz at -47 dBm (with quite a lot of phase noise)</p></li>
+<li><p>VCO leakage at 2052 MHz: the VCO runs at 4x LO which is quite typical. <span class="red">The VCO is leaking at -31 dBm, which is incredibly high</span>. 10dB higher than LibreSDR due to the PA.</p></li>
 <li><p>VCO H2 at 4 GHz</p></li>
-<li><p>VCO H3 at 6 GHz</p></li>
 <li><p>Multiple harmonic of the TX LO</p></li>
 <li><p>And various other smaller spurs</p></li>
 </ul>
@@ -1089,9 +1087,8 @@ vs -66dBc and -51dBc for the LibreSDR.</p>
     width="100%"
     height="470px"
     style="border:none;">
-</iframe><p>The transmitter is ON but not actively transmitting. At Minimum gain we see that all spurs are much lower.
-Most LO-related spurs disappear and we see mainly harmonics of the 50MHz TCXO also seen in <a class="reference internal" href="#plutosky-rx-spur-em"><span class="std std-ref">Rx Spurious emissions</span></a>.
-While the VCO spurs still stand out as the strongest, they are between 30-40dB lower compared to the maximum gain configuration.</p>
+</iframe><p>The transmitter is ON but not actively transmitting. At Minimum gain we see that all spurs are much lower
+and most LO-related spurs disappear. The VCO spurs still stand out as the strongest, but they are between 30-40dB lower compared to the maximum gain configuration.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>This shows that if you must leave the TX ON but are not actively transmitting, set the gain to the minimum to minimize spurs</p>
@@ -1104,8 +1101,8 @@ While the VCO spurs still stand out as the strongest, they are between 30-40dB l
     width="100%"
     height="470px"
     style="border:none;">
-</iframe><p>We see exactly the same issue measured and explained in LibreSDR <a class="reference internal" href="libresdr.html#libresdr-tx-spurious"><span class="std std-ref">Tx Spurious emissions</span></a> as harmonics appear a lot higher than what
-was measured in <a class="reference internal" href="#plutosky-tx-harmonics"><span class="std std-ref">Tx Harmonics</span></a>.</p>
+</iframe><p>We see exactly the same issue measured and explained in LibreSDR <a class="reference internal" href="libresdr.html#libresdr-tx-spurious"><span class="std std-ref">Tx Spurious emissions</span></a> as we might think these are harmonics, but appear a lot higher than what
+was measured in <a class="reference internal" href="#plutosky-tx-harmonics"><span class="std std-ref">Tx Harmonics</span></a>. The LibreSDR chapter explains what they are.</p>
 </section>
 </section>
 <section id="tx-baseband-intermodulation">
@@ -1233,7 +1230,7 @@ A minimum of 6 dB backoff is recommended to be safe.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2026, Z93-Lab.
-      <span class="lastupdated">Last updated on Mar 26, 2026 at 2038.
+      <span class="lastupdated">Last updated on Apr 09, 2026 at 2214.
       </span></p>
   </div>
 

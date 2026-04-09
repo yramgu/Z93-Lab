@@ -489,17 +489,17 @@ Four configurations are tested:
 |                    +------------------------+-----------------+---------------+--------------------+  
 |                    | Tx Gain                | 0 dB (max gain) or -80dB (min Gain)                  | 
 |                    +------------------------+-----------------+---------------+--------------------+  
-|                    | Tx LO                  | 600 MHz                                              | 
+|                    | Tx LO                  | 613 MHz                                              | 
 |                    +------------------------+-----------------+---------------+--------------------+  
-|                    | Rx LO                  | 500 MHz                                              | 
+|                    | Rx LO                  | 513 MHz                                              | 
 +--------------------+------------------------+-----------------+---------------+--------------------+
 | **Parameter sweep**| Rx Gain                                                                       |       
 +--------------------+------------------------+-----------------+---------------+--------------------+
   
 Initial condition: 
 
-#. RX lo is fixed at 500 MHz
-#. If enabled the TX Gain is set to max, tone offset +1 MHz and LO = 600 MHz
+#. RX lo is fixed at 513 MHz
+#. If enabled the TX Gain is set to max, tone offset +1 MHz and LO = 613 MHz
 
 Sweep:
 
@@ -520,9 +520,8 @@ RX only
        style="border:none;">
    </iframe>
 
-Both Gains give us the same plot. We see a lot of spurs but beware of the scale: they are very low at -80dBm or lower.
-Zooming in around 600 - 1000 MHz reveals a comb of 50 MHz, which was identified on LibreSDR as an on-board 50 MHz TCXO 
-feeding the FPGA and the Ethernet transceiver. That comb extends all the way up to ~2700 MHz.
+Both Gains give us similar plot. Given the scale we can consider that we see nothing. There are two distinct spurs
+at 2666 MHz and 3840 MHz. 2666 MHz could be RAM related as it falls in the DDR3 clock domain but it could also be external.
 
 TX Synth ON - Max TX Gain
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -530,13 +529,13 @@ TX Synth ON - Max TX Gain
 .. raw:: html
 
    <iframe
-       src="_static/plotly/plutosky/rx_spur_emis_tx_lo_600M-OFF_MaxGain.html"
+       src="_static/plotly/plutosky/rx_spur_emis_tx_lo_613M-OFF_MaxGain.html"
        width="100%"
        height="480px"
        style="border:none;">
    </iframe>
 
-The TX synthesizer is ON, set at Max TX Gain but not transmitting. At 0dB Rx Gain we now see the TX VCO fundamental at :math:`4 \times 600 MHz = 2.4 GHz` and its H2.
+The TX synthesizer is ON, set at Max TX Gain but not transmitting. At 0dB Rx Gain we now see the TX VCO fundamental at :math:`4 \times 613 MHz = 2452 MHz` and its H2.
 However at 70dB RX Gain the TX VCO fundamental is suppressed while its H2 is not.
 
 TX Synth ON - Min TX Gain
@@ -545,7 +544,7 @@ TX Synth ON - Min TX Gain
 .. raw:: html
 
    <iframe
-       src="_static/plotly/plutosky/rx_spur_emis_tx_lo_600M-OFF_MinGain.html"
+       src="_static/plotly/plutosky/rx_spur_emis_tx_lo_613M-OFF_MinGain.html"
        width="100%"
        height="480px"
        style="border:none;">
@@ -562,7 +561,7 @@ TX Active
 .. raw:: html
 
    <iframe
-       src="_static/plotly/plutosky/rx_spur_emis_tx_lo_600M-ON.html"
+       src="_static/plotly/plutosky/rx_spur_emis_tx_lo_613M-ON.html"
        width="100%"
        height="480px"
        style="border:none;">
@@ -578,7 +577,7 @@ we now have an external PA that amplifies and/or produces a lot of very strong s
 The VCO fundamental at 0dB Gain is at approx. -65 dBm, similar to LibreSDR.
 
 Focusing on the region around the LO frequency, we have a TX tone at roughly +14 dBm (measured separately) and a spur on the RX side at -50 dBm or an **isolation
-of 64 dB**. While the figure is very good, it's much worse than LibreSDR that has 30dB more rejection.
+of 64 dB**. While the figure is very good, it's much worse than LibreSDR that has ~20dB more rejection.
 
 .. _plutosky_rx_spur_rec:
 
@@ -930,7 +929,7 @@ This test performs a wideband scan of the transmit port in an effort to measure 
 |                    +------------------------+-----------------+---------------+--------------------+   
 |                    | Tone frequency         | LO+100kHz                                            |
 |                    +------------------------+-----------------+---------------+--------------------+ 
-|                    | LO frequency           | 500 MHz                                              |
+|                    | LO frequency           | 513 MHz                                              |
 |                    +------------------------+-----------------+---------------+--------------------+  
 |                    | Tone level             | -6 dBFs                                              |
 |                    +------------------------+-----------------+---------------+--------------------+ 
@@ -965,10 +964,9 @@ TX synth ON, output OFF - Max Gain
 
 The transmitter is ON but not actively transmitting. At Maximum gain we see mainly:
 
-- LO leakage at 500 MHz at -56 dBm (with quite a lot of phase noise)
-- VCO leakage at 2 GHz: the VCO runs at 4x LO which is quite typical. :red:`The VCO is leaking at -30 dBm, which is incredibly high`. 10dB higher than LibreSDR due to the PA.
+- LO leakage at 513 MHz at -47 dBm (with quite a lot of phase noise)
+- VCO leakage at 2052 MHz: the VCO runs at 4x LO which is quite typical. :red:`The VCO is leaking at -31 dBm, which is incredibly high`. 10dB higher than LibreSDR due to the PA.
 - VCO H2 at 4 GHz
-- VCO H3 at 6 GHz
 - Multiple harmonic of the TX LO
 - And various other smaller spurs
 
@@ -984,9 +982,8 @@ TX synth ON, output OFF - Min Gain
        style="border:none;">
    </iframe>
 
-The transmitter is ON but not actively transmitting. At Minimum gain we see that all spurs are much lower. 
-Most LO-related spurs disappear and we see mainly harmonics of the 50MHz TCXO also seen in :ref:`plutosky_rx_spur_em`.
-While the VCO spurs still stand out as the strongest, they are between 30-40dB lower compared to the maximum gain configuration.
+The transmitter is ON but not actively transmitting. At Minimum gain we see that all spurs are much lower
+and most LO-related spurs disappear. The VCO spurs still stand out as the strongest, but they are between 30-40dB lower compared to the maximum gain configuration.
 
 .. hint:: This shows that if you must leave the TX ON but are not actively transmitting, set the gain to the minimum to minimize spurs
 
@@ -1002,8 +999,8 @@ TX ACTIVE
        style="border:none;">
    </iframe>
 
-We see exactly the same issue measured and explained in LibreSDR :ref:`libresdr_tx_spurious` as harmonics appear a lot higher than what
-was measured in :ref:`plutosky_tx_harmonics`. 
+We see exactly the same issue measured and explained in LibreSDR :ref:`libresdr_tx_spurious` as we might think these are harmonics, but appear a lot higher than what
+was measured in :ref:`plutosky_tx_harmonics`. The LibreSDR chapter explains what they are.
 
 .. _plutosky_tx_bbim:
 

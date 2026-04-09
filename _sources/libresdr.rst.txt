@@ -503,17 +503,20 @@ Three configurations are tested:
 |                    +------------------------+-----------------+---------------+--------------------+  
 |                    | Tx Gain                | 0 dB (max gain)                                      | 
 |                    +------------------------+-----------------+---------------+--------------------+  
-|                    | Tx LO                  | 600 MHz                                              | 
+|                    | Tx LO                  | 613 MHz                                              | 
 |                    +------------------------+-----------------+---------------+--------------------+  
-|                    | Rx LO                  | 500 MHz                                              | 
+|                    | Rx LO                  | 513 MHz                                              | 
 +--------------------+------------------------+-----------------+---------------+--------------------+
 | **Parameter sweep**| Rx Gain                                                                       |       
 +--------------------+------------------------+-----------------+---------------+--------------------+
   
+.. note::
+    Test frequencies are chosen to avoid falling on "remarkable" values such as integers of 100 MHz
+
 Initial condition: 
 
-#. RX lo is fixed at 500 MHz
-#. If enabled the TX Gain is set to max, tone offset +1 MHz and LO = 600 MHz
+#. RX lo is fixed at 513 MHz
+#. If enabled the TX Gain is set to max, tone offset +1 MHz and LO = 613 MHz
 
 Sweep:
 
@@ -534,17 +537,8 @@ RX only
        style="border:none;">
    </iframe>
 
-Both Gains give us the same plot. We see a lot of spurs but beware of the scale: they are very low at -80dBm or lower.
-Zooming in around 600 - 1000 MHz reveals a comb of 50 MHz, which looks suspiciously like a clock.
-
-Sure enough, looking at the schematics there is a 50 MHz TCXO feeding the FPGA processor and ethernet transceiver:
-
-.. figure:: assets/figures/libresdr_50M_clk.png
-    :align: center
-    :scale: 70 %
-
-    50 MHz clock on LibreSDR schematics
-
+Given the levels involved, we see nothing. The few spurs that are present can be internal (eg 2052 MHz is the VCO frequency, 4104M MHz is VCO H2),
+others would be external noise picked up by cables. 
 
 TX Synth ON - Max TX Gain
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -552,14 +546,14 @@ TX Synth ON - Max TX Gain
 .. raw:: html
 
    <iframe
-       src="_static/plotly/libresdr/rx_spur_emis_tx_lo_600M-OFF_MaxGain.html"
+       src="_static/plotly/libresdr/rx_spur_emis_tx_lo_613M-OFF_MaxGain.html"
        width="100%"
        height="480px"
        style="border:none;">
    </iframe>
 
-The TX synthesizer is ON but not transmitting. Now we also see the VCO fundamental at :math:`4 \times 600 MHz = 2.4 GHz` and its H2.
-Again very similar plots between the two gains although VCO H2 is lower at high gain.
+The TX synthesizer is ON but not transmitting. Now we also see the VCO fundamental at :math:`4 \times 613 MHz = 2452 MHz` and its H2.
+Very similar plots between the two gains although VCO H2 is lower at high gain.
 
 .. note:: The plots above are measured at maximum TX Gain, lowering the TX Gain reduces the VCO spurs seen at the RX port so these plots represent the worst case
 
@@ -569,7 +563,7 @@ TX Active
 .. raw:: html
 
    <iframe
-       src="_static/plotly/libresdr/rx_spur_emis_tx_lo_600M-ON.html"
+       src="_static/plotly/libresdr/rx_spur_emis_tx_lo_613M-ON.html"
        width="100%"
        height="480px"
        style="border:none;">
@@ -579,16 +573,16 @@ TX Active
 
     This last case looks at TX/RX RF coupling between the SMA and the chip boundary: it gives us the **TX/RX isolation on the PCB**
 
-The transmitter is turned ON: we see small replicas of the transmit tone at 1.8 GHz, 3 GHz, 4.2 GHz, 5.4 GHz... They remain much lower than the VCO spurs.
-The transmit fundamental sits at around -90 dBm which negligible.
+The transmitter is turned ON: On top the the VCO spurs, we the TX fundamental at 614 MHz and replicas of the transmit tone at approx. 1.84 GHz, 3 GHz, 4.3 GHz, 5.5 GHz... They remain much lower than the VCO spurs.
+The transmit fundamental sits at around -82 dBm which negligible.
 
 The VCO frequency shows a much stronger spur at approx. -65 dBm, but it's very far from the RX frequency so 
 would not be an issue in a system as it could easily be filtered out. That is, unless you chose a TX frequency such that the VCO would fall near the RX...in which
 case you would have a serious problem.
 
-Focusing on the region around the LO frequency, we have a TX tone at roughly +4 dBm (measured separately) and a spur on the RX side at -90 dBm or an **isolation
-of 94 dB**. While this figure will likely change with frequency, we would still be in the range of 80dB+ of isolation. It is quite clear from this result that the PCB
-will not be a limiting factor here.
+Focusing on the region around the LO frequency, we have a TX tone at roughly +4 dBm (measured separately) and a spur on the RX side at -82 dBm or an **isolation
+of 86 dB**. While this figure will likely change with frequency, we would still be in the range of 80dB+ of isolation. It is quite clear from this result that the PCB
+will not be a limiting factor.
 
 .. _libresdr_rx_spur_rec:
 
@@ -920,7 +914,7 @@ This test performs a wideband scan of the transmit port in an effort to measure 
 |                    +------------------------+-----------------+---------------+--------------------+   
 |                    | Tone frequency         | LO+100kHz                                            |
 |                    +------------------------+-----------------+---------------+--------------------+ 
-|                    | LO frequency           | 500 MHz                                              |
+|                    | LO frequency           | 513 MHz                                              |
 |                    +------------------------+-----------------+---------------+--------------------+  
 |                    | Tone level             | 0 dBFs                                               |
 |                    +------------------------+-----------------+---------------+--------------------+ 
@@ -955,11 +949,11 @@ TX synth ON, output OFF - Max Gain
 
 The transmitter is ON but not actively transmitting. At Maximum gain we see mainly:
 
-- LO leakage at 500 MHz at -55 dBm
-- VCO leakage at 2 GHz: the VCO runs at 4x LO which is quite typical. :red:`The VCO is leaking at -40 dBm, which is incredibly high`
-- VCO H2 at 4 GHz
-- VCO H3 at 6 GHz
-- And few other smaller spurs
+- LO leakage at 513 MHz at -53 dBm
+- VCO leakage at 2052 MHz: the VCO runs at 4x LO which is quite typical. :red:`The VCO is leaking at -40 dBm, which is incredibly high`
+- VCO H2 at 4.1 GHz
+- Harmonics of the LO
+- And other much smaller spurs
 
 TX synth ON, output OFF - Min Gain
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -984,7 +978,7 @@ TX ACTIVE
 .. raw:: html
 
    <iframe
-       src="_static/plotly/libresdr/tx_spur_emis_on.html"
+       src="_static/plotly/libresdr/tx_spur_emis_tx_on.html"
        width="100%"
        height="470px"
        style="border:none;">
@@ -995,7 +989,7 @@ The odd harmonics are very high, :red:`H3 for example sits at -10dBc`, not at al
 
 Additionally changing the amplitude of the main tone does not reduce the "harmonics", which makes no sense.
 
-Zooming in manually around each harmonic explains what is happening:
+Zooming in manually around each harmonic explains what is happening (older measurement done at 500 MHz):
 
 .. figure:: assets/figures/opensdr_txharmonic_check.svg
     :align: center

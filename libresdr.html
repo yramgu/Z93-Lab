@@ -643,20 +643,24 @@ while we observe the RX port with a spectrum analyser using a wideband scan.</p>
 <td colspan="3"><p>0 dB (max gain)</p></td>
 </tr>
 <tr class="row-even"><td><p>Tx LO</p></td>
-<td colspan="3"><p>600 MHz</p></td>
+<td colspan="3"><p>613 MHz</p></td>
 </tr>
 <tr class="row-odd"><td><p>Rx LO</p></td>
-<td colspan="3"><p>500 MHz</p></td>
+<td colspan="3"><p>513 MHz</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>Parameter sweep</strong></p></td>
 <td colspan="4"><p>Rx Gain</p></td>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Test frequencies are chosen to avoid falling on “remarkable” values such as integers of 100 MHz</p>
+</div>
 <p>Initial condition:</p>
 <ol class="arabic simple">
-<li><p>RX lo is fixed at 500 MHz</p></li>
-<li><p>If enabled the TX Gain is set to max, tone offset +1 MHz and LO = 600 MHz</p></li>
+<li><p>RX lo is fixed at 513 MHz</p></li>
+<li><p>If enabled the TX Gain is set to max, tone offset +1 MHz and LO = 613 MHz</p></li>
 </ol>
 <p>Sweep:</p>
 <ol class="arabic simple">
@@ -671,26 +675,18 @@ while we observe the RX port with a spectrum analyser using a wideband scan.</p>
     width="100%"
     height="480px"
     style="border:none;">
-</iframe><p>Both Gains give us the same plot. We see a lot of spurs but beware of the scale: they are very low at -80dBm or lower.
-Zooming in around 600 - 1000 MHz reveals a comb of 50 MHz, which looks suspiciously like a clock.</p>
-<p>Sure enough, looking at the schematics there is a 50 MHz TCXO feeding the FPGA processor and ethernet transceiver:</p>
-<figure class="align-center" id="id13">
-<a class="reference internal image-reference" href="_images/libresdr_50M_clk.png"><img alt="_images/libresdr_50M_clk.png" src="_images/libresdr_50M_clk.png" style="width: 557.1999999999999px; height: 233.79999999999998px;" />
-</a>
-<figcaption>
-<p><span class="caption-text">50 MHz clock on LibreSDR schematics</span><a class="headerlink" href="#id13" title="Link to this image"></a></p>
-</figcaption>
-</figure>
+</iframe><p>Given the levels involved, we see nothing. The few spurs that are present can be internal (eg 2052 MHz is the VCO frequency, 4104M MHz is VCO H2),
+others would be external noise picked up by cables.</p>
 </section>
 <section id="tx-synth-on-max-tx-gain">
 <h4><span class="section-number">2.5.5.2. </span>TX Synth ON - Max TX Gain<a class="headerlink" href="#tx-synth-on-max-tx-gain" title="Link to this heading"></a></h4>
 <iframe
-    src="_static/plotly/libresdr/rx_spur_emis_tx_lo_600M-OFF_MaxGain.html"
+    src="_static/plotly/libresdr/rx_spur_emis_tx_lo_613M-OFF_MaxGain.html"
     width="100%"
     height="480px"
     style="border:none;">
-</iframe><p>The TX synthesizer is ON but not transmitting. Now we also see the VCO fundamental at <span class="math notranslate nohighlight">\(4 \times 600 MHz = 2.4 GHz\)</span> and its H2.
-Again very similar plots between the two gains although VCO H2 is lower at high gain.</p>
+</iframe><p>The TX synthesizer is ON but not transmitting. Now we also see the VCO fundamental at <span class="math notranslate nohighlight">\(4 \times 613 MHz = 2452 MHz\)</span> and its H2.
+Very similar plots between the two gains although VCO H2 is lower at high gain.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The plots above are measured at maximum TX Gain, lowering the TX Gain reduces the VCO spurs seen at the RX port so these plots represent the worst case</p>
@@ -699,7 +695,7 @@ Again very similar plots between the two gains although VCO H2 is lower at high 
 <section id="tx-active">
 <h4><span class="section-number">2.5.5.3. </span>TX Active<a class="headerlink" href="#tx-active" title="Link to this heading"></a></h4>
 <iframe
-    src="_static/plotly/libresdr/rx_spur_emis_tx_lo_600M-ON.html"
+    src="_static/plotly/libresdr/rx_spur_emis_tx_lo_613M-ON.html"
     width="100%"
     height="480px"
     style="border:none;">
@@ -707,25 +703,25 @@ Again very similar plots between the two gains although VCO H2 is lower at high 
 <p class="admonition-title">Note</p>
 <p>This last case looks at TX/RX RF coupling between the SMA and the chip boundary: it gives us the <strong>TX/RX isolation on the PCB</strong></p>
 </div>
-<p>The transmitter is turned ON: we see small replicas of the transmit tone at 1.8 GHz, 3 GHz, 4.2 GHz, 5.4 GHz… They remain much lower than the VCO spurs.
-The transmit fundamental sits at around -90 dBm which negligible.</p>
+<p>The transmitter is turned ON: On top the the VCO spurs, we the TX fundamental at 614 MHz and replicas of the transmit tone at approx. 1.84 GHz, 3 GHz, 4.3 GHz, 5.5 GHz… They remain much lower than the VCO spurs.
+The transmit fundamental sits at around -82 dBm which negligible.</p>
 <p>The VCO frequency shows a much stronger spur at approx. -65 dBm, but it’s very far from the RX frequency so
 would not be an issue in a system as it could easily be filtered out. That is, unless you chose a TX frequency such that the VCO would fall near the RX…in which
 case you would have a serious problem.</p>
-<p>Focusing on the region around the LO frequency, we have a TX tone at roughly +4 dBm (measured separately) and a spur on the RX side at -90 dBm or an <strong>isolation
-of 94 dB</strong>. While this figure will likely change with frequency, we would still be in the range of 80dB+ of isolation. It is quite clear from this result that the PCB
-will not be a limiting factor here.</p>
+<p>Focusing on the region around the LO frequency, we have a TX tone at roughly +4 dBm (measured separately) and a spur on the RX side at -82 dBm or an <strong>isolation
+of 86 dB</strong>. While this figure will likely change with frequency, we would still be in the range of 80dB+ of isolation. It is quite clear from this result that the PCB
+will not be a limiting factor.</p>
 </section>
 </section>
 <section id="rx-spurious-reception">
 <span id="libresdr-rx-spur-rec"></span><h3><span class="section-number">2.5.6. </span>Rx Spurious reception<a class="headerlink" href="#rx-spurious-reception" title="Link to this heading"></a></h3>
 <p>Spurious reception measures the noise at the RX <strong>output</strong>, in other words what <strong>leaks in</strong> the receive port and seen at the end of the receive chain.
 For this both TX and RX ports are terminated by 50R, and we perform FFTs on the RX while sweeping the RX LO.</p>
-<figure class="align-center" id="id14">
+<figure class="align-center" id="id13">
 <a class="reference internal image-reference" href="_images/setup_50r_termination.svg"><img alt="_images/setup_50r_termination.svg" src="_images/setup_50r_termination.svg" style="width: 151.20000000000002px; height: 137.6px;" />
 </a>
 <figcaption>
-<p><span class="caption-text">RX spurious reception setup</span><a class="headerlink" href="#id14" title="Link to this image"></a></p>
+<p><span class="caption-text">RX spurious reception setup</span><a class="headerlink" href="#id13" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>Three configurations are tested:</p>
@@ -1033,7 +1029,7 @@ Above -20dB gain we start showing a little bit of compression, and below -70dB w
 <td colspan="3"><p>LO+100kHz</p></td>
 </tr>
 <tr class="row-even"><td><p>LO frequency</p></td>
-<td colspan="3"><p>500 MHz</p></td>
+<td colspan="3"><p>513 MHz</p></td>
 </tr>
 <tr class="row-odd"><td><p>Tone level</p></td>
 <td colspan="3"><p>0 dBFs</p></td>
@@ -1066,11 +1062,11 @@ Above -20dB gain we start showing a little bit of compression, and below -70dB w
     style="border:none;">
 </iframe><p>The transmitter is ON but not actively transmitting. At Maximum gain we see mainly:</p>
 <ul class="simple">
-<li><p>LO leakage at 500 MHz at -55 dBm</p></li>
-<li><p>VCO leakage at 2 GHz: the VCO runs at 4x LO which is quite typical. <span class="red">The VCO is leaking at -40 dBm, which is incredibly high</span></p></li>
-<li><p>VCO H2 at 4 GHz</p></li>
-<li><p>VCO H3 at 6 GHz</p></li>
-<li><p>And few other smaller spurs</p></li>
+<li><p>LO leakage at 513 MHz at -53 dBm</p></li>
+<li><p>VCO leakage at 2052 MHz: the VCO runs at 4x LO which is quite typical. <span class="red">The VCO is leaking at -40 dBm, which is incredibly high</span></p></li>
+<li><p>VCO H2 at 4.1 GHz</p></li>
+<li><p>Harmonics of the LO</p></li>
+<li><p>And other much smaller spurs</p></li>
 </ul>
 </section>
 <section id="tx-synth-on-output-off-min-gain">
@@ -1090,19 +1086,19 @@ spurs still stand out as the strongest, they are between 30-40dB lower compared 
 <section id="id4">
 <h4><span class="section-number">2.6.6.3. </span>TX ACTIVE<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
 <iframe
-    src="_static/plotly/libresdr/tx_spur_emis_on.html"
+    src="_static/plotly/libresdr/tx_spur_emis_tx_on.html"
     width="100%"
     height="470px"
     style="border:none;">
 </iframe><p>Here we see what appears to be harmonics of the test tone and VCO spurs (and many other smaller spurs). However looking at the <a class="reference internal" href="#libresdr-tx-harmonics"><span class="std std-ref">Tx Harmonics</span></a> chapter, something does not match:
 The odd harmonics are very high, <span class="red">H3 for example sits at -10dBc</span>, not at all what was previously measured.</p>
 <p>Additionally changing the amplitude of the main tone does not reduce the “harmonics”, which makes no sense.</p>
-<p>Zooming in manually around each harmonic explains what is happening:</p>
-<figure class="align-center" id="id15">
+<p>Zooming in manually around each harmonic explains what is happening (older measurement done at 500 MHz):</p>
+<figure class="align-center" id="id14">
 <a class="reference internal image-reference" href="_images/opensdr_txharmonic_check.svg"><img alt="_images/opensdr_txharmonic_check.svg" src="_images/opensdr_txharmonic_check.svg" style="width: 1125.9px; height: 621.0px;" />
 </a>
 <figcaption>
-<p><span class="caption-text">TX spurs at LO = 500 MHz</span><a class="headerlink" href="#id15" title="Link to this image"></a></p>
+<p><span class="caption-text">TX spurs at LO = 500 MHz</span><a class="headerlink" href="#id14" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>Since the wanted tone is at <span class="math notranslate nohighlight">\(\text{LO + 100 kHz}\)</span>, H2 will be at <span class="math notranslate nohighlight">\(\text{2*LO + 200 kHz}\)</span>, H3 at <span class="math notranslate nohighlight">\(\text{3*LO + 300 kHz}\)</span> and so on.
@@ -1180,11 +1176,11 @@ alternating side of the LO: if the wanted tone is at <span class="math notransla
 The highest spur in this example is the 3rd order product, approx. 55dB lower than the wanted tone (good rejection).</p>
 <p>We also see two unknown spurs near -100 kHz and +300 kHz, I’m not quite sure what they are since they don’t fall on integers
 of 100 kHz. Maybe a clock or some fractional signal?</p>
-<figure class="align-center" id="id16">
+<figure class="align-center" id="id15">
 <a class="reference internal image-reference" href="_images/opensdr_tx_bbim.svg"><img alt="_images/opensdr_tx_bbim.svg" src="_images/opensdr_tx_bbim.svg" style="width: 871.0px; height: 324.0px;" />
 </a>
 <figcaption>
-<p><span class="caption-text">Baseband intermodulation</span><a class="headerlink" href="#id16" title="Link to this image"></a></p>
+<p><span class="caption-text">Baseband intermodulation</span><a class="headerlink" href="#id15" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>Unfortunately,
@@ -1219,7 +1215,7 @@ before the tone is synthesized by the DAC.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2026, Z93-Lab.
-      <span class="lastupdated">Last updated on Mar 26, 2026 at 2038.
+      <span class="lastupdated">Last updated on Apr 09, 2026 at 2214.
       </span></p>
   </div>
 
