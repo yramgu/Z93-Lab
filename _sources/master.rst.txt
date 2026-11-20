@@ -61,7 +61,7 @@ These two repositories contain convenient SD card images:
 
     .. figure:: assets/figures/sd_card.png
         :align: center
-        :scale: 50 %
+        :scale: 60 %
 
         SD card preparation
 
@@ -69,7 +69,7 @@ These two repositories contain convenient SD card images:
 
     .. figure:: assets/figures/tezuka_info.png
         :align: center
-        :scale: 50 %
+        :scale: 60 %
 
         Checking Tezuka has booted
 
@@ -103,7 +103,7 @@ Configuration
 
     .. figure:: assets/figures/pluto_com.png
         :align: center
-        :scale: 60 %
+        :scale: 80 %
 
         COM port
 
@@ -174,6 +174,55 @@ Example, to put the device in AD9361 / 2r2t mode, type:
         fw_setenv mode 2r2t
         reboot
 
-.. warning:: 
-    
-    While the commands are accepted by my device running the "v0.37-dirty" firmware, the second channels do not seem to work.. it seems to be a firmware issue
+Enabling Ethernet
+---------------------
+
+By default ethernet is disabled on Pluto Clones. Here is the procedure to enable it
+
+1. Connect your pluto to your PC using an ethernet cable or a usb-to-ethernet adapter:
+
+    .. figure:: assets/figures/setup_ethernet.svg
+        :align: center
+        :scale: 70 %
+
+        Ethernet connections
+
+    You also need to plug the USB port
+
+2. When your pluto has enumerated, open `config.txt` and under the :guilabel:`USB_ETHERNET` section enter an IP address and corresponding mask. In my example I am using `192.168.3.1`. You can also see the default `192.168.2.1` under the :guilabel:`NETWORK` section, used by the USB port (and not the ethernet port):
+
+    .. figure:: assets/figures/pluto_config.PNG
+        :align: center
+        :scale: 70 %
+
+        Ethernet configuration SDR side
+
+3. Then you need to configure your PC to match the same netmask. 
+
+    - Assuming you are using a USB-to-Ethernet adpater (which I recommend), find its adpater in the windows settings (`Control Panel > Network and Internet > Network Connections`)
+    - `Right-click > Properties > Internet Protocol Version 4`
+    - Enter the correct mask and a valid IP address for that mask: eg `192.168.3.10`
+
+    .. figure:: assets/figures/ethernet.PNG
+        :align: center
+        :scale: 70 %
+
+        Ethernet configuration PC side
+
+4. Close config.txt and eject the mounted drive (not the controller!) for the change to take effect. To be sure, once you've done that unplug the SDR and plug it back in: you should see your change
+
+5. You can now connect to your SDR through the ethernet port. Eg in python:
+
+    .. code-block:: python
+ 
+        # Assuming you have pip-installed pyadi-iio
+        # Assuming you have put your SDR in AD9361 mode
+
+        import adi
+        sdr = adi.ad9361("ip:192.168.3.1")
+
+        # do stuff
+        # ...
+
+        sdr.close()
+

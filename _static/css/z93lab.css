@@ -1,0 +1,517 @@
+/* ==========================================================================
+   Z93-Lab Sphinx theme
+   --------------------------------------------------------------------------
+   Imports sphinx_rtd_theme's theme.css, then overrides it only: the RTD
+   structure and class names are untouched. (An @import rather than a second
+   stylesheet in theme.conf, which Sphinx before 7.1 cannot list.)
+
+   Look: a dark "instrument panel" sidebar, a white reading page, one teal
+   signal accent. System fonts only, no web fonts or CDN, so a built site
+   works from file:// and makes no third-party requests.
+   Project stylesheets can read the tokens (e.g. var(--zl-teal)).
+   ========================================================================== */
+
+@import url("theme.css");
+
+:root {
+    /* panel (sidebar) */
+    --zl-ink:          #0B1220;
+    --zl-ink-2:        #0F1A2B;
+    --zl-ink-3:        #0B2A2E;
+    --zl-side-text:    #CBD5E1;
+    --zl-side-muted:   #94A3B8;
+
+    /* signal accent */
+    --zl-teal-bright:  #2DD4BF;   /* on the dark panel */
+    --zl-teal:         #0D9488;   /* bars and rules on white */
+    --zl-teal-dark:    #0F766E;   /* links on white, 5.5:1 */
+    --zl-teal-darker:  #115E59;   /* link hover */
+    --zl-amber:        #F59E0B;
+
+    /* page */
+    --zl-text:         #1E293B;
+    --zl-heading:      #0B1220;
+    --zl-muted:        #475569;
+    --zl-rule:         #E2E8F0;
+    --zl-surface:      #F8FAFC;
+    --zl-surface-2:    #F1F5F9;
+    --zl-tint:         #F0FDFA;
+    --zl-tint-2:       #CCFBF1;
+
+    --zl-radius:       8px;
+
+    --zl-font: "Inter", "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system,
+               BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
+    --zl-mono: "JetBrains Mono", "Cascadia Code", "Cascadia Mono", "SF Mono", SFMono-Regular,
+               Consolas, Menlo, "Liberation Mono", monospace;
+}
+
+/* --------------------------------------------------------------------------
+   1. Typography: system sans everywhere, FontAwesome icons untouched
+   -------------------------------------------------------------------------- */
+
+body,
+.btn,
+input, select, textarea,
+.wy-side-nav-search input[type=text],
+h1, h2, h3, h4, h5, h6, legend,
+.rst-content .toctree-wrapper > p.caption,
+.rst-content .sidebar .sidebar-title {
+    font-family: var(--zl-font);
+}
+
+.rst-content code,
+.rst-content tt,
+code, kbd, pre, samp,
+.rst-content pre.literal-block,
+.rst-content div[class^=highlight] pre,
+.rst-content kbd,
+.rst-content pre,
+.rst-content samp {
+    font-family: var(--zl-mono);
+}
+
+body {
+    color: var(--zl-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+::selection { background: rgba(45, 212, 191, .28); }
+
+/* links come before the sidebar rules: .wy-menu-vertical a weighs the same as
+   a:visited / a:hover and must win by order, as in theme.css */
+a,
+a:visited { color: var(--zl-teal-dark); }
+a:hover { color: var(--zl-teal-darker); }
+.rst-content a:not(.headerlink):not(.btn) {
+    text-decoration: underline;
+    text-decoration-color: rgba(15, 118, 110, .35);
+    text-underline-offset: 2px;
+}
+.rst-content a:not(.headerlink):not(.btn):hover { text-decoration-color: currentColor; }
+/* toctrees and image links read better plain */
+.rst-content .toctree-wrapper a,
+.rst-content a.image-reference,
+.rst-content .wy-breadcrumbs-aside a { text-decoration: none !important; }
+
+/* --------------------------------------------------------------------------
+   2. Sidebar: dark instrument panel, teal signal accents
+   -------------------------------------------------------------------------- */
+
+.wy-nav-side {
+    background: linear-gradient(180deg, var(--zl-ink) 0%, var(--zl-ink-2) 60%, var(--zl-ink-3) 100%);
+    color: var(--zl-side-muted);
+    border-right: 1px solid rgba(255, 255, 255, .04);
+}
+.wy-side-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, .18) transparent;
+}
+
+.wy-side-nav-search {
+    background-color: transparent;
+    text-align: left;
+    padding: 1.4em 1.4em 1em;
+    margin-bottom: .4em;
+    border-bottom: 1px solid rgba(255, 255, 255, .06);
+}
+
+/* mark + project name on one row */
+.wy-side-nav-search > a.zl-brand {
+    display: flex;
+    align-items: center;
+    gap: .65em;
+    padding: 0;
+    margin: 0;
+    color: #fff;
+    font-size: 118%;
+    font-weight: 700;
+    letter-spacing: -.01em;
+    line-height: 1.2;
+}
+.wy-side-nav-search > a.zl-brand:hover { background: none; }
+.wy-side-nav-search > a.zl-brand:hover .zl-name { color: var(--zl-teal-bright); }
+.wy-side-nav-search > a.zl-brand img.zl-mark {
+    display: block;
+    width: 34px;
+    height: 34px;
+    margin: 0;
+    padding: 0;
+    border-radius: 9px;
+    background: none;
+    box-shadow: 0 0 0 1px rgba(45, 212, 191, .25), 0 4px 14px rgba(45, 212, 191, .18);
+}
+
+.wy-side-nav-search .zl-tagline {
+    margin-top: .7em;
+    color: var(--zl-side-muted);
+    font-size: 82%;
+    line-height: 1.4;
+}
+.wy-side-nav-search .zl-release {
+    display: inline-block;
+    margin-top: .6em;
+    padding: .1em .55em;
+    border: 1px solid rgba(45, 212, 191, .35);
+    border-radius: 999px;
+    color: var(--zl-teal-bright);
+    font-family: var(--zl-mono);
+    font-size: 72%;
+}
+
+.wy-side-nav-search [role=search] { margin-top: 1.1em; }
+.wy-side-nav-search input[type=text] {
+    border-radius: var(--zl-radius);
+    border: 1px solid rgba(148, 163, 184, .25);
+    background: rgba(255, 255, 255, .06);
+    color: #fff;
+    padding: 7px 12px;
+    box-shadow: none;
+    transition: border-color .15s, background-color .15s;
+}
+.wy-side-nav-search input[type=text]::placeholder { color: rgba(203, 213, 225, .7); }
+.wy-side-nav-search input[type=text]:focus {
+    border-color: var(--zl-teal-bright);
+    background: rgba(255, 255, 255, .09);
+    outline: 0;
+}
+
+/* menu: everything stays on the dark panel */
+.wy-menu-vertical header,
+.wy-menu-vertical p.caption {
+    color: var(--zl-teal-bright);
+    font-size: 72%;
+    letter-spacing: .1em;
+    margin-top: 16px;
+}
+.wy-menu-vertical a,
+.wy-menu-vertical li ul li a { color: var(--zl-side-text); }
+.wy-menu-vertical a {
+    transition: background-color .12s, color .12s;
+}
+.wy-menu-vertical a:hover {
+    background-color: rgba(255, 255, 255, .06);
+    color: #fff;
+}
+.wy-menu-vertical a:hover button.toctree-expand { color: #fff; }
+.wy-menu-vertical a:active { background-color: var(--zl-teal); color: #fff; }
+
+.wy-menu-vertical li button.toctree-expand,
+.wy-menu-vertical li.current > a button.toctree-expand,
+.wy-menu-vertical li.on a button.toctree-expand,
+.wy-menu-vertical li.toctree-l2 button.toctree-expand,
+.wy-menu-vertical li.toctree-l3 button.toctree-expand { color: var(--zl-side-muted); }
+
+/* open branch: a lighter layer of the panel, marked by the teal bar */
+.wy-menu-vertical li.current { background: rgba(255, 255, 255, .03); }
+.wy-menu-vertical li.current a {
+    color: var(--zl-side-muted);
+    border-right: none;
+}
+.wy-menu-vertical li.current a:hover {
+    background: rgba(255, 255, 255, .06);
+    color: #fff;
+}
+.wy-menu-vertical li.current > a,
+.wy-menu-vertical li.on a {
+    color: #fff;
+    font-weight: 600;
+    background: rgba(45, 212, 191, .10);
+}
+.wy-menu-vertical li.current > a:hover,
+.wy-menu-vertical li.on a:hover { background: rgba(45, 212, 191, .16); }
+.wy-menu-vertical li.current > a:hover button.toctree-expand,
+.wy-menu-vertical li.on a:hover button.toctree-expand { color: #fff; }
+.wy-menu-vertical li.toctree-l1.current > a {
+    border-top: none;
+    border-bottom: none;
+    box-shadow: inset 3px 0 0 var(--zl-teal-bright);
+}
+.wy-menu-vertical li.toctree-l2 a,
+.wy-menu-vertical li.toctree-l3 a,
+.wy-menu-vertical li.toctree-l4 a { color: var(--zl-side-muted); }
+.wy-menu-vertical li.toctree-l2 a:hover,
+.wy-menu-vertical li.toctree-l3 a:hover,
+.wy-menu-vertical li.toctree-l4 a:hover { color: #fff; }
+.wy-menu-vertical li.toctree-l2.current > a,
+.wy-menu-vertical li.toctree-l2.current li.toctree-l3 > a { background: rgba(255, 255, 255, .035); }
+.wy-menu-vertical li.toctree-l3.current > a,
+.wy-menu-vertical li.toctree-l3.current li.toctree-l4 > a { background: rgba(255, 255, 255, .06); }
+.wy-menu-vertical li.toctree-l2.current > a,
+.wy-menu-vertical li.toctree-l3.current > a { color: var(--zl-teal-bright); }
+
+/* narrow screens: top bar instead of the sidebar */
+.wy-nav-top { background: var(--zl-ink); }
+.wy-nav-top a { color: #fff; }
+.wy-nav-top i { color: var(--zl-teal-bright); }
+
+/* --------------------------------------------------------------------------
+   3. Page
+   -------------------------------------------------------------------------- */
+
+.wy-body-for-nav,
+.wy-nav-content-wrap,
+.wy-nav-content { background: #fff; }
+
+.wy-nav-content { padding: 2em 3em; }
+@media screen and (max-width: 768px) {
+    .wy-nav-content { padding: 1.4em 1em; }
+}
+
+.rst-content { line-height: 1.65; }
+
+hr { border-top-color: var(--zl-rule); }
+
+.wy-breadcrumbs { color: var(--zl-muted); font-size: 90%; }
+.wy-breadcrumbs li a { text-decoration: none !important; }
+
+/* titles: ink, opened by a teal sine trace */
+.rst-content h1,
+.rst-content h2,
+.rst-content h3,
+.rst-content h4 { letter-spacing: -.01em; }
+
+.rst-content h1 {
+    color: var(--zl-heading);
+    font-weight: 800;
+    font-size: 210%;
+    line-height: 1.15;
+}
+.rst-content h1::before {
+    content: "";
+    display: block;
+    width: 76px;
+    height: 12px;
+    margin-bottom: .55em;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='76' height='12' viewBox='0 0 76 12'%3E%3Cpath d='M1 6 Q5.5 0 10 6 T19 6 T28 6 T37 6 T46 6 T55 6 T64 6 T73 6' fill='none' stroke='%230D9488' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat left center;
+}
+.rst-content h2 {
+    color: var(--zl-heading);
+    font-weight: 700;
+    margin-top: 1.6em;
+    padding-bottom: .35em;
+    border-bottom: 1px solid var(--zl-rule);
+}
+.rst-content h3 { color: var(--zl-teal-dark); font-weight: 700; margin-top: 1.3em; }
+.rst-content h4,
+.rst-content h5,
+.rst-content h6 { color: var(--zl-muted); font-weight: 700; }
+
+.rst-content .headerlink { color: var(--zl-teal) !important; }
+
+/* inline literals: neutral chip rather than RTD red, which reads as a failure */
+.rst-content code,
+.rst-content tt,
+code {
+    background: var(--zl-surface-2);
+    border: 1px solid var(--zl-rule);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: 82%;
+}
+.rst-content code.literal,
+.rst-content tt.literal { color: var(--zl-heading); }
+/* `single backticks` (default role, rendered as <cite>): RTD shows them as
+   plain italics, which get lost in body text; draw them as the code chip */
+.rst-content cite {
+    font-family: var(--zl-mono);
+    font-style: normal;
+    font-size: 82%;
+    color: var(--zl-heading);
+    background: var(--zl-surface-2);
+    border: 1px solid var(--zl-rule);
+    border-radius: 5px;
+    padding: 1px 6px;
+    white-space: normal;
+}
+.rst-content code.xref,
+.rst-content tt.xref,
+a .rst-content code,
+a .rst-content tt { color: var(--zl-teal-dark); }
+
+/* code blocks: soft surface, rounded */
+.rst-content div[class^=highlight],
+.rst-content pre.literal-block {
+    border: 1px solid var(--zl-rule);
+    border-radius: var(--zl-radius);
+    background: var(--zl-surface);
+}
+.rst-content .highlight,
+.rst-content div[class^=highlight] pre { background: var(--zl-surface); }
+.rst-content div[class^=highlight] pre,
+.rst-content pre.literal-block { font-size: 12.5px; line-height: 1.5; }
+.rst-content .code-block-caption { color: var(--zl-muted); font-style: normal; }
+
+/* GUI labels and keys */
+.rst-content .guilabel,
+.rst-content .menuselection {
+    border: 1px solid rgba(13, 148, 136, .35);
+    background: var(--zl-tint);
+    color: var(--zl-teal-darker);
+    border-radius: 5px;
+    font-weight: 600;
+}
+.rst-content kbd,
+kbd {
+    background: #fff;
+    border: 1px solid var(--zl-rule);
+    border-bottom-width: 2px;
+    border-radius: 5px;
+    box-shadow: none;
+    color: var(--zl-heading);
+    padding: 1px 6px;
+}
+
+/* figures */
+.rst-content figure figcaption,
+.rst-content .figure .caption {
+    color: var(--zl-muted);
+    font-size: 90%;
+    font-style: normal;
+}
+.rst-content figure .caption-text,
+.rst-content div.figure .caption-text { font-style: normal; }
+
+/* plain tables: quiet header, teal rule under it, faint zebra */
+.rst-content table.docutils,
+.rst-content table.docutils td,
+.rst-content table.docutils th,
+.wy-table-bordered-all,
+.wy-table-bordered-all td { border-color: var(--zl-rule); }
+.rst-content table.docutils thead th {
+    background: var(--zl-surface);
+    color: var(--zl-heading);
+    font-weight: 700;
+    border-bottom: 2px solid var(--zl-teal);
+}
+.rst-content table.docutils:not(.field-list) tr:nth-child(2n-1) td { background-color: #FBFCFD; }
+.rst-content table.docutils tbody tr:hover td { background-color: var(--zl-tint); }
+.rst-content table.docutils caption { color: var(--zl-muted); }
+
+/* --------------------------------------------------------------------------
+   4. Admonitions: soft card with a coloured edge, coloured title text
+      each type sets --zl-adm (edge, icon, title) and --zl-adm-bg
+   -------------------------------------------------------------------------- */
+
+.rst-content .admonition,
+.rst-content .admonition-todo,
+.rst-content .attention,
+.rst-content .caution,
+.rst-content .danger,
+.rst-content .error,
+.rst-content .hint,
+.rst-content .important,
+.rst-content .note,
+.rst-content .seealso,
+.rst-content .tip,
+.rst-content .warning {
+    --zl-adm: #1D4ED8;
+    --zl-adm-edge: #3B82F6;
+    --zl-adm-bg: #EFF6FF;
+    background: var(--zl-adm-bg);
+    border-left: 4px solid var(--zl-adm-edge);
+    border-radius: 0 var(--zl-radius) var(--zl-radius) 0;
+    padding: 14px 18px;
+}
+.rst-content .admonition .admonition-title,
+.rst-content .admonition-todo .admonition-title,
+.rst-content .attention .admonition-title,
+.rst-content .caution .admonition-title,
+.rst-content .danger .admonition-title,
+.rst-content .error .admonition-title,
+.rst-content .hint .admonition-title,
+.rst-content .important .admonition-title,
+.rst-content .note .admonition-title,
+.rst-content .seealso .admonition-title,
+.rst-content .tip .admonition-title,
+.rst-content .warning .admonition-title {
+    background: transparent;
+    color: var(--zl-adm);
+    margin: 0 0 .5em;
+    padding: 0;
+    font-size: 92%;
+    letter-spacing: .02em;
+}
+.rst-content .admonition-title:before { color: var(--zl-adm-edge); }
+
+.rst-content .hint,
+.rst-content .tip {
+    --zl-adm: var(--zl-teal-dark);
+    --zl-adm-edge: var(--zl-teal);
+    --zl-adm-bg: var(--zl-tint);
+}
+.rst-content .important {
+    --zl-adm: #6D28D9;
+    --zl-adm-edge: #8B5CF6;
+    --zl-adm-bg: #F5F3FF;
+}
+.rst-content .admonition-todo,
+.rst-content .attention,
+.rst-content .caution,
+.rst-content .warning {
+    --zl-adm: #92400E;
+    --zl-adm-edge: var(--zl-amber);
+    --zl-adm-bg: #FFFBEB;
+}
+.rst-content .danger,
+.rst-content .error {
+    --zl-adm: #B91C1C;
+    --zl-adm-edge: #EF4444;
+    --zl-adm-bg: #FEF2F2;
+}
+
+/* --------------------------------------------------------------------------
+   5. Footer: site line, outlined prev/next buttons
+   -------------------------------------------------------------------------- */
+
+footer { color: var(--zl-muted); font-size: 92%; }
+footer hr { margin: 18px 0; }
+
+footer .zl-legal {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .5em;
+    margin-bottom: .4em;
+}
+footer .zl-legal-mark {
+    width: 18px;
+    height: 18px;
+    border-radius: 5px;
+    margin-right: .2em;
+}
+footer .zl-owner { color: var(--zl-heading); font-weight: 600; }
+footer .zl-sep { color: var(--zl-teal); font-weight: 700; }
+
+.rst-footer-buttons .btn-neutral,
+.rst-footer-buttons .btn-neutral:visited {
+    background-color: #fff !important;
+    color: var(--zl-teal-dark) !important;
+    border: 1px solid var(--zl-rule);
+    border-radius: 999px;
+    box-shadow: none;
+    padding: 8px 16px;
+    font-weight: 600;
+    transition: border-color .15s, background-color .15s;
+}
+.rst-footer-buttons .btn-neutral:hover {
+    background-color: var(--zl-tint) !important;
+    border-color: rgba(13, 148, 136, .45);
+    color: var(--zl-teal-darker) !important;
+}
+
+/* --------------------------------------------------------------------------
+   6. Print: keep the footer line, drop navigation
+   -------------------------------------------------------------------------- */
+
+@media print {
+    footer { display: block !important; }
+    .rst-footer-buttons { display: none; }
+    .rst-content h1::before,
+    .rst-content .admonition,
+    .rst-content table.docutils thead th {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}

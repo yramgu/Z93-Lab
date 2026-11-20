@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>1. General Information &mdash; Z93-Lab 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/css/z93lab.css?v=b851cb3f" />
 
   
     <link rel="shortcut icon" href="_static/favicon.ico"/>
@@ -31,12 +31,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="index.html" class="icon icon-home">
-            Z93-Lab
-          </a>
+  <a href="index.html" class="zl-brand">
+    <img src="_static/z93lab-mark.svg" class="zl-mark" alt=""/>
+    <span class="zl-name">Z93-Lab</span>
+  </a>
+  <div class="zl-tagline">RF test data for Pluto-class SDRs</div>
+  <div class="zl-release">v1.0</div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -61,6 +61,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#available-modes">1.5.2. Available Modes</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#enabling-ethernet">1.6. Enabling Ethernet</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="libresdr.html">2. LibreSDR</a></li>
@@ -109,7 +110,7 @@ controlled environment, therefore decided to do it myself.</p>
 <p>There are numerous PLUTO derivatives based on a Zynq FPGA and AD9363. It would be too long to list them all,
 The picture below shows a few common ones:</p>
 <figure class="align-center" id="id1">
-<a class="reference internal image-reference" href="_images/sdr_family.svg"><img alt="_images/sdr_family.svg" src="_images/sdr_family.svg" style="width: 949.6px; height: 606.4px;" />
+<a class="reference internal image-reference" href="_images/sdr_family.svg?v=75f3ed21-dirty"><img alt="_images/sdr_family.svg" src="_images/sdr_family.svg?v=75f3ed21-dirty" style="width: 949.6px; height: 606.4px;" />
 </a>
 <figcaption>
 <p><span class="caption-text">Pluto SDR derivativess</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
@@ -153,7 +154,7 @@ This “dirty” default firmware seems to be quite limited and not supported so
 <li><p>Simply extract the content of the release ZIP file onto the SD card</p>
 <blockquote>
 <div><figure class="align-center" id="id2">
-<a class="reference internal image-reference" href="_images/sd_card.png"><img alt="_images/sd_card.png" src="_images/sd_card.png" style="width: 916.0px; height: 390.0px;" />
+<a class="reference internal image-reference" href="_images/sd_card.png?v=75f3ed21-dirty"><img alt="_images/sd_card.png" src="_images/sd_card.png?v=75f3ed21-dirty" style="width: 1099.2px; height: 468.0px;" />
 </a>
 <figcaption>
 <p><span class="caption-text">SD card preparation</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
@@ -164,7 +165,7 @@ This “dirty” default firmware seems to be quite limited and not supported so
 <li><p>Insert it in the LibreSDR and plug it in: the SDR will boot from the SD card instead of the internal flash. The device will appear as an external drive (as usual). Open <code class="docutils literal notranslate"><span class="pre">info.html</span></code> and confirm you are running the correct fw (In this example: Tezuka):</p>
 <blockquote>
 <div><figure class="align-center" id="id3">
-<a class="reference internal image-reference" href="_images/tezuka_info.png"><img alt="_images/tezuka_info.png" src="_images/tezuka_info.png" style="width: 968.5px; height: 155.5px;" />
+<a class="reference internal image-reference" href="_images/tezuka_info.png?v=75f3ed21-dirty"><img alt="_images/tezuka_info.png" src="_images/tezuka_info.png?v=75f3ed21-dirty" style="width: 1162.2px; height: 186.6px;" />
 </a>
 <figcaption>
 <p><span class="caption-text">Checking Tezuka has booted</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
@@ -196,7 +197,7 @@ The process is also summarised here.</p>
 <li><p>Plug the device to your computer using the USB port. Windows should enumerate a COM port</p>
 <blockquote>
 <div><figure class="align-center" id="id4">
-<a class="reference internal image-reference" href="_images/pluto_com.png"><img alt="_images/pluto_com.png" src="_images/pluto_com.png" style="width: 233.39999999999998px; height: 313.2px;" />
+<a class="reference internal image-reference" href="_images/pluto_com.png?v=75f3ed21-dirty"><img alt="_images/pluto_com.png" src="_images/pluto_com.png?v=75f3ed21-dirty" style="width: 311.20000000000005px; height: 417.6px;" />
 </a>
 <figcaption>
 <p><span class="caption-text">COM port</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
@@ -208,7 +209,7 @@ The process is also summarised here.</p>
 <li><p>Connect to the device with <span class="guilabel">username: root</span> and <span class="guilabel">password: analog</span> or <span class="guilabel">password: root</span> (for the “dirty” fw). You will be welcome with a prompt:</p>
 <blockquote>
 <div><figure class="align-center" id="id5">
-<a class="reference internal image-reference" href="_images/linux_default_welcome.png"><img alt="_images/linux_default_welcome.png" src="_images/linux_default_welcome.png" style="width: 350.40000000000003px; height: 231.20000000000002px;" />
+<a class="reference internal image-reference" href="_images/linux_default_welcome.png?v=75f3ed21-dirty"><img alt="_images/linux_default_welcome.png" src="_images/linux_default_welcome.png?v=75f3ed21-dirty" style="width: 350.40000000000003px; height: 231.20000000000002px;" />
 </a>
 <figcaption>
 <p><span class="caption-text">Welcome prompt</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
@@ -236,9 +237,9 @@ The process is also summarised here.</p>
 <p>For example if you get:</p>
 <blockquote>
 <div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fw_printenv</span> <span class="n">attr_name</span>
-<span class="o">--&gt;</span> <span class="n">Error</span><span class="p">:</span> <span class="s2">&quot;attr_name&quot;</span> <span class="ow">not</span> <span class="n">defined</span>
+<span class="o">--&gt;</span> <span class="n">Error</span><span class="p">:</span> <span class="s2">"attr_name"</span> <span class="ow">not</span> <span class="n">defined</span>
 <span class="n">fw_printenv</span> <span class="n">attr_val</span>
-<span class="o">--&gt;</span> <span class="n">Error</span><span class="p">:</span> <span class="s2">&quot;attr_val&quot;</span> <span class="ow">not</span> <span class="n">defined</span>
+<span class="o">--&gt;</span> <span class="n">Error</span><span class="p">:</span> <span class="s2">"attr_val"</span> <span class="ow">not</span> <span class="n">defined</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -297,11 +298,69 @@ The process is also summarised here.</p>
 <span class="n">reboot</span>
 </pre></div>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>While the commands are accepted by my device running the “v0.37-dirty” firmware, the second channels do not seem to work.. it seems to be a firmware issue</p>
-</div>
 </section>
+</section>
+<section id="enabling-ethernet">
+<h2><span class="section-number">1.6. </span>Enabling Ethernet<a class="headerlink" href="#enabling-ethernet" title="Link to this heading"></a></h2>
+<p>By default ethernet is disabled on Pluto Clones. Here is the procedure to enable it</p>
+<ol class="arabic">
+<li><p>Connect your pluto to your PC using an ethernet cable or a usb-to-ethernet adapter:</p>
+<blockquote>
+<div><figure class="align-center" id="id6">
+<a class="reference internal image-reference" href="_images/setup_ethernet.svg?v=75f3ed21-dirty"><img alt="_images/setup_ethernet.svg" src="_images/setup_ethernet.svg?v=75f3ed21-dirty" style="width: 774.1999999999999px; height: 362.59999999999997px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Ethernet connections</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>You also need to plug the USB port</p>
+</div></blockquote>
+</li>
+<li><p>When your pluto has enumerated, open <cite>config.txt</cite> and under the <span class="guilabel">USB_ETHERNET</span> section enter an IP address and corresponding mask. In my example I am using <cite>192.168.3.1</cite>. You can also see the default <cite>192.168.2.1</cite> under the <span class="guilabel">NETWORK</span> section, used by the USB port (and not the ethernet port):</p>
+<blockquote>
+<div><figure class="align-center" id="id7">
+<a class="reference internal image-reference" href="_images/pluto_config.PNG?v=75f3ed21-dirty"><img alt="_images/pluto_config.PNG" src="_images/pluto_config.PNG?v=75f3ed21-dirty" style="width: 551.5999999999999px; height: 395.5px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Ethernet configuration SDR side</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</li>
+<li><p>Then you need to configure your PC to match the same netmask.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Assuming you are using a USB-to-Ethernet adpater (which I recommend), find its adpater in the windows settings (<cite>Control Panel &gt; Network and Internet &gt; Network Connections</cite>)</p></li>
+<li><p><cite>Right-click &gt; Properties &gt; Internet Protocol Version 4</cite></p></li>
+<li><p>Enter the correct mask and a valid IP address for that mask: eg <cite>192.168.3.10</cite></p></li>
+</ul>
+<figure class="align-center" id="id8">
+<a class="reference internal image-reference" href="_images/ethernet.PNG?v=75f3ed21-dirty"><img alt="_images/ethernet.PNG" src="_images/ethernet.PNG?v=75f3ed21-dirty" style="width: 999.5999999999999px; height: 561.4px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Ethernet configuration PC side</span><a class="headerlink" href="#id8" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</li>
+<li><p>Close config.txt and eject the mounted drive (not the controller!) for the change to take effect. To be sure, once you’ve done that unplug the SDR and plug it back in: you should see your change</p></li>
+<li><p>You can now connect to your SDR through the ethernet port. Eg in python:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assuming you have pip-installed pyadi-iio</span>
+<span class="c1"># Assuming you have put your SDR in AD9361 mode</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">adi</span>
+<span class="n">sdr</span> <span class="o">=</span> <span class="n">adi</span><span class="o">.</span><span class="n">ad9361</span><span class="p">(</span><span class="s2">"ip:192.168.3.1"</span><span class="p">)</span>
+
+<span class="c1"># do stuff</span>
+<span class="c1"># ...</span>
+
+<span class="n">sdr</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
 </section>
 </section>
 
@@ -316,14 +375,20 @@ The process is also summarised here.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2026, Z93-Lab.
-      <span class="lastupdated">Last updated on Apr 09, 2026 at 2214.
+  <p class="zl-legal">
+    <img src="_static/z93lab-mark.svg" class="zl-legal-mark" alt=""/>
+    <span class="zl-owner">Z93-Lab &#169;2026</span>
+    <span class="zl-sep" aria-hidden="true">&#183;</span>
+    <span>Content licensed <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a></span>
+    <span class="zl-sep" aria-hidden="true">&#183;</span>
+    <a href="terms_of_use.html">Terms of use</a>
+  </p>
+  
+    <p>
+      <span class="lastupdated">Last updated on Nov 20, 2026 at 0842.
       </span></p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
    
 
 </footer>

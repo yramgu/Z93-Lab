@@ -120,7 +120,7 @@ The firmware:
         Default RF mode
 
 - Is configured in **1TX-1RX** only (so TX2 and RX2 port unusable)
-- Has ethernet enabled by default (some forums seem to say this is not the case but it was on mine):
+- Has ethernet disabled by default
 
     .. figure:: assets/figures/linux_ethernet_config.png
         :align: center
@@ -186,7 +186,7 @@ From the plots we can see that
 
 .. raw:: html
 
-   <iframe
+   <iframe loading="lazy"
        src="_static/plotly/libresdr/rx_s11.html"
        width="100%"
        height="550px"
@@ -195,7 +195,7 @@ From the plots we can see that
 
 .. raw:: html
 
-   <iframe
+   <iframe loading="lazy"
        src="_static/plotly/libresdr/tx_s11.html"
        width="100%"
        height="550px"
@@ -266,7 +266,7 @@ Only two gains were measured: min and max to check if there was any dependency.
 
 .. raw:: html
 
-   <iframe
+   <iframe loading="lazy"
        src="_static/plotly/libresdr/rx_frequency_response.html"
        width="100%"
        height="470px"
@@ -321,7 +321,7 @@ Sweep:
 
 .. raw:: html
 
-   <iframe
+   <iframe loading="lazy"
        src="_static/plotly/libresdr/rx_gain.html"
        width="100%"
        height="1380px"
@@ -375,7 +375,7 @@ Sweep:
 
 .. raw:: html
 
-   <iframe
+   <iframe loading="lazy"
        src="_static/plotly/libresdr/rx_filter.html"
        width="100%"
        height="1400px"
@@ -439,7 +439,7 @@ Sweep: For each frequency,
 
 .. raw:: html
 
-   <iframe
+   <iframe loading="lazy"
        src="_static/plotly/libresdr/rx_noise_figure_notx.html"
        width="100%"
        height="930px"
@@ -455,7 +455,7 @@ If we activate the TX (turned on but not transmitting), degradation may appear w
 
 .. raw:: html
 
-   <iframe
+   <iframe loading="lazy"
        src="_static/plotly/libresdr/rx_noise_figure_txlo1000.html"
        width="100%"
        height="930px"
@@ -530,7 +530,7 @@ RX only
 
 .. raw:: html
 
-   <iframe
+   <iframe loading="lazy"
        src="_static/plotly/libresdr/rx_spur_emis_rx_only.html"
        width="100%"
        height="480px"
@@ -545,7 +545,7 @@ TX Synth ON - Max TX Gain
 
 .. raw:: html
 
-   <iframe
+   <iframe loading="lazy"
        src="_static/plotly/libresdr/rx_spur_emis_tx_lo_613M-OFF_MaxGain.html"
        width="100%"
        height="480px"
@@ -562,7 +562,7 @@ TX Active
 
 .. raw:: html
 
-   <iframe
+   <iframe loading="lazy"
        src="_static/plotly/libresdr/rx_spur_emis_tx_lo_613M-ON.html"
        width="100%"
        height="480px"
@@ -642,7 +642,7 @@ RX only
 
 .. raw:: html
 
-   <iframe
+   <iframe loading="lazy"
        src="_static/plotly/libresdr/rx_spur_reception_rx_only.html"
        width="100%"
        height="480px"
@@ -659,7 +659,7 @@ TX Synth ON - Max TX Gain
 
 .. raw:: html
 
-   <iframe
+   <iframe loading="lazy"
        src="_static/plotly/libresdr/rx_spur_reception_tx_lo_600M-OFF_MaxGain.html"
        width="100%"
        height="480px"
@@ -677,7 +677,7 @@ TX Active
 
 .. raw:: html
 
-   <iframe
+   <iframe loading="lazy"
        src="_static/plotly/libresdr/rx_spur_reception_tx_lo_600M-ON.html"
        width="100%"
        height="480px"
@@ -735,7 +735,7 @@ very good.
 
 .. raw:: html
 
-   <iframe
+   <iframe loading="lazy"
        src="_static/plotly/libresdr/tx_frequency_response.html"
        width="100%"
        height="480px"
@@ -789,7 +789,7 @@ Above -20dB gain we start showing a little bit of compression, and below -70dB w
 
 .. raw:: html
 
-   <iframe
+   <iframe loading="lazy"
        src="_static/plotly/libresdr/tx_gain.html"
        width="100%"
        height="1400px"
@@ -843,7 +843,7 @@ Sweep:
 
 .. raw:: html
 
-   <iframe
+   <iframe loading="lazy"
        src="_static/plotly/libresdr/tx_loim.html"
        width="100%"
        height="1520px"
@@ -891,7 +891,7 @@ Harmonics are reasonably low, the signal appears clean:
 
 .. raw:: html
 
-   <iframe
+   <iframe loading="lazy"
        src="_static/plotly/libresdr/tx_harmonics.html"
        width="100%"
        height="930px"
@@ -940,7 +940,7 @@ TX synth ON, output OFF - Max Gain
 
 .. raw:: html
 
-   <iframe
+   <iframe loading="lazy"
        src="_static/plotly/libresdr/tx_spur_emis_tx_off_MaxGain.html"
        width="100%"
        height="470px"
@@ -960,7 +960,7 @@ TX synth ON, output OFF - Min Gain
 
 .. raw:: html
 
-   <iframe
+   <iframe loading="lazy"
        src="_static/plotly/libresdr/tx_spur_emis_tx_off_MinGain.html"
        width="100%"
        height="470px"
@@ -977,7 +977,7 @@ TX ACTIVE
 
 .. raw:: html
 
-   <iframe
+   <iframe loading="lazy"
        src="_static/plotly/libresdr/tx_spur_emis_tx_on.html"
        width="100%"
        height="470px"

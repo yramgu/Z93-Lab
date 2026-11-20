@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>2. LibreSDR &mdash; Z93-Lab 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/css/z93lab.css?v=b851cb3f" />
 
   
     <link rel="shortcut icon" href="_static/favicon.ico"/>
@@ -32,12 +32,12 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-
-          
-          
-          <a href="index.html" class="icon icon-home">
-            Z93-Lab
-          </a>
+  <a href="index.html" class="zl-brand">
+    <img src="_static/z93lab-mark.svg" class="zl-mark" alt=""/>
+    <span class="zl-name">Z93-Lab</span>
+  </a>
+  <div class="zl-tagline">RF test data for Pluto-class SDRs</div>
+  <div class="zl-release">v1.0</div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -136,7 +136,7 @@
 <li><p>1x blank 32GB micro-SD card</p></li>
 </ul>
 <figure class="align-center" id="id5">
-<a class="reference internal image-reference" href="_images/opensdr_box.jpg"><img alt="_images/opensdr_box.jpg" src="_images/opensdr_box.jpg" style="width: 1200.0px; height: 420.9px;" />
+<a class="reference internal image-reference" href="_images/opensdr_box.jpg?v=75f3ed21-dirty"><img alt="_images/opensdr_box.jpg" src="_images/opensdr_box.jpg?v=75f3ed21-dirty" style="width: 1200.0px; height: 420.9px;" />
 </a>
 <figcaption>
 <p><span class="caption-text">Box content</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
@@ -186,7 +186,7 @@
 </table>
 <p>As far as I know the current/latest PCB revision is <strong>“rev5”</strong>. Schematics can be found <a class="reference external" href="https://github.com/F5OEO/tezuka_fw/discussions/72">here</a></p>
 <figure class="align-center" id="id6">
-<a class="reference internal image-reference" href="_images/zynqsdr_pcb.png"><img alt="_images/zynqsdr_pcb.png" src="_images/zynqsdr_pcb.png" style="width: 776.0px; height: 554.5px;" />
+<a class="reference internal image-reference" href="_images/zynqsdr_pcb.png?v=75f3ed21-dirty"><img alt="_images/zynqsdr_pcb.png" src="_images/zynqsdr_pcb.png?v=75f3ed21-dirty" style="width: 776.0px; height: 554.5px;" />
 </a>
 <figcaption>
 <p><span class="caption-text">LibreSDR typical PCB</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
@@ -206,7 +206,7 @@ covering them to the point where we do not see them anymore.</p>
 The case marking of my device matches the one shown by <a class="reference external" href="https://github.com/F5OEO/tezuka_fw/discussions/72#discussion-7988959">sq6emm here.</a></p>
 <p>My device has the marking “LibresDR” (lowercase “s”) and stiching vias are clearly visible on the PCB:</p>
 <figure class="align-center" id="id7">
-<a class="reference internal image-reference" href="_images/opensdr_pcb.png"><img alt="_images/opensdr_pcb.png" src="_images/opensdr_pcb.png" style="width: 919.0px; height: 535.5px;" />
+<a class="reference internal image-reference" href="_images/opensdr_pcb.png?v=75f3ed21-dirty"><img alt="_images/opensdr_pcb.png" src="_images/opensdr_pcb.png?v=75f3ed21-dirty" style="width: 919.0px; height: 535.5px;" />
 </a>
 <figcaption>
 <p><span class="caption-text">Casing and PCB of OpenSourceSDRLab device</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
@@ -237,7 +237,7 @@ on this website.</p>
 <li><p>Is in “AD9363” mode, ie <strong>limited to the standard frequency range of 325-3800MHz / 20MHz bandwidth</strong></p>
 <blockquote>
 <div><figure class="align-center" id="id8">
-<a class="reference internal image-reference" href="_images/linux_default_cfg.png"><img alt="_images/linux_default_cfg.png" src="_images/linux_default_cfg.png" style="width: 346.40000000000003px; height: 284.8px;" />
+<a class="reference internal image-reference" href="_images/linux_default_cfg.png?v=75f3ed21-dirty"><img alt="_images/linux_default_cfg.png" src="_images/linux_default_cfg.png?v=75f3ed21-dirty" style="width: 346.40000000000003px; height: 284.8px;" />
 </a>
 <figcaption>
 <p><span class="caption-text">Default RF mode</span><a class="headerlink" href="#id8" title="Link to this image"></a></p>
@@ -246,10 +246,10 @@ on this website.</p>
 </div></blockquote>
 </li>
 <li><p>Is configured in <strong>1TX-1RX</strong> only (so TX2 and RX2 port unusable)</p></li>
-<li><p>Has ethernet enabled by default (some forums seem to say this is not the case but it was on mine):</p>
+<li><p>Has ethernet disabled by default</p>
 <blockquote>
 <div><figure class="align-center" id="id9">
-<a class="reference internal image-reference" href="_images/linux_ethernet_config.png"><img alt="_images/linux_ethernet_config.png" src="_images/linux_ethernet_config.png" style="width: 542.4px; height: 503.20000000000005px;" />
+<a class="reference internal image-reference" href="_images/linux_ethernet_config.png?v=75f3ed21-dirty"><img alt="_images/linux_ethernet_config.png" src="_images/linux_ethernet_config.png?v=75f3ed21-dirty" style="width: 542.4px; height: 503.20000000000005px;" />
 </a>
 <figcaption>
 <p><span class="caption-text">Ethernet configuration</span><a class="headerlink" href="#id9" title="Link to this image"></a></p>
@@ -268,7 +268,7 @@ on this website.</p>
 <p>The typical test setup is simple: the port under test is connected to the test instrument with an RF cable, and a 6dB attenuator
 is placed at the device’s SMA connector to tame any mismatch introduced by the RF cable.</p>
 <figure class="align-center" id="id10">
-<a class="reference internal image-reference" href="_images/setup_typical.svg"><img alt="_images/setup_typical.svg" src="_images/setup_typical.svg" style="width: 336.0px; height: 206.4px;" />
+<a class="reference internal image-reference" href="_images/setup_typical.svg?v=75f3ed21-dirty"><img alt="_images/setup_typical.svg" src="_images/setup_typical.svg?v=75f3ed21-dirty" style="width: 336.0px; height: 206.4px;" />
 </a>
 <figcaption>
 <p><span class="caption-text">Typical test setup</span><a class="headerlink" href="#id10" title="Link to this image"></a></p>
@@ -305,7 +305,7 @@ TX test: no active transmission <br /></p></td>
 </table>
 <p>The TX or RX port is connected to a VNA and S11 is measured</p>
 <figure class="align-center" id="id11">
-<a class="reference internal image-reference" href="_images/setup_impedance.svg"><img alt="_images/setup_impedance.svg" src="_images/setup_impedance.svg" style="width: 328.8px; height: 68.8px;" />
+<a class="reference internal image-reference" href="_images/setup_impedance.svg?v=75f3ed21-dirty"><img alt="_images/setup_impedance.svg" src="_images/setup_impedance.svg?v=75f3ed21-dirty" style="width: 328.8px; height: 68.8px;" />
 </a>
 <figcaption>
 <p><span class="caption-text">Port impedance setup</span><a class="headerlink" href="#id11" title="Link to this image"></a></p>
@@ -317,13 +317,13 @@ TX test: no active transmission <br /></p></td>
 <li><p>RX S11 looks OK between 800 - 2500 MHz</p></li>
 <li><p>TX S11 looks OK between 250 - 2000 MHz</p></li>
 </ul>
-<iframe
-    src="_static/plotly/libresdr/rx_s11.html"
+<iframe loading="lazy"
+    src="_static/plotly/libresdr/rx_s11.html?v=75f3ed21-dirty"
     width="100%"
     height="550px"
     style="border:none;">
-</iframe><iframe
-    src="_static/plotly/libresdr/tx_s11.html"
+</iframe><iframe loading="lazy"
+    src="_static/plotly/libresdr/tx_s11.html?v=75f3ed21-dirty"
     width="100%"
     height="550px"
     style="border:none;">
@@ -406,8 +406,8 @@ TX test: no active transmission <br /></p></td>
 <li><p>The frequency response looks very similar with both gains</p></li>
 <li><p>There is significant rolloff after ~2500 MHz, consistant with the S11 response</p></li>
 </ul>
-<iframe
-    src="_static/plotly/libresdr/rx_frequency_response.html"
+<iframe loading="lazy"
+    src="_static/plotly/libresdr/rx_frequency_response.html?v=75f3ed21-dirty"
     width="100%"
     height="470px"
     style="border:none;">
@@ -464,8 +464,8 @@ TX test: no active transmission <br /></p></td>
 <li><p>The Gain Error remains relatively small across the whole gain range and across frequency.</p></li>
 <li><p>There is a global tendancy for <strong>gain error to increase (somewhat) linearly with requested gain</strong>: this means that the gain is not quite linear.</p></li>
 </ul>
-<iframe
-    src="_static/plotly/libresdr/rx_gain.html"
+<iframe loading="lazy"
+    src="_static/plotly/libresdr/rx_gain.html?v=75f3ed21-dirty"
     width="100%"
     height="1380px"
     style="border:none;">
@@ -521,8 +521,8 @@ TX test: no active transmission <br /></p></td>
 <li><p>We see an interesting ripple in the filter response. I have checked manually and it is real, not a measurement issue. On wide bandwidths the passband ripple gets quite large, around 1.5dB</p></li>
 <li><p>Filters at 250 kHz and 300 kHz BW look very similar and are too wide</p></li>
 </ul>
-<iframe
-    src="_static/plotly/libresdr/rx_filter.html"
+<iframe loading="lazy"
+    src="_static/plotly/libresdr/rx_filter.html?v=75f3ed21-dirty"
     width="100%"
     height="1400px"
     style="border:none;">
@@ -584,8 +584,8 @@ acceptable results.</p>
 <p>This test was not run in shielded environment.</p>
 </div>
 <p><strong>Test results:</strong></p>
-<iframe
-    src="_static/plotly/libresdr/rx_noise_figure_notx.html"
+<iframe loading="lazy"
+    src="_static/plotly/libresdr/rx_noise_figure_notx.html?v=75f3ed21-dirty"
     width="100%"
     height="930px"
     style="border:none;">
@@ -593,8 +593,8 @@ acceptable results.</p>
 which is exactly what we get. Past 2500 MHz the NF degrades which is in line with S11/Frequency response.</p>
 <p><strong>Active TX:</strong></p>
 <p>If we activate the TX (turned on but not transmitting), degradation may appear where the TX chain produces spurs that couple on the RX. Below is an example with the TX LO set at 1GHz:</p>
-<iframe
-    src="_static/plotly/libresdr/rx_noise_figure_txlo1000.html"
+<iframe loading="lazy"
+    src="_static/plotly/libresdr/rx_noise_figure_txlo1000.html?v=75f3ed21-dirty"
     width="100%"
     height="930px"
     style="border:none;">
@@ -611,7 +611,7 @@ which is exactly what we get. Past 2500 MHz the NF degrades which is in line wit
 For this we use a slightly different setup: the TX transmits into a 50R load
 while we observe the RX port with a spectrum analyser using a wideband scan.</p>
 <figure class="align-center" id="id12">
-<a class="reference internal image-reference" href="_images/setup_trx_coupling.svg"><img alt="_images/setup_trx_coupling.svg" src="_images/setup_trx_coupling.svg" style="width: 305.6px; height: 137.6px;" />
+<a class="reference internal image-reference" href="_images/setup_trx_coupling.svg?v=75f3ed21-dirty"><img alt="_images/setup_trx_coupling.svg" src="_images/setup_trx_coupling.svg?v=75f3ed21-dirty" style="width: 305.6px; height: 137.6px;" />
 </a>
 <figcaption>
 <p><span class="caption-text">RX spurious emissions setup</span><a class="headerlink" href="#id12" title="Link to this image"></a></p>
@@ -670,8 +670,8 @@ while we observe the RX port with a spectrum analyser using a wideband scan.</p>
 <p><strong>Test results:</strong></p>
 <section id="rx-only">
 <h4><span class="section-number">2.5.5.1. </span>RX only<a class="headerlink" href="#rx-only" title="Link to this heading"></a></h4>
-<iframe
-    src="_static/plotly/libresdr/rx_spur_emis_rx_only.html"
+<iframe loading="lazy"
+    src="_static/plotly/libresdr/rx_spur_emis_rx_only.html?v=75f3ed21-dirty"
     width="100%"
     height="480px"
     style="border:none;">
@@ -680,8 +680,8 @@ others would be external noise picked up by cables.</p>
 </section>
 <section id="tx-synth-on-max-tx-gain">
 <h4><span class="section-number">2.5.5.2. </span>TX Synth ON - Max TX Gain<a class="headerlink" href="#tx-synth-on-max-tx-gain" title="Link to this heading"></a></h4>
-<iframe
-    src="_static/plotly/libresdr/rx_spur_emis_tx_lo_613M-OFF_MaxGain.html"
+<iframe loading="lazy"
+    src="_static/plotly/libresdr/rx_spur_emis_tx_lo_613M-OFF_MaxGain.html?v=75f3ed21-dirty"
     width="100%"
     height="480px"
     style="border:none;">
@@ -694,8 +694,8 @@ Very similar plots between the two gains although VCO H2 is lower at high gain.<
 </section>
 <section id="tx-active">
 <h4><span class="section-number">2.5.5.3. </span>TX Active<a class="headerlink" href="#tx-active" title="Link to this heading"></a></h4>
-<iframe
-    src="_static/plotly/libresdr/rx_spur_emis_tx_lo_613M-ON.html"
+<iframe loading="lazy"
+    src="_static/plotly/libresdr/rx_spur_emis_tx_lo_613M-ON.html?v=75f3ed21-dirty"
     width="100%"
     height="480px"
     style="border:none;">
@@ -718,7 +718,7 @@ will not be a limiting factor.</p>
 <p>Spurious reception measures the noise at the RX <strong>output</strong>, in other words what <strong>leaks in</strong> the receive port and seen at the end of the receive chain.
 For this both TX and RX ports are terminated by 50R, and we perform FFTs on the RX while sweeping the RX LO.</p>
 <figure class="align-center" id="id13">
-<a class="reference internal image-reference" href="_images/setup_50r_termination.svg"><img alt="_images/setup_50r_termination.svg" src="_images/setup_50r_termination.svg" style="width: 151.20000000000002px; height: 137.6px;" />
+<a class="reference internal image-reference" href="_images/setup_50r_termination.svg?v=75f3ed21-dirty"><img alt="_images/setup_50r_termination.svg" src="_images/setup_50r_termination.svg?v=75f3ed21-dirty" style="width: 151.20000000000002px; height: 137.6px;" />
 </a>
 <figcaption>
 <p><span class="caption-text">RX spurious reception setup</span><a class="headerlink" href="#id13" title="Link to this image"></a></p>
@@ -774,8 +774,8 @@ For this both TX and RX ports are terminated by 50R, and we perform FFTs on the 
 <p><strong>Test results:</strong></p>
 <section id="id1">
 <h4><span class="section-number">2.5.6.1. </span>RX only<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
-<iframe
-    src="_static/plotly/libresdr/rx_spur_reception_rx_only.html"
+<iframe loading="lazy"
+    src="_static/plotly/libresdr/rx_spur_reception_rx_only.html?v=75f3ed21-dirty"
     width="100%"
     height="480px"
     style="border:none;">
@@ -785,8 +785,8 @@ at 0dB gain but hidden in the noise. The stronger spur at 3.145GHz, for example,
 </section>
 <section id="id2">
 <h4><span class="section-number">2.5.6.2. </span>TX Synth ON - Max TX Gain<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
-<iframe
-    src="_static/plotly/libresdr/rx_spur_reception_tx_lo_600M-OFF_MaxGain.html"
+<iframe loading="lazy"
+    src="_static/plotly/libresdr/rx_spur_reception_tx_lo_600M-OFF_MaxGain.html?v=75f3ed21-dirty"
     width="100%"
     height="480px"
     style="border:none;">
@@ -799,8 +799,8 @@ We see a particularly strong VCO fundamental spur at 2.4 GHz (600 MHz x 4). At M
 </section>
 <section id="id3">
 <h4><span class="section-number">2.5.6.3. </span>TX Active<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
-<iframe
-    src="_static/plotly/libresdr/rx_spur_reception_tx_lo_600M-ON.html"
+<iframe loading="lazy"
+    src="_static/plotly/libresdr/rx_spur_reception_tx_lo_600M-ON.html?v=75f3ed21-dirty"
     width="100%"
     height="480px"
     style="border:none;">
@@ -857,8 +857,8 @@ much difference between TX ACTIVE and IDLE as most contributions are made a soon
 <p>The output power varies from +4 dBm to -5 dBm, averaging around 0 dBm. It’s less than what we could expect compared to an ADALM-PLUTO,
 but it’s still quite decent. There is however, quite a bit of roll-off: there is 9dB of variation across the whole range, which is not
 very good.</p>
-<iframe
-    src="_static/plotly/libresdr/tx_frequency_response.html"
+<iframe loading="lazy"
+    src="_static/plotly/libresdr/tx_frequency_response.html?v=75f3ed21-dirty"
     width="100%"
     height="480px"
     style="border:none;">
@@ -908,8 +908,8 @@ very good.</p>
 <p><strong>Test results:</strong></p>
 <p>The plots show that the gain is <strong>very linear</strong> but only from from -70dB to -20dB.
 Above -20dB gain we start showing a little bit of compression, and below -70dB we can’t backoff enough, especially at higher frequencies.</p>
-<iframe
-    src="_static/plotly/libresdr/tx_gain.html"
+<iframe loading="lazy"
+    src="_static/plotly/libresdr/tx_gain.html?v=75f3ed21-dirty"
     width="100%"
     height="1400px"
     style="border:none;">
@@ -958,8 +958,8 @@ Above -20dB gain we start showing a little bit of compression, and below -70dB w
 <li><p>LO: Values match datasheet for both 0dB attenuation (-50dBc) and 40dB attenuation (-32dBc).</p></li>
 <li><p>Image: There is a pattern of degradation at very low and very high frequencies, as well as a degration around -30dB of gain.</p></li>
 </ul>
-<iframe
-    src="_static/plotly/libresdr/tx_loim.html"
+<iframe loading="lazy"
+    src="_static/plotly/libresdr/tx_loim.html?v=75f3ed21-dirty"
     width="100%"
     height="1520px"
     style="border:none;">
@@ -1006,8 +1006,8 @@ Above -20dB gain we start showing a little bit of compression, and below -70dB w
 </div>
 <p><strong>Test results:</strong></p>
 <p>Harmonics are reasonably low, the signal appears clean:</p>
-<iframe
-    src="_static/plotly/libresdr/tx_harmonics.html"
+<iframe loading="lazy"
+    src="_static/plotly/libresdr/tx_harmonics.html?v=75f3ed21-dirty"
     width="100%"
     height="930px"
     style="border:none;">
@@ -1055,8 +1055,8 @@ Above -20dB gain we start showing a little bit of compression, and below -70dB w
 <p><strong>Test results:</strong></p>
 <section id="tx-synth-on-output-off-max-gain">
 <h4><span class="section-number">2.6.6.1. </span>TX synth ON, output OFF - Max Gain<a class="headerlink" href="#tx-synth-on-output-off-max-gain" title="Link to this heading"></a></h4>
-<iframe
-    src="_static/plotly/libresdr/tx_spur_emis_tx_off_MaxGain.html"
+<iframe loading="lazy"
+    src="_static/plotly/libresdr/tx_spur_emis_tx_off_MaxGain.html?v=75f3ed21-dirty"
     width="100%"
     height="470px"
     style="border:none;">
@@ -1071,8 +1071,8 @@ Above -20dB gain we start showing a little bit of compression, and below -70dB w
 </section>
 <section id="tx-synth-on-output-off-min-gain">
 <h4><span class="section-number">2.6.6.2. </span>TX synth ON, output OFF - Min Gain<a class="headerlink" href="#tx-synth-on-output-off-min-gain" title="Link to this heading"></a></h4>
-<iframe
-    src="_static/plotly/libresdr/tx_spur_emis_tx_off_MinGain.html"
+<iframe loading="lazy"
+    src="_static/plotly/libresdr/tx_spur_emis_tx_off_MinGain.html?v=75f3ed21-dirty"
     width="100%"
     height="470px"
     style="border:none;">
@@ -1085,8 +1085,8 @@ spurs still stand out as the strongest, they are between 30-40dB lower compared 
 </section>
 <section id="id4">
 <h4><span class="section-number">2.6.6.3. </span>TX ACTIVE<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
-<iframe
-    src="_static/plotly/libresdr/tx_spur_emis_tx_on.html"
+<iframe loading="lazy"
+    src="_static/plotly/libresdr/tx_spur_emis_tx_on.html?v=75f3ed21-dirty"
     width="100%"
     height="470px"
     style="border:none;">
@@ -1095,7 +1095,7 @@ The odd harmonics are very high, <span class="red">H3 for example sits at -10dBc
 <p>Additionally changing the amplitude of the main tone does not reduce the “harmonics”, which makes no sense.</p>
 <p>Zooming in manually around each harmonic explains what is happening (older measurement done at 500 MHz):</p>
 <figure class="align-center" id="id14">
-<a class="reference internal image-reference" href="_images/opensdr_txharmonic_check.svg"><img alt="_images/opensdr_txharmonic_check.svg" src="_images/opensdr_txharmonic_check.svg" style="width: 1125.9px; height: 621.0px;" />
+<a class="reference internal image-reference" href="_images/opensdr_txharmonic_check.svg?v=75f3ed21-dirty"><img alt="_images/opensdr_txharmonic_check.svg" src="_images/opensdr_txharmonic_check.svg?v=75f3ed21-dirty" style="width: 1125.9px; height: 621.0px;" />
 </a>
 <figcaption>
 <p><span class="caption-text">TX spurs at LO = 500 MHz</span><a class="headerlink" href="#id14" title="Link to this image"></a></p>
@@ -1177,7 +1177,7 @@ The highest spur in this example is the 3rd order product, approx. 55dB lower th
 <p>We also see two unknown spurs near -100 kHz and +300 kHz, I’m not quite sure what they are since they don’t fall on integers
 of 100 kHz. Maybe a clock or some fractional signal?</p>
 <figure class="align-center" id="id15">
-<a class="reference internal image-reference" href="_images/opensdr_tx_bbim.svg"><img alt="_images/opensdr_tx_bbim.svg" src="_images/opensdr_tx_bbim.svg" style="width: 871.0px; height: 324.0px;" />
+<a class="reference internal image-reference" href="_images/opensdr_tx_bbim.svg?v=75f3ed21-dirty"><img alt="_images/opensdr_tx_bbim.svg" src="_images/opensdr_tx_bbim.svg?v=75f3ed21-dirty" style="width: 871.0px; height: 324.0px;" />
 </a>
 <figcaption>
 <p><span class="caption-text">Baseband intermodulation</span><a class="headerlink" href="#id15" title="Link to this image"></a></p>
@@ -1214,14 +1214,20 @@ before the tone is synthesized by the DAC.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2026, Z93-Lab.
-      <span class="lastupdated">Last updated on Apr 09, 2026 at 2214.
+  <p class="zl-legal">
+    <img src="_static/z93lab-mark.svg" class="zl-legal-mark" alt=""/>
+    <span class="zl-owner">Z93-Lab &#169;2026</span>
+    <span class="zl-sep" aria-hidden="true">&#183;</span>
+    <span>Content licensed <a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a></span>
+    <span class="zl-sep" aria-hidden="true">&#183;</span>
+    <a href="terms_of_use.html">Terms of use</a>
+  </p>
+  
+    <p>
+      <span class="lastupdated">Last updated on Nov 20, 2026 at 0842.
       </span></p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
    
 
 </footer>
