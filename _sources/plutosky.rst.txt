@@ -368,8 +368,6 @@ Sweep:
 **Test results:**
 
 - We get the exact same result as LibreSDR (expected as this is purely a characteristic of the RFIC)
-- We see a ripple in the filter response. Manual check shows it is real, not a measurement artifact. On wide bandwidths the passband ripple gets quite large, around 1.5dB
-- Filters at 250 kHz and 300 kHz BW look very similar and are too wide
 
 .. raw:: html
 

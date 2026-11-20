@@ -370,7 +370,6 @@ Sweep:
 
 **Test results:**
 
-- We see an interesting ripple in the filter response. I have checked manually and it is real, not a measurement issue. On wide bandwidths the passband ripple gets quite large, around 1.5dB
 - Filters at 250 kHz and 300 kHz BW look very similar and are too wide
 
 .. raw:: html
